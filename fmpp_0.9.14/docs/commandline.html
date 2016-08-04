@@ -1,0 +1,615 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, command-line tool">
+      <title>FMPP - The Command-line Tool</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">The Command-line Tool</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="frontends.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="ant.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#using_cmdln" class=toc>Using the command-line</a></li>
+    <li><a href="#fmpp_cmdline" class=toc>FMPP command-line argument syntax</a></li>
+    <li><a href="#sect3" class=toc>Invoking the command-line tool</a></li>
+    <li><a href="#sect4" class=toc>Specifying settings in the command-line</a></li>
+    <li><a href="#sect5" class=toc>Using configuration files</a></li>
+    <li><a href="#fmpprc" class=toc>Global options</a></li>
+    <li><a href="#sect7" class=toc>Supported front-end dependent settings</a></li>
+    <li><a href="#sect8" class=toc>All options</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<a name="using_cmdln"></a>
+     <h2><font color="#000000">Using the command-line</font></h2>
+
+<p>This section is for users who are not too familiar with using the command-line. No FMPP specific information can be found here, so you may <a href="#fmpp_cmdline">skip to the next section</a>.</p>
+
+<p>The exact command-line syntax depends on what shell do you use (sh, csh, DOS shell, etc.), because the shell is responsible to split the command-line to an executable name and a list of arguments. FMPP just gets the list from the shell.</p>
+
+<p>Most shells will parse this command-line:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">test -f t 1.txt 2.txt<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>as the executable name is <code><font color="#017D01">test</font></code>, and the list of arguments is:</p>
+
+<ol>
+  <li><code><font color="#017D01">-f</font></code>
+  <li><code><font color="#017D01">t</font></code>
+  <li><code><font color="#017D01">1.txt</font></code>
+  <li><code><font color="#017D01">2.txt</font></code>
+</ol>
+
+<p>As you may guess, the arguments are delimited by the spaces. If you want to put spaces into the value of arguments, in most shells you should use quotation marks:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">test -f t -D &quot;x:1, y:2&quot;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>Here, the list of arguments will be:</p>
+
+<ol>
+  <li><code><font color="#017D01">-f</font></code>
+  <li><code><font color="#017D01">t</font></code>
+  <li><code><font color="#017D01">-D</font></code>
+  <li><code><font color="#017D01">x:1, y:2</font></code>
+</ol>
+
+<p>The shell has removed the quotation marks. Thus, command-line tools like FMPP will not know that there were quotation marks, as they just gets the above list from the shell.</p>
+
+<p>With shells as sh, you can use apostrophe-quotes (<code><font color="#017D01">'</font></code>) instead of quotation marks. In Windows/DOS shell you can use quotation marks (<code><font color="#017D01">"</font></code>) only.</p>
+
+<p>You have to quote the argument if you use characters that are reserved by the shell for other purposes. For example <code><font color="#017D01">></font></code> and <code><font color="#017D01">|</font></code> is reserved in most shells. <code><font color="#017D01">&amp;</font></code>, <code><font color="#017D01">;</font></code> and <code><font color="#017D01">(</font></code> is reserved in sh. Also, if you use an UN*X shell, sometimes you need to quote arguments that contain <code><font color="#017D01">*</font></code>, <code><font color="#017D01">?</font></code> or <code><font color="#017D01">~</font></code>, because otherwise the shell interprets the argument as a path, and replaces that with the list of matching files.</p>
+
+<p>Most shells understand partially quoted arguments. For example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">test -D&quot;x:1, y:2&quot;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>will be interpreted as:</p>
+
+<ol>
+  <li><code><font color="#017D01">-Dx:1, y:2</font></code>
+</ol>
+
+<p>A tricky situation is when you want to use quotation marks in an argument value. To prevent this situations use apostrophe-quotes instead of plain quotes and vice versa. For example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">test -D&quot;x:'red led', y:2&quot;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>or (will not work in Windows/DOS shell!):</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">test -D'x:&quot;red led&quot;, y:2'<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+
+
+<a name="fmpp_cmdline"></a>
+     <h2><font color="#000000">FMPP command-line argument syntax</font></h2>
+
+<p>The FMPP command-line tool uses similar argument syntax to usual UN*X command-line tools, such as <code><font color="#017D01">ls</font></code>. UN*X users should be able to use the tool even without reading this section.</p>
+
+<p>This is a possible FMPP command-line:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -C mycfg.fmpp -q --case-sensitive products index.html<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>The FMPP command-line tool interprets command-line arguments as either:</p>
+<ul>
+  <li>Option, as <code><font color="#017D01">-q</font></code>, <code><font color="#017D01">--case-sensitive</font></code> and <code><font color="#017D01">-C mycfg.fmpp</font></code>
+  <li>Non-option, as <code><font color="#017D01">products</font></code> and <code><font color="#017D01">index.html</font></code>
+</ul>
+
+<p>An option always starts with dash (<code><font color="#017D01">-</font></code>), or with double dash.  (<code><font color="#017D01">--</font></code>), followed by the name of the option (e.g. <code><font color="#017D01">q</font></code>, <code><font color="#017D01">C</font></code>, <code><font color="#017D01">case-sensitive</font></code>). If the option requires parameter, then it is followed by the parameter to the option (as <code><font color="#017D01">mycfg.fmpp</font></code> in <code><font color="#017D01">-C mycfg.fmpp</font></code>), which counts as the part of the option, not as non-option.</p>
+
+<p>If the option uses single dash, then the name of the option is exactly 1 character long; this is called short form. If the option uses double dash, then the name can be arbitrary long; this is called long form. All options have long form, and many options have both long and short form versions, which are equivalent (for example <code><font color="#017D01">-q</font></code> and <code><font color="#017D01">--quiet</font></code>). Short form options can be grouped together, for example you can write<br><code><font color="#017D01">-qxs</font></code><br>instead of <br><code><font color="#017D01">-q -x -s</font></code></p>
+
+<p>Some options require a parameter. To demonstrate the syntactical rules with examples, here are the valid ways to give  <code><font color="#017D01">cp852</font></code> as parameter to option <code><font color="#017D01">-E</font></code> alias <code><font color="#017D01">--source-encoding</font></code>:</p>
+
+<ul>
+  <li><code><font color="#017D01">-E cp852</font></code>: here the parameter was the next argument after the option
+  <li><code><font color="#017D01">-Ecp852</font></code>: here I have utilized that a short option name is always 1 character long, and thus, since <code><font color="#017D01">-E</font></code> require parameter, the rest of this argument will be interpreted as the parameter of the option. (Note, that because if this, grouping (as <code><font color="#017D01">-qxs</font></code>) will not work if an option in the group, other than the very last option, requires parameter.) The next argument of the command-line will not be interpreted as parameter to <code><font color="#017D01">-E</font></code>.
+  <li><code><font color="#017D01">-E=cp852</font></code>: This is similar to the latest, but the option name and parameter value is separated with <code><font color="#017D01">=</font></code>
+  <li><code><font color="#017D01">--source-encoding cp852</font></code>
+  <li><code><font color="#017D01">--source-encoding=cp852</font></code>
+</ul>
+
+<p>I didn't show the combinations like <code><font color="#017D01">-E="cp852"</font></code>, as the usage of quotation marks is shell dependent. See <a href="#using_cmdln">the section about using the command-line</a> for more information.</p>
+
+<p>The order in which options occur in the command-line argument list is not significant.</p>
+
+<p>Options are case sensitive. This means that <code><font color="#017D01">-c</font></code> and <code><font color="#017D01">-C</font></code> are not the same.</p> 
+
+<p>Any argument that does not start with dash and is not directly after an option that needs parameter, is a non-option. In FMPP, non-options are used to list the name of the files or directories that you want to process; see more about this later. The position of a non-option in the argument list relatively to the options is not significant. That is, these command-line argument lists are equivalent:</p>
+
+<ul>
+  <li><code><font color="#017D01">-C mycfg.fmpp -q products index.html</font></code>
+  <li><code><font color="#017D01">products index.html -C mycfg.fmpp -q</font></code>
+  <li><code><font color="#017D01">products -C mycfg.fmpp index.html -q</font></code>
+</ul>
+
+<p>Sometimes it happens that a non-option should start with dash (for example, because the name of the file you want to refer to starts with dash). In this case you can use a special character sequence, <code><font color="#017D01">--</font></code> followed by no option name, to indicate that all subsequent arguments are non-options:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -Cmycfg.fmpp -- -this-is-a-non-option<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+
+<a name="sect3"></a>
+     <h2><font color="#000000">Invoking the command-line tool</font></h2>
+
+<p>The command-line tool can be invoked with the <code><font color="#017D01">fmpp</font></code> shell script (<code><font color="#017D01"><i>&lt;FMPP></i>/bin/fmpp</font></code> or <code><font color="#017D01"><i>&lt;FMPP></i>/bin/fmpp.bat</font></code>), assuming you have <a href="installing.html#commandLineTool">installed it</a> properly.</p>
+
+<p>When you invoke this tool, it will immediately run a processing session, with the settings you have set with its arguments (see later how), and then terminates. (With some command-line options, however, it will do something else, as with <code><font color="#017D01">-h</font></code> it just prints help.)</p>
+
+
+
+<a name="sect4"></a>
+     <h2><font color="#000000">Specifying settings in the command-line</font></h2>
+
+<p>Most command-line options specify <a href="settings.html">FMPP settings</a>. The option name is the name of the setting, but with lower case dashed form (as <code><font color="#017D01">source-root</font></code>) instead of the usual mixed case form (as <code><font color="#017D01">sourceRoot</font></code>). The value of the setting is given as the parameter of the option. The <a href="configfile.html#configurationBase">configuration base</a> for the values is the current working directory (i.e. the directory you are in).</p>
+
+<p>Example: Runs a processing session with <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> set to <code><font color="#017D01">src</font></code> and <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code> set to <code><font color="#017D01">out</font></code> (so this will process all files in the <code><font color="#017D01">src</font></code> directory, and store the output in the <code><font color="#017D01">out</font></code> directory):</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp --source-root src --output-root out<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>For the most frequently used settings there is short option name too. For example, this is equivalent with the previous example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -S src -O out<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>If the setting value is of scalar type (as string, boolean, number) then just enter the value simply as is, not with TDD syntax. If the setting value is of more tricky type, as hash or sequence, then you use TDD syntax for it. For hash settings the value is a <a href="tdd.html#modes">hash mode TDD</a>, and for sequence setting it is sequence mode TDD, so the brackets should be omitted. For example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -S src -O out -D &quot;online:false, tdd(data/style.tdd)&quot; --replaceExtensions &quot;ftl, html&quot;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>Note that the quotation marks were needed only for the command-line parser of the shell (see earlier on this page), so they are not visible for FMPP.</p>
+
+<p>Boolean settings (and <code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code>) are specified with parameterless options:</p>
+
+<table border=1 cellspacing=1 cellpadding=4>
+  <tr>
+    <th rowspan=2>Command-line option
+    <th colspan=2>Meaning
+  <tr>
+    <th>Setting name
+    <th>Value
+  <tr>
+    <td><code><font color="#017D01">-s</font></code>, <code><font color="#017D01">--stop-on-error</font></code>
+    <td><code><a href="settings.html#key_stopOnError" class=s><font color="#20C000">stopOnError</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">-c</font></code>, <code><font color="#017D01">--continue-on-error</font></code>
+    <td><code><a href="settings.html#key_stopOnError" class=s><font color="#20C000">stopOnError</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">--case-sensitive</font></code>
+    <td><code><a href="settings.html#key_caseSensitive" class=s><font color="#20C000">caseSensitive</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">--ignore-case</font></code>
+    <td><code><a href="settings.html#key_caseSensitive" class=s><font color="#20C000">caseSensitive</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">--ignore-cvs-files</font></code>
+    <td><code><a href="settings.html#key_ignoreCvsFiles" class=s><font color="#20C000">ignoreCvsFiles</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">--dont-ignore-cvs-files</font></code>
+    <td><code><a href="settings.html#key_ignoreCvsFiles" class=s><font color="#20C000">ignoreCvsFiles</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">--ignore-svn-files</font></code>
+    <td><code><a href="settings.html#key_ignoreSvnFiles" class=s><font color="#20C000">ignoreSvnFiles</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">--dont-ignore-svn-files</font></code>
+    <td><code><a href="settings.html#key_ignoreSvnFiles" class=s><font color="#20C000">ignoreSvnFiles</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">--ignore-temporary-files</font></code>
+    <td><code><a href="settings.html#key_ignoreTemporaryFiles" class=s><font color="#20C000">ignoreTemporaryFiles</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">--dont-ignore-temporary-files</font></code>
+    <td><code><a href="settings.html#key_ignoreTemporaryFiles" class=s><font color="#20C000">ignoreTemporaryFiles</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">--snip</font></code>
+    <td><code><a href="settings.html#key_snip" class=s><font color="#20C000">snip</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">--dont-snip</font></code>
+    <td><code><a href="settings.html#key_snip" class=s><font color="#20C000">snip</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">-x</font></code>, <code><font color="#017D01">--expert</font></code>
+    <td><code><a href="settings.html#key_expert" class=s><font color="#20C000">expert</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">--not-expert</font></code>
+    <td><code><a href="settings.html#key_expert" class=s><font color="#20C000">expert</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">--append-log-file</font></code>
+    <td><code><a href="settings.html#key_appendLogFile" class=s><font color="#20C000">appendLogFile</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">--dont-append-log-file</font></code>
+    <td><code><a href="settings.html#key_appendLogFile" class=s><font color="#20C000">appendLogFile</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">-q</font></code>, <code><font color="#017D01">--quiet</font></code>
+    <td><code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code>
+    <td><code><font color="#017D01">true</font></code>
+  <tr>
+    <td><code><font color="#017D01">-v</font></code>, <code><font color="#017D01">--verbose</font></code>
+    <td><code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code>
+    <td><code><font color="#017D01">false</font></code>
+  <tr>
+    <td><code><font color="#017D01">-Q</font></code>, <code><font color="#017D01">--really-quiet</font></code>
+    <td><code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code>
+    <td><code><font color="#017D01">reallyQuiet</font></code>
+</table>
+
+<p>Example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -S src -O out --dont-ignore-cvs-files -cqx<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>where the last few options mean: <code><a href="settings.html#key_ignoreCvsFiles" class=s><font color="#20C000">ignoreCvsFiles</font></a></code> is <code><font color="#017D01">false</font></code>, <code><a href="settings.html#key_stopOnError" class=s><font color="#20C000">stopOnError</font></a></code> is <code><font color="#017D01">false</font></code>, <code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code> is <code><font color="#017D01">true</font></code>, <code><a href="settings.html#key_expert" class=s><font color="#20C000">expert</font></a></code> is <code><font color="#017D01">true</font></code>.</p>
+
+<p>The value of the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting can be given as the non-option arguments to the tool. For example, to process only files <code><font color="#017D01">index.html</font></code> and directory <code><font color="#017D01">products</font></code> of the source root:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -S src -O out index.html products<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>Notes for Windows users:</p>
+<ul>
+  <li>In paths you can optionally use slash (<code><font color="#017D01">/</font></code>) instead of backslash (<code><font color="#017D01">\</font></code>) anywhere.</li>
+  <li>You can't use <code><font color="#017D01">*</font></code> and <code><font color="#017D01">?</font></code> in paths (except in settings that explicitly want <a href="pathpattern.html">path patterns</a>, e.g. <code><a href="settings.html#key_modes" class=s><font color="#20C000">modes</font></a></code>)</li>
+</ul>
+
+
+
+<a name="sect5"></a>
+     <h2><font color="#000000">Using configuration files</font></h2>
+
+<p>With option <code><font color="#017D01">--configuration</font></code> or <code><font color="#017D01">-C</font></code> you can load a configuration file. As you may know it <a href="configfile.html">from the chapter about configuration files</a>, it is enough to give the directory of the configuration file, if the file uses one of the standard names. Example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -C works/project1<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>If you don't use option <code><font color="#017D01">--configuration</font></code>/<code><font color="#017D01">-C</font></code>, <code><font color="#017D01">fmpp</font></code> will look for a configuration file in the current working directory, and if it finds one with standard name, it will load that automatically. To prevent this, use <code><font color="#017D01">--configuration</font></code>/<code><font color="#017D01">-C</font></code> with <code><font color="#017D01">none</font></code> parameter (as <code><font color="#017D01">-C&nbsp;none</font></code>).</p>
+
+
+<p>Settings loaded from the configuration file have lower priority than settings given as command-line arguments. For example, here you add an extra variable to the <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code> specified in the configuration file, or if variable <code><font color="#017D01">online</font></code> was already created there then replace its value:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -C works/project1 -D online:true<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>Options <code><font color="#017D01">configurationBase</font></code> and <code><font color="#017D01">inheritConfiguration</font></code> can be used to emulate that settings <code><a href="settings.html#key_configurationBase" class=s><font color="#20C000">configurationBase</font></a></code> and <code><a href="settings.html#key_inheritConfiguration" class=s><font color="#20C000">inheritConfiguration</font></a></code> are present with the given value in the configuration file.</p>
+
+
+
+<a name="fmpprc"></a>
+     <h2><font color="#000000">Global options</font></h2>
+
+<p>The default of some settings that can't influence the output files can be set in a configuration file called <code><font color="#017D01">.fmpprc</font></code>. This file is searched in these directories, in this order:</p>
+<ol>
+  <li>In your home directory.</li>
+  <li>On Windows, in the directory pointed by the <code><font color="#017D01">HOME</font></code> environment variable.</li>
+  <li>In the directory pointed by the <code><font color="#017D01">FMPP_HOME</font></code> environment variable. This is usually automatically set to the directory where you have installed FMPP.</li>
+</ol>
+
+<p>Only the first <code><font color="#017D01">.fmpprc</font></code> found will be loaded.</p>
+
+<p>The settings you can set in the <code><font color="#017D01">.fmpprc</font></code> are:</p>
+<ul>
+  <li><code><a href="settings.html#key_appendLogFile" class=s><font color="#20C000">appendLogFile</font></a></code></li>
+  <li><code><a href="settings.html#key_columns" class=s><font color="#20C000">columns</font></a></code></li>
+  <li><code><a href="settings.html#key_echoFormat" class=s><font color="#20C000">echoFormat</font></a></code></li>
+  <li><code><a href="settings.html#key_snip" class=s><font color="#20C000">snip</font></a></code></li>
+  <li><code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code></li>
+</ul>
+
+
+
+<a name="sect7"></a>
+     <h2><font color="#000000">Supported front-end dependent settings</font></h2>
+
+<p>All <a href="settings.html#logging">logging related settings</a> are supported.</p>
+
+<p>All recommended <code><a href="settings.html#key_echoFormat" class=s><font color="#20C000">echoFormat</font></a></code>-s are supported, but <code><font color="#017D01">verbose</font></code> is the same as <code><font color="#017D01">normal</font></code>. It depends on the terminal implementation you use, but <code><font color="#017D01">terse</font></code> echo format can substantially speed up the processing session if you have many files.</p>
+
+<p>All <code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code> values are supported.</p>
+
+
+
+<a name="sect8"></a>
+     <h2><font color="#000000">All options</font></h2>
+
+<p>These are the settings that are not (directly) for specifying FMPP settings:</p>
+<ul> 
+  <li><code><font color="#017D01">-C</font></code>, <code><font color="#017D01">--configuration</font></code></li>
+  <li><code><font color="#017D01">-h</font></code>, <code><font color="#017D01">--help</font></code></li>
+  <li><code><font color="#017D01">--long-help</font></code></li>
+  <li><code><font color="#017D01">--version</font></code></li>
+  <li><code><font color="#017D01">--print-locales</font></code></li>
+</ul>
+
+<p>This is what FMPP prints with <code><font color="#017D01">-h</font></code>:</p>
+
+<pre>
+Typical usages:
+   fmpp -C configfile
+   fmpp -S sourcedir -O outputdir
+   fmpp sourcefile -o outputfile
+   
+Options:
+  -A, --locale=&lt;LOC&gt;                   The locale (as ar_SA). Use the special
+                                         value &quot;host&quot; (-A host) if the default
+                                         locale of the host machine should be
+                                         used. The default value of the option
+                                         is en_US.
+      --always-create-directories      Create output subdirectory even if it
+                                         will remain empty. Defaults to false.
+      --append-log-file                If the log file already exists, it will
+                                         be continuted, instead of restarting
+                                         it.
+      --borders=&lt;SEQ&gt;                  The list of TDD function calls that
+                                         choose header and footer for
+                                         templates, e.g.:
+                                         -M 'border(&quot;&lt;#escape x as x?html&gt;&quot;,
+                                         &quot;&lt;/#escape&gt;&quot;, *.htm, *.html),
+                                         header(&quot;&lt;#include \&quot;/css.ftl\&quot;&gt;&quot;,
+                                         *.css)'
+  -c, --continue-on-error              Skip to the next file on failed file
+                                         processing (and log the error: see -L)
+  -C, --configuration=&lt;FILE&gt;           Load settings from a configuration file.
+                                         Settings given with command-line
+                                         options have higher priority (note
+                                         that some settings are merged, rather
+                                         than overridden). Be default fmpp will
+                                         use ./config.fmpp or ./fmpp.cfg if
+                                         that exists. Use value &quot;none&quot; (-C
+                                         none) to prevent this.
+      --case-sensitive                 Upper- and lower-case letters are
+                                         considered as different characters
+                                         when comparing or matching paths.
+      --columns=&lt;COLS&gt;                 The number of columns on the console
+                                         screen. Defaults to 80.
+      --configuration-base=&lt;DIR&gt;       The directory used as base to resolve
+                                         relative paths in the configuration
+                                         file. It defaults to the directory of
+                                         the configuration file.
+  -D, --data=&lt;TDD&gt;                     Creates shared data that all template
+                                         will see. &lt;TDD&gt; is the Textual Data
+                                         Definition, e.g.:
+                                         -D &quot;properties(style.properties),
+                                         onLine:true&quot;
+                                         Note that paths like
+                                         &quot;style.properties&quot; are relatve to the
+                                         data root directory.
+      --data-root=&lt;DIR&gt;                Sets the root directory of data files.
+                                         The reserved value &quot;source&quot; means that
+                                         the data root is the same as the
+                                         source root. The default value is
+                                         &quot;source&quot;.
+      --date-format=&lt;FORMAT&gt;           The format used to show date
+                                         (year+month+day) values. The default
+                                         is locale dependent.
+      --datetime-format=&lt;FORMAT&gt;       The format used to show date-time
+                                         values. The default is locale
+                                         dependent.
+      --dont-append-log-file           If the log file already exists, it will
+                                         be restarted. This is the default.
+      --dont-ignore-cvs-files          Don't ignore CVS files in the source
+                                         root directory.
+      --dont-ignore-svn-files          Don't ignore SVN files in the source
+                                         root directory.
+      --dont-ignore-temporary-files    Don't ignore well-known temporary files
+                                         in the source root directory.
+      --dont-snip                      Don't snip (--8&lt;--) long messages.
+      --dont-validate-xml              Sets that XML files will not be
+                                         validated by default. This is the
+                                         default.
+  -E, --source-encoding=&lt;ENC&gt;          The encoding of textual sources
+                                         (templates). Use the special value
+                                         &quot;host&quot; (-E host) if the default
+                                         encoding of the host machine should be
+                                         used. The default value of the option
+                                         is &quot;ISO-8859-1.&quot;
+  -F, --echo-format=&lt;FORMAT&gt;           The format used for displaying the
+                                         progress. &lt;FORMAT&gt; is n[ormal],
+                                         t[erse] or q[uiet] (or v[erbose],
+                                         which is the same as normal). The
+                                         default is normal.
+      --freemarker-links=&lt;MAP&gt;         The map of FreeMarker links (external
+                                         includes).
+  -h, --help                           Prints help on options.
+      --ignore-case                    Upper- and lower-case letters are
+                                         considered as the same characters when
+                                         comparing or matching paths. This is
+                                         the default.
+      --ignore-cvs-files               Ignore CVS files in the source root
+                                         directory. This is the default.
+      --ignore-svn-files               Ignore SVN files in the source root
+                                         directory. This is the default.
+      --ignore-temporary-files         Ignore well-known temporary files (e.g.
+                                         **/?*~) in the source root directory.
+                                         This is the default.
+      --inherit-configuration=&lt;FILE&gt;   Inherits options from a configuration
+                                         file. The options in the primary
+                                         configuration file (-C) has higher
+                                         precednece.
+  -L, --log-file=&lt;FILE&gt;                Sets the log file. Use &quot;none&quot; (-L none)
+                                         to disable logging. The default is
+                                         &quot;none&quot;.
+      --local-data=&lt;SEQ&gt;               Creates data that is visible only for
+                                         certain templates. This is a list of
+                                         case(...) and layer() function calls.
+      --long-help                      Prints long help.
+  -M, --modes=&lt;SEQ&gt;                    The list of TDD function calls that
+                                         choose the file processing mode, e.g.:
+                                         -M &quot;ignore(**/tmp/), execute(**/*.htm,
+                                         **/*.html), copy(**/*)&quot;
+      --not-expert                     Disables expert mode. This is the
+                                         default.
+      --number-format=&lt;FORMAT&gt;         The number format used to show numerical
+                                         values. The default is 0.############
+  -o, --output-file=&lt;FILE&gt;             The output file. This switches FMPP to
+                                         single-file mode.
+  -O, --output-root=&lt;DIR&gt;              Sets the root directory of output files.
+      --object-wrapper=&lt;BSH&gt;           Specifies the ObjectWrapper to use with
+                                         a BeanShell expression that must
+                                         evaluate to an object that extends
+                                         BeansWrapper. The default value is a
+                                         BeansWrapper instance with
+                                         simpleMapWrapper set to true.
+      --output-encoding=&lt;ENC&gt;          The encoding of template output. Use the
+                                         special value &quot;source&quot; if the encoding
+                                         of the template file should be used.
+                                         Use the special value &quot;host&quot; if the
+                                         default encoding of the host machine
+                                         should be used. The default is
+                                         &quot;source&quot;.
+      --print-locales                  Prints the locale codes that Java
+                                         platform knows.
+  -q, --quiet                          Don't write to the stdout, unless the
+                                         command-line arguments are wrong.
+                                         Print warning and error messages to
+                                         the stderr.
+  -Q, --really-quiet                   As -q, but doesn't even write to the
+                                         stderr.
+  -R, --remove-extensions=&lt;SEQ&gt;        These extensions will be removed from
+                                         the output file name. &lt;SEQ&gt; contains
+                                         the extensions without the dot.
+      --remove-postfixes=&lt;SEQ&gt;         If the source file name without the
+                                         extension ends with a string in the
+                                         &lt;SEQ&gt;, then that string will be
+                                         removed from the output file name.
+      --replace-extensions=&lt;SEQ&gt;       Replaces the extensions with another
+                                         exensions. The list contains the old
+                                         and new extensions alternately; old1,
+                                         new1, old2, new2, etc. The extensions
+                                         in the &lt;SEQ&gt; do not contain the dot.
+  -s, --stop-on-error                  Terminate fmpp on failed file
+                                         processing. This is the default
+                                         behaviour. Use -c to override this.
+  -S, --source-root=&lt;DIR&gt;              Sets the root directory of source files.
+                                         In bulk-mode it defaults to the
+                                         current working directory.
+      --snip                           Snip (--8&lt;--) long messages. This is the
+                                         default.
+      --tag-syntax=&lt;WHAT&gt;              Sets the tag syntax for templates that
+                                         doesn't start with the ftl directive.
+                                         Possible values are: angleBracket,
+                                         squareBracket, autoDetect. The default
+                                         depends on the FreeMarker version. The
+                                         recommended value is autoDetect.
+      --time-format=&lt;FORMAT&gt;           The format used to show time values. The
+                                         default is locale dependent.
+      --time-zone=&lt;ZONE&gt;               Sets the time zone used to show time.
+                                         The default is the time zone of the
+                                         host machine. Example: GMT+02
+      --turns=&lt;SEQ&gt;                    The list of turn(...)-s that choose the
+                                         turns of processings, e.g.:
+                                         --turns &quot;turn(2, **/*_t2.*, ), turn(3,
+                                         **/*_t3.*, **/*.toc)&quot;
+                                         By default all files will be procesed
+                                         in the first turn.
+  -U, --skip-unchanged=&lt;WHAT&gt;          Skip &lt;WHAT&gt; files if the source was not
+                                         modified after the output file was
+                                         last modified. &lt;WHAT&gt; can be &quot;all&quot;,
+                                         &quot;none&quot; or &quot;static&quot;
+      --url-escaping-charset=&lt;ENC&gt;     The charset used for URL escaping. Use
+                                         the special value &quot;output&quot; if the
+                                         encoding of the output file should be
+                                         used. The default is &quot;output&quot;.
+  -v, --verbose                        The opposite of -Q: prints everything to
+                                         the stdout. This is the default.
+      --validate-xml                   Sets that XML files will be validated by
+                                         default.
+      --version                        Prints version information.
+  -x, --expert                         Expert mode.
+      --xml-catalog-files=&lt;SEQ&gt;        Sets the catalog files used for XML
+                                         entity resolution. Catalog based
+                                         resolution is enabled if and only if
+                                         this settings is specified.
+      --xml-catalog-prefer=&lt;WHAT&gt;      Sets if catalog file based XML entity
+                                         resolution prefers public or system
+                                         identifiers. Valid values are: public,
+                                         system, globalDefault. Defaults to
+                                         public.
+      --xml-renderings=&lt;SEQ&gt;           Sets the sequence of XML renderings.
+                                         Each item is hash, that stores the
+                                         options of an XML rendering
+                                         configuration.
+      --xpath-engine=&lt;NAME&gt;            Sets the XPath engine to be used. Legal
+                                         values are: dontSet, default, jaxen,
+                                         xalan, and any adapter class name.
+
+Most of the above command-line options directly correspond to FMPP settings.
+The detailed description of the FMPP settings is in the FMPP Manual.
+
+
+
+</pre>
+
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="frontends.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="ant.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

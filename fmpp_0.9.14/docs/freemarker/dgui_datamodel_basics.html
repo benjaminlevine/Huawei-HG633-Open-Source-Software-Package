@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - Basics
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="dgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="dgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="dgui_datamodel_types.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="dgui_datamodel_basics"></a>Basics
+  </h2>
+
+ 
+<div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+   <h3>Note</h3>
+
+          <p>It is assumed that you have already read the <a href="dgui_quickstart.html">Getting Started</a> chapter.</p>
+        </div>
+<p>Understanding the concept of values and types is crucial for the
+        understanding of data-models. However, the concept of values and types
+        is not confined to data-models, as you will see.</p>
+            
+  
+  
+  <h3 class="section_level_2"><a name="topic.value"></a>What is a value?
+  </h3>
+
+
+          
+
+          <p><span style="color:#333399; font-style:italic">Real programmers can safely skip
+          this section.</span></p>
+
+          <p>Examples of  as you know the term
+          from the everyday math are 16, 0.5, and so on, i.e. numbers. In the
+          case of computer languages the value term has a wider meaning, as a
+          value needn't be a number. For example, take this data-model:</p>
+
+          <a name="example.stdDataModel"></a><div align="left"><table bgcolor="#99CCFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#99CCFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">(root)
+ |
+ +- user = &quot;Big Joe&quot;
+ |
+ +- today = Jul 6, 2007
+ |
+ +- todayHoliday = false
+ |
+ +- lotteryNumbers
+ |   |
+ |   +- (1st) = 20
+ |   |
+ |   +- (2st) = 14
+ |   |
+ |   +- (3rd) = 42
+ |   |
+ |   +- (4th) = 8
+ |   |
+ |   +- (5th) = 15
+ |
+ +- cargo
+     |
+     +- name = &quot;coal&quot;
+     |
+     +- weight = 40&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>We say that the  of the the
+          <tt style="color: #A03D10">user</tt> variable is &quot;Big Joe&quot; (a string), the
+           of <tt style="color: #A03D10">today</tt> is Jul 6,
+          2007 (a date), the  of
+          <tt style="color: #A03D10">todayHoliday</tt> is false (a boolean, ie. a yes/no
+          thing). The  of
+          <tt style="color: #A03D10">lotteryNumbers</tt> is the sequence that contains 20,
+          14, 42, 8, 15. Surely <tt style="color: #A03D10">lotteryNumbers</tt> is multiple
+          values in the sense that it  multiple
+          values (for example, the 2nd item in it is a the
+           14), but still,
+          <tt style="color: #A03D10">lotteryNumbers</tt> itself is a single value. It's
+          like a box that contains many other items; the whole box can be seen
+          as a single item. Last not least we also have the
+           of <tt style="color: #A03D10">cargo</tt>, which is a
+          hash (a box-like thing again).So, a value is something that can be
+          stored in a variable (e.g., in <tt style="color: #A03D10">user</tt> or
+          <tt style="color: #A03D10">cargo</tt> or <tt style="color: #A03D10">cargo.name</tt>). But a
+          value need not be stored in a variable to be called a value, for
+          example we have the value 100 here:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;#if cargo.weight &lt; <b>100</b>&gt;Light cargo&lt;/#if&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>Or the temporaly result of a calculations are also called
+          values, like 20 and 120 when this template is executed (it will
+          print 120):</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">${cargo.weight / 2 + 100}&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>Explanation for this last: As the result of dividing the two
+          values, 40 (the weight of the cargo) and 2, a new value 20 is
+          created. Then 100 is addted to it, so the value 120 is created. Then
+          120 is printed
+          (<tt style="color: #A03D10">${<i style="color: #DD4400">...</i>}</tt>), and the
+          template execution goes on and all these values gone.</p>
+
+          <p>Certainly now you feel what the value term means.</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_12"></a>What is type?
+  </h3>
+
+
+          <p>Values have an important aspect, their type. For example the
+          type of the value of the <tt style="color: #A03D10">user</tt> variable is string,
+          and the type of the value of the <tt style="color: #A03D10">lotteryNumbers</tt>
+          variable is sequence. The type of a value is important because it
+          determines to a large extent how and where you can use the value.
+          Like <tt style="color: #A03D10">${user / 2}</tt> is an error, but
+          <tt style="color: #A03D10">${cargo.weight / 2}</tt> works and prints 20, since
+          division only does make sense for a number, but not for a string.
+          Or, using dot like in <tt style="color: #A03D10">cargo.name</tt> does make sense
+          only if <tt style="color: #A03D10">cargo</tt> is a hash. Or, you can list with
+          <tt style="color: #A03D10">&lt;#list <i style="color: #DD4400">...</i>&gt;</tt>
+          sequences only. Or, the condition of <tt style="color: #A03D10">&lt;#if
+          ...&gt;</tt> must be a boolean. And so on.</p>
+
+          <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+   <h3>Note</h3>
+
+            <p>A little terminology... Saying &quot;a boolean&quot; or &quot;a boolean
+            value&quot; or &quot;a value of type boolean&quot; are all the same.</p>
+          </div>
+
+
+          <p><a name="topic.multitype"></a>A value can have multiple types at the same time,
+          although it's rarely utilized. For example in the data-model below
+          <tt style="color: #A03D10">mouse</tt> is both a string and a hash:</p>
+
+          <div align="left"><table bgcolor="#99CCFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#99CCFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">(root)
+ |
+ +- mouse = &quot;Yerri&quot;
+     |
+     +- age = 12
+     |
+     +- color = &quot;brown&quot;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>If you merge this template with the above data-model:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">${mouse}       &lt;#-- uses mouse as a string --&gt;
+${mouse.age}   &lt;#-- uses mouse as a hash --&gt;
+${mouse.color} &lt;#-- uses mouse as a hash --&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>the output will be:</p>
+
+          <div align="left"><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">Yerri
+12
+brown&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_13"></a>The data-model is a hash
+  </h3>
+
+
+          <p>Looking at the various data-model examples you may already
+          realized: the thing marked as &quot;(root)&quot; is just a value of type hash.
+          When you write something like <tt style="color: #A03D10">user</tt>, that means
+          that you want the &quot;user&quot; variable stored in the root hash. Like if
+          you were writing <tt style="color: #A03D10">root.user</tt>, except that there is
+          no variable called &quot;root&quot; so that wouldn't work.</p>
+
+          <p>Some may get confused by the fact that our example data-model,
+          that is, the root hash, contains further hashes and sequences
+          (<tt style="color: #A03D10">lotteryNumbers</tt> and <tt style="color: #A03D10">cargo</tt>).
+          There is nothing special in that. A hash contains other variables,
+          and those variables have a value, which can be a string, a number,
+          etc., and of course it can be a hash or sequence as well. Because,
+          as it was explained earlier, a sequence or a hash is just a value,
+          like a string or a number is.</p>
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="dgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="dgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="dgui_datamodel_types.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

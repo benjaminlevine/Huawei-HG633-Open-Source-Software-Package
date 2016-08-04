@@ -1,0 +1,2 @@
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/driver/hisi/sd5610/source/k_space/ipc/ipcdrv.ko
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/driver/hisi/sd5610/source/k_space/ipc/ipc_drv.o /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/driver/hisi/sd5610/source/k_space/ipc/do_sendErb.o /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/driver/hisi/sd5610/source/k_space/ipc/tri_dbg.o

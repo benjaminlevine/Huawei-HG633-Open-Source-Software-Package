@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - 2.2.1
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="versions_2_2_2.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="app_versions.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="versions_2_2.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="versions_2_2_1"></a>2.2.1
+  </h2>
+
+ 
+<p>Date of release: 2003-04-11</p><p>This version introduces important new features, such as the
+        native FTL date/time type, and the auto-include and auto-import
+        settings.</p><p>The date/time support is experimental, but we hope it will not
+        substantially change. We would like to label it as final ASAP, so we
+        urge everybody to send feedback on this topic to the mailing
+        lists.</p>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_205"></a>Changes on the FTL side
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>New scalar type: date. For more information read: <a href="dgui_datamodel_types.html#dgui_datamodel_scalar">Template Author's Guide/Values, Types/The types/Scalars</a>, <a href="dgui_datamodel_types.html#dgui_datamodel_scalar">Template Author's Guide/Values, Types/The types/Scalars</a>, <a href="dgui_template_valueinsertion.html#dgui_template_valueinserion_universal_date">interpolation</a>,
+              <a href="ref_builtins_date.html#ref_builtin_string_for_date">?string built-in for
+              dates</a></p>
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_206"></a>Changes on the Java side
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>New <tt style="color: #A03D10">TemplateModel</tt> subinterface:
+              <tt style="color: #A03D10">TemplateDateModel</tt>. For more information read
+              <a href="pgui_datamodel_scalar.html">Programmer's Guide/The Data Model/Scalars</a></p>
+            </li>
+
+            <li>
+              <p>auto-include and auto-import: With these new configuration
+              level settings, you can include and import commonly used
+              templates (usually collection of macro definitions) at the top
+              of all templates, without actually typing <tt style="color: #A03D10">&lt;#include
+              <i style="color: #DD4400">...</i>&gt;</tt> or
+              <tt style="color: #A03D10">&lt;#import
+              <i style="color: #DD4400">...</i>&gt;</tt> into the templates
+              again and again. For more information please read the Java API
+              documentation of <tt style="color: #A03D10">Configuration</tt></p>
+            </li>
+
+            <li>
+              <p>New template method:
+              <tt style="color: #A03D10">createProcessingEnvironment</tt>. This method
+              makes it possible for you to do some special initialization on
+              the <a href="gloss.html#gloss.environment"><tt>Environment</tt></a>
+              before template processing, or to read the environment after
+              template processing. For more information please read the Java
+              API documentation.</p>
+            </li>
+
+            <li>
+              <p>Changes to <tt style="color: #A03D10">freemarker.ext.beans</tt>
+              package: <tt style="color: #A03D10">BeanModel</tt>,
+              <tt style="color: #A03D10">MapModel</tt>, and
+              <tt style="color: #A03D10">ResourceModel</tt> now implement
+              <tt style="color: #A03D10">TemplateHashModelEx</tt>.</p>
+            </li>
+
+            <li>
+              <p>Bugfix:
+              <tt style="color: #A03D10">Configurable.setSettings(Properties)</tt> didn't
+              removed redundant spaces/tabs at the end of property
+              values.</p>
+            </li>
+          </ul>    </div>
+
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="versions_2_2_2.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="app_versions.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="versions_2_2.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

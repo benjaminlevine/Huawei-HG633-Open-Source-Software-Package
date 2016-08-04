@@ -1,0 +1,1 @@
+cmd_atpconfig/lib.a := rm -f atpconfig/lib.a; /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/arm-hsan-linux-uclibcgnueabi-ar  rcs atpconfig/lib.a atpconfig/arp.o atpconfig/atpcommon.o atpconfig/ftpgetput.o atpconfig/gplgethostbyname.o atpconfig/interface.o atpconfig/ping.o atpconfig/traceroute6.o atpconfig/wget.o

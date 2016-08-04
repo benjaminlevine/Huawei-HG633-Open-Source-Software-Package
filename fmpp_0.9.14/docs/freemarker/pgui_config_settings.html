@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - Settings
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_config_sharedvariables.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_config.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_config_templateloading.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="pgui_config_settings"></a>Settings
+  </h2>
+
+ 
+<p><b>Settings</b> are named values that
+        influence the behavior of FreeMarker. Examples of settings are:
+        <tt style="color: #A03D10">locale</tt>, <tt style="color: #A03D10">number_format</tt></p><p>Settings stored in <tt style="color: #A03D10">Configuration</tt> instance can
+        be overridden in a <tt style="color: #A03D10">Template</tt> instance. For example
+        you set <tt style="color: #A03D10">&quot;en_US&quot;</tt> for the <tt style="color: #A03D10">locale</tt>
+        setting in the configuration, then the <tt style="color: #A03D10">locale</tt> in
+        all templates that use this configuration will be
+        <tt style="color: #A03D10">&quot;en_US&quot;</tt>, except in templates where the locale was
+        explicitly specified differently (see <a href="ref_directive_include.html#ref_directive_include_localized">localization</a>). Thus,
+        values in a <tt style="color: #A03D10">Configuration</tt> serve as defaults that
+        can be overridden in a per template manner. The value comes from
+        <tt style="color: #A03D10">Configuration</tt> instance or
+        <tt style="color: #A03D10">Template</tt> instance can be further overridden for a
+        single <tt style="color: #A03D10">Template.process</tt> call. For each such call a
+        <tt style="color: #A03D10">freemarker.core.Environment</tt> object is created
+        internally that holds the runtime environment of the template
+        processing, including the setting values that were overridden on that
+        level. The values stored there can even be changed during the template
+        processing, so a template can set settings itself, like switching
+        <tt style="color: #A03D10">locale</tt> at the middle of the output.</p><p>This can be imagined as 3 layers
+        (<tt style="color: #A03D10">Configuration</tt>, <tt style="color: #A03D10">Template</tt>,
+        <tt style="color: #A03D10">Environment</tt>) of settings, where the topmost layer
+        that contains the value for a certain setting provides the effective
+        value of that setting. For example (settings A to F are just imaginary
+        settings for this example):</p>   <div class="informaltable">
+      <table border="1" cellpadding="4">
+
+          <thead>
+            <tr>
+              <th></th>
+
+
+              <th>Setting A</th>
+
+
+              <th>Setting B</th>
+
+
+              <th>Setting C</th>
+
+
+              <th>Setting D</th>
+
+
+              <th>Setting E</th>
+
+
+              <th>Setting F</th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+            <tr>
+              <td>Layer 3: <tt style="color: #A03D10">Environment</tt></td>
+
+
+              <td>1</td>
+
+
+              <td>-</td>
+
+
+              <td>-</td>
+
+
+              <td>1</td>
+
+
+              <td>-</td>
+
+
+              <td>-</td>
+
+            </tr>
+
+
+            <tr>
+              <td>Layer 2: <tt style="color: #A03D10">Template</tt></td>
+
+
+              <td>2</td>
+
+
+              <td>2</td>
+
+
+              <td>-</td>
+
+
+              <td>-</td>
+
+
+              <td>2</td>
+
+
+              <td>-</td>
+
+            </tr>
+
+
+            <tr>
+              <td>Layer 1: <tt style="color: #A03D10">Configuration</tt></td>
+
+
+              <td>3</td>
+
+
+              <td>3</td>
+
+
+              <td>3</td>
+
+
+              <td>3</td>
+
+
+              <td>-</td>
+
+
+              <td>-</td>
+
+            </tr>
+
+          </tbody>
+
+              </table>
+      <p></p><!-- ensures proper margin -->
+   </div>
+<p>The effective value of settings will be: A = 1, B = 2, C = 3, D
+        = 1, E = 2. The F setting is probably <tt style="color: #A03D10">null</tt>, or it
+        throws exception when you try to get it.</p><p>Let's see exactly how to set settings:</p>    <div class="itemizedlist">
+<ul>
+          <li>
+            <p><tt style="color: #A03D10">Configuration</tt> layer: In principle you set
+            the settings with the setter methods of the
+            <tt style="color: #A03D10">Configuration</tt> object, fore example:</p>
+
+            <div align="left"><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">Configuration myCfg = new Configuration();
+myCfg.setLocale(java.util.Locale.ITALY);
+myCfg.setNumberFormat(&quot;0.####&quot;);&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+            <p>You do it before you start to actually use the
+            <tt style="color: #A03D10">Configuration</tt> object (typically, when you
+            initialize the application); you should treat the object as
+            read-only after that.</p>
+
+            <p>In practice, in most Web application frameworks you have to
+            specify the setting in a framework-specific configuration file
+            that require specifying setting as <tt style="color: #A03D10">String</tt>
+            name-value pairs (like in a <tt style="color: #A03D10">.properties</tt> file).
+            In that case the authors of the frameworks most probably use the
+            <tt style="color: #A03D10">setSetting(String name, String value)</tt> method of
+            <tt style="color: #A03D10">Configuration</tt>; see available setting names and
+            the format of the values in the API doc of
+            <tt style="color: #A03D10">setSetting</tt>. Example for Spring
+            Framework:</p>
+
+            <div align="left"><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;bean id=&quot;freemarkerConfig&quot;
+    class=&quot;org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer&quot;&gt;
+  &lt;property name=&quot;freemarkerSettings&quot;&gt;
+    &lt;props&gt;
+      &lt;prop key=&quot;locale&quot;&gt;it_IT&lt;/prop&gt;
+      &lt;prop key=&quot;number_format&quot;&gt;0.####&lt;/prop&gt;
+    &lt;/props&gt;
+  &lt;/property&gt;
+&lt;/bean&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+            <p>Note that this kind of configuring
+            (<tt style="color: #A03D10">String</tt> key-value pairs) is unfortunately
+            limited compared to directly using the API of
+            <tt style="color: #A03D10">Configuration</tt>.</p>
+          </li>
+
+          <li>
+            <p><tt style="color: #A03D10">Template</tt> layer: You shouldn't set
+            settings here, unless you manage the <tt style="color: #A03D10">Template</tt>
+            objects instead of a
+            <tt style="color: #A03D10">freemarker.cache.TemplateCache</tt>, in which case
+            you should set the setting before the <tt style="color: #A03D10">Template</tt>
+            object is first used, and then treat the
+            <tt style="color: #A03D10">Template</tt> object as read-only.</p>
+          </li>
+
+          <li>
+            <p><tt style="color: #A03D10">Environment </tt>layer: There are two ways
+            doing it:</p>
+
+                <div class="itemizedlist">
+<ul>
+              <li>
+                <p>With Java API: Use the setter methods of the
+                <tt style="color: #A03D10">Environment</tt> object. Certainly you want to
+                do that just before the processing of the template is started,
+                and then you run into the problem that when you call
+                <tt style="color: #A03D10">myTemplate.process(...)</tt> it creates the
+                <tt style="color: #A03D10">Environment</tt> object internally and the
+                immediately processes the template, so you had no chance. The
+                solution is that this two steps can be separated like
+                this:</p>
+
+                <div align="left"><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">Environment env = myTemplate.createProcessingEnvironment(root, out);
+env.setLocale(java.util.Locale.ITALY);
+env.setNumberFormat(&quot;0.####&quot;);
+env.process();  // process the template&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+              </li>
+
+              <li>
+                <p>Directly in the Template: Use the <a href="ref_directive_setting.html#ref.directive.setting"><tt>setting</tt>
+                directive</a>, for example:</p>
+
+                <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;#setting locale=&quot;it_IT&quot;&gt;
+&lt;#setting number_format=&quot;0.####&quot;&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+              </li>
+            </ul>    </div>
+
+
+            <p>There are no restriction regarding when can you change the
+            settings in this layer.</p>
+          </li>
+        </ul>    </div>
+<p>To see the list of supported settings, please read the following
+        parts of the FreeMarker Java API documentation:</p>    <div class="itemizedlist">
+<ul>
+          <li>
+            <p>Setter methods of
+            <tt style="color: #A03D10">freemarker.core.Configurable</tt> for the settings
+            that are in all three layers</p>
+          </li>
+
+          <li>
+            <p>Setter methods of
+            <tt style="color: #A03D10">freemarker.template.Configuration</tt> for the
+            settings that are available only in the
+            <tt style="color: #A03D10">Configuration</tt> layer</p>
+          </li>
+
+          <li>
+            <p><tt style="color: #A03D10">freemarker.core.Configurable.setSetting(String,
+            String)</tt> for settings that are available in all three
+            layers and are writable with <tt style="color: #A03D10">String</tt> key-value
+            pairs.</p>
+          </li>
+
+          <li>
+            <p><tt style="color: #A03D10">freemarker.template.Configuration.setSetting(String,
+            String)</tt> for settings that are available only in the
+            <tt style="color: #A03D10">Configuration</tt> layer and are writable with
+            <tt style="color: #A03D10">String</tt> key-value pairs.</p>
+          </li>
+        </ul>    </div>
+  
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_config_sharedvariables.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_config.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_config_templateloading.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

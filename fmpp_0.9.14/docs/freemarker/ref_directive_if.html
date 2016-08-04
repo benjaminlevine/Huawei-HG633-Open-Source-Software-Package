@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - if, else, elseif
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="ref_directives.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="ref_directives.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="ref_directive_switch.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="ref_directive_if"></a>if, else, elseif
+  </h2>
+
+ 
+<a name="ref.directive.if"></a><a name="ref.directive.else"></a><a name="ref.directive.elseif"></a>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_77"></a>Synopsis
+  </h3>
+
+
+          <pre class="metaTemplate">
+<tt style="color: #A03D10">&lt;#if <i style="color: #DD4400">condition</i>&gt;
+  <i style="color: #DD4400">...</i>
+&lt;#elseif <i style="color: #DD4400">condition2</i>&gt;
+  <i style="color: #DD4400">...</i>
+&lt;#elseif <i style="color: #DD4400">condition3</i>&gt;
+  <i style="color: #DD4400">...</i>
+<i style="color: #DD4400">...</i>
+&lt;#else&gt;
+  <i style="color: #DD4400">...</i>
+&lt;/#if&gt;</tt>
+</pre>
+
+
+          <p>Where:</p>
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">condition</i></tt>,
+              <tt style="color: #A03D10"><i style="color: #DD4400">condition2</i></tt>,
+              ...etc.: Expression evaluates to a boolean value.
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_78"></a>Description
+  </h3>
+
+
+          <p>You can use <tt style="color: #A03D10">if</tt>, <tt style="color: #A03D10">elseif</tt>
+          and <tt style="color: #A03D10">else</tt> directives to conditionally skip a
+          section of the template. The
+          <tt style="color: #A03D10"><i style="color: #DD4400">condition</i></tt>-s must
+          evaluate to a boolean value, or else an error will abort template
+          processing. The <tt style="color: #A03D10">elseif</tt>-s and
+          <tt style="color: #A03D10">else</tt>-s must occur inside <tt style="color: #A03D10">if</tt>
+          (that is, between the <tt style="color: #A03D10">if</tt> start-tag and end-tag).
+          The <tt style="color: #A03D10">if</tt> can contain any number of
+          <tt style="color: #A03D10">elseif</tt>-s (including 0) and at the end optionally
+          one <tt style="color: #A03D10">else</tt>. Examples:</p>
+
+          <p><tt style="color: #A03D10">if</tt> with 0 <tt style="color: #A03D10">elseif</tt> and no
+          <tt style="color: #A03D10">else</tt>:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;#if x == 1&gt;
+  x is 1
+&lt;/#if&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p><tt style="color: #A03D10">if</tt> with 0 <tt style="color: #A03D10">elseif</tt> and
+          <tt style="color: #A03D10">else</tt>:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;#if x == 1&gt;
+  x is 1
+&lt;#else&gt;
+  x is not 1
+&lt;/#if&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p><tt style="color: #A03D10">if</tt> with 2 <tt style="color: #A03D10">elseif</tt> and no
+          <tt style="color: #A03D10">else</tt>:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;#if x == 1&gt;
+  x is 1
+&lt;#elseif x == 2&gt;
+  x is 2
+&lt;#elseif x == 3&gt;
+  x is 3
+&lt;/#if&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p><tt style="color: #A03D10">if</tt> with 3 <tt style="color: #A03D10">elseif</tt> and
+          <tt style="color: #A03D10">else</tt>:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;#if x == 1&gt;
+  x is 1
+&lt;#elseif x == 2&gt;
+  x is 2
+&lt;#elseif x == 3&gt;
+  x is 3
+&lt;#elseif x == 4&gt;
+  x is 4
+&lt;#else&gt;
+  x is not 1 nor 2 nor 3 nor 4
+&lt;/#if&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>To see more about boolean expressions, see: <a href="dgui_template_exp.html">Template Author's Guide/The Template/Expressions</a>.</p>
+
+          <p>You can nest <tt style="color: #A03D10">if</tt> directives (of
+          course):</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;#if x == 1&gt;
+  x is 1
+  &lt;#if y == 1&gt;
+    and y is 1 too
+  &lt;#else&gt;
+    but y is not
+  &lt;/#if&gt;
+&lt;#else&gt;
+  x is not 1
+  &lt;#if y &lt; 0&gt;
+    and y is less than 0
+  &lt;/#if&gt;
+&lt;/#if&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+   <h3>Note</h3>
+
+            <p>How to test if x is greater than 1? <tt style="color: #A03D10">&lt;#if x &gt;
+            1&gt;</tt> will be , as FreeMarker
+            will interpret the first <tt style="color: #A03D10">&gt;</tt> as the end of the
+            tag. Thus, either write <tt style="color: #A03D10">&lt;#if (x &gt; 1)&gt;</tt>
+            or <tt style="color: #A03D10">&lt;#if x &amp;gt; 1&gt;</tt>.</p>
+          </div>
+
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="ref_directives.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="ref_directives.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="ref_directive_switch.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

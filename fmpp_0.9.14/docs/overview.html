@@ -1,0 +1,200 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, overview">
+      <title>FMPP - System Overview and Terminology</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">System Overview and Terminology</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="qtour.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="details.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>FMPP core and front-ends</a></li>
+    <li><a href="#settings" class=toc>Settings</a></li>
+    <li><a href="#sect3" class=toc>File processing and related terms</a></li>
+    <li><a href="#data" class=toc>Data, data loader</a></li>
+    <li><a href="#sect5" class=toc>The pp hash</a></li>
+    <li><a href="#virtualPath" class=toc>Virtual paths</a></li>
+    <li><a href="#realPath" class=toc>Real paths</a></li>
+    <li><a href="#sect8" class=toc>Adopted FreeMarker type names</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<p>Please read the <a href="qtour.html">Quick Tour</a> before this, otherwise you will not understand...</p>
+
+
+<a name="sect1"></a>
+     <h2><font color="#000000">FMPP core and front-ends</font></h2>
+
+<p>FMPP consist of the FMPP core, and the front-ends wrapping that. Front-ends provide interface by which you can communicate with the FMPP core. For example the command-line tool (that we have used previously) is a front-end that provides command-line interface. The FMPP Ant task is another front-end that provides Ant task interface. A graphical front-end could be written too. But whatever front-end you use, you (indirectly) use the FMPP core. So most of the documentation is about the FMPP core, which basically encapsulates all abilities of FMPP.</p>
+
+<p>Note that there are more skins of the onion: the FMPP core wraps FreeMarker, the template engine.</p>
+
+<p>For more info see <a href="writefrontend.html">the chapter about writing front-ends</a>.</p>
+
+
+
+<a name="settings"></a>
+     <h2><font color="#000000">Settings</font></h2>
+
+<p>Settings are variables that describe for the FMPP core what and how to do. Examples of settings you have already met: <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code>, <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code>, <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code>. Front-ends basically do nothing else, just set the settings of the core, and then "trigger" the core to do the job. So if you know <a href="settings.html">all settings</a>, then basically you know everything FMPP can do.</p>
+
+<p>It's a good practice to store the settings of your project in <a href="configfile.html">configuration files</a> (as <code><font color="#017D01">config.fmpp</font></code> was). As the FMPP core understand them, you can use them with all front-ends. Configuration files use a simple FMPP specific language, <a href="tdd.html">TDD</a>.</p>
+
+
+
+<a name="sect3"></a>
+     <h2><font color="#000000">File processing and related terms</font></h2>
+
+<p><b>Processing a file</b> is the act of the generation of the output file (or files) based on a source file. This may means the execution of the file as FreeMarker template, or binary-copying the file, processing the file as XML, or, in extreme case, create no output the file (say, for a <code><font color="#017D01">.bak</font></code> file). The path of the output file relatively to the <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code> will be the same as the path of the corresponding source file relatively to the <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> (at least initially; the template can change the output file path on-the-fly).</p>
+
+<p>Term <b>processing mode</b> refers to how a certain file is processed. In the Quick Tour, the HTML files were processed in "execute" mode, and the image file was processed in "copy" mode. You can find all details about processing modes <a href="settings.html#processingMode">here</a>.</p>
+
+<p><b>Processing session</b>: This is the course of batch processing the (selected) files of the source directory. For example, all <code><font color="#017D01">fmpp</font></code> call in the Quick Tour did a processing session.</p>
+
+<p>Strictly speaking, FMPP processes only files, but not directories. It does, however, look for source files in the sub-directories of the source root directory recursively, and when an output file has to be created, its missing parent directories will be created automatically. So you get the impression that FMPP processes directories like files, but actually it doesn't. Thus, FMPP doesn't output empty directories. Also, any settings that deal with processing are applicable only for files, but not for directories.</p>
+
+<p>You do not use term "processing" for data files as <code><font color="#017D01">data/style.tdd</font></code> or <code><font color="#017D01">data/birds.csv</font></code> was. A data file isn't processed like a template file (or an image file), it does not produce output file itself. Instead, it can be loaded into a variable for later usage in templates.</p>
+
+
+
+<a name="data"></a>
+     <h2><font color="#000000">Data, data loader</font></h2>
+
+<p>In FMPP context <b>data</b> means data coming from data sources as XML file, CSV file, MySQL database, etc. In the Quick Tour, <code><font color="#017D01">data/style.tdd</font></code> and <code><font color="#017D01">data/birds.csv</font></code> are data files. Files that are processed to produce output files, as the HTML-s and the image are not data files.</p>
+
+<p>The FreeMarker templates see the "data" as variables. This set of variables is called <b>the data model</b> with FreeMarker terminology. The data model is shared, visible for all templates. During output generation the template may creates new variables for temporary calculations, but those variables are not part of the data model, and will gone when the template execution is finished. Templates can't modify the data model, so all templates get the same data model, which was filled with the <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code> setting at the very beginning of the processing session.</p> 
+
+<p><b>Data loaders</b> are objects that load and interpret data from certain type of data source, so FMPP can expose the data as variables for the templates. For example, in the Quick Tour we have used data loader <code><font color="#017D01">csv</font></code> that interprets CSV files. When the data source is file based, you use paths as data <code><font color="#017D01">data/birds.csv</font></code>. Relative paths are relative to the directory dictated by the <code><a href="settings.html#key_dataRoot" class=s><font color="#20C000">dataRoot</font></a></code> setting, which is be default the same as <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code>. Data loaders are described in more details <a href="dataloader.html">here</a>.</p>  
+
+
+
+<a name="sect5"></a>
+     <h2><font color="#000000">The pp hash</font></h2>
+
+<p>The data model always contains a <a href="#hash">hash</a> with name <code><font color="#017D01">pp</font></code> (stands for PreProcessor). This hash contains directives and methods and other variables that templates can use to control output generation, do path calculations, and do various other FMPP specific operations. You can find the description of the <code><font color="#017D01">pp</font></code> hash <a href="pphash.html">here</a>.</p>
+
+
+
+<a name="virtualPath"></a>
+     <h2><font color="#000000">Virtual paths</font></h2>
+
+<p>FMPP works with 3 file systems: the real file system, and 2 virtual file systems:</p>
+<ul>
+  <li><b>source file system</b>: The root directory of this file system is the <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> directory. Template files usually see this file system, as when they <code><font color="#017D01">&lt;#include <i>...</i>></font></code> other template files. All files that FMPP processes must be inside this file system, thus inside the source root directory.</li>
+  
+  <li><b>output file system</b>: The root directory of this file system is the <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code> directory. In templates, directives that control output file names and paths (as <code><font color="#017D01">&lt;@pp.changeOutputFile <i>...</i>></font></code>) use this file system. It is guaranteed that all output files will be inside this file system, thus inside the output root directory.</li>
+</ul>
+
+<p>Most directives/methods in templates that require path parameters use one of the virtual file systems. These paths are called <b>virtual paths</b>. Virtual paths always use UN*X style format, so they always use slash (<code><font color="#017D01">/</font></code>), not back-slash (<code><font color="#017D01">\</font></code>). Absolute virtual paths (as <code><font color="#017D01">/foo/bar</font></code>) always start from the virtual file system root (not from the root of the real file-system). You can't leave this root, not even with tricky path as <code><font color="#017D01">/..</font></code>. Relative virtual paths (as <code><font color="#017D01">foo/bar</font></code> or  <code><font color="#017D01">../foo/bar</font></code>) are resolved relatively to:</p>
+<ul>
+  <li>If they are used in built-in FreeMarker directives (as <code><font color="#017D01">&lt;#include <i>...</i>></font></code> or <code><font color="#017D01">&lt;#import <i>...</i>></font></code>): the directory of the currently executing template.</li>
+  <li>If they are used in other directives to refer to source files: the directory of the currently processed source file.</li>
+  <li>If they are used in directives to refer to output files: the directory of the currently written output file.</li>
+</ul>
+
+<p>Note that the <code><a href="settings.html#key_dataRoot" class=s><font color="#20C000">dataRoot</font></a></code> setting (used by data loaders) just specifies a base directory, not a virtual file system root. So you can leave it with <code><font color="#017D01">..</font></code>-s.</p>
+
+
+
+<a name="realPath"></a>
+     <h2><font color="#000000">Real paths</font></h2>
+
+<p>Paths that navigate in the real file system (not in a <a href="#virtualPath">virtual file systems</a>) are called <b>real paths</b>. Real paths always use the native path format of the host operating system. However, Windows users can and should use slash (<code><font color="#017D01">/</font></code>) instead of backslash (<code><font color="#017D01">\</font></code>), to keep UN*X compliance, and to avoid escaping issues.</p>
+
+<p>Real paths are used in these cases:</p>
+<ul>
+  <li>For setting values that store a path (or paths), such as <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> and <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code>. Relative paths in these settings are resolved relatively to the, so called, <b>configuration base</b> (unless explicitly stated otherwise for a certain setting). If the setting value comes from a configuration file, then it is the directory that contains the configuration file (however, this can be overridden with the <code><a href="settings.html#key_configurationBase" class=s><font color="#20C000">configurationBase</font></a></code> setting). If the value comes from other source (such as from a command-line argument), then the front-end specifies what the configuration base is for that setting value (see the documentation of the front-end).
+  
+  <li>For data loaders that load files, as <code><font color="#017D01">csv(data/birds.csv)</font></code>. If the path is relative, then it is relative to the <code><a href="settings.html#key_dataRoot" class=s><font color="#20C000">dataRoot</font></a></code>, which defaults to the <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code>. Note that the usage of <code><font color="#017D01">/</font></code> instead of the native path separator (as backslash) is always allowed and recommended here.
+
+  <li>As the parameter to some <code><font color="#017D01">pp</font></code> directives/methods that explicitly state this.  
+</ul>
+
+<p>In other cases FMPP uses <a href="#virtualPath">virtual paths</a>.
+
+
+
+<a name="sect8"></a>
+     <h2><font color="#000000">Adopted FreeMarker type names</font></h2>
+
+<p>FMPP adopts some of FreeMarker's terms regarding the type names, to decrease confusion:</p>
+<ul>
+  <li>String: text.
+  <li>Boolean: logical value. It can be <code><font color="#017D01">true</font></code> or <code><font color="#017D01">false</font></code>.
+  <li>Number: Number... maybe decimal, maybe whole. You often will also see term "integer", which means whole number.
+  <li><b>Sequence</b>: You may know this with name list, or array, or vector. It is a list of values of any type. The items in the list are indexed with integers, starting from 0.
+  <li><a name="hash"></a>
+<b>Hash</b>: You may know this with name dictionary, or map, or associative array. This is a set of name-value pairs. The names are unique strings in the hash, so they identify the values associated with them. As it used to be said, they are "keys".
+</ul>
+
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="qtour.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="details.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

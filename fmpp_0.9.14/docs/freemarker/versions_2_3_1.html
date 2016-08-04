@@ -1,0 +1,406 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - 2.3.1
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="versions_2_3_2.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="app_versions.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="versions_2_3.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="versions_2_3_1"></a>2.3.1
+  </h2>
+
+ 
+<p>Date of release: 2005-01-04</p><p>Maintenance (with some important new features) and bugfix
+        release.</p>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_161"></a>Possible backward compatibility issue
+  </h3>
+
+
+          <p>There is a bugfix that may affect the behavior of you Web
+          application if you use JSP tags in FreeMarker templates:
+          FreeMarker's implementation of
+          <tt style="color: #A03D10">javax.servlet.jsp.PageContext.getSession()</tt> was
+          incorrect. The <tt style="color: #A03D10">getSession()</tt> method is a
+          convenience method by which the custom tag can get the current
+          <tt style="color: #A03D10">HttpSession</tt> object (possibly
+          <tt style="color: #A03D10">null</tt> if there is no session). Till now, if the
+          session didn't existed then it has created it automatically, so it
+          never returned <tt style="color: #A03D10">null</tt>. This was a bug, so starting
+          from 2.3.1 it never creates the session, just returns
+          <tt style="color: #A03D10">null</tt> if it doesn't exist. The old incorrect
+          behavior could cause page rendering to fail if the method is called
+          after the page is partially flushed. But beware, the old behavior
+          has possibly hidden some bugs of the Web application, where it
+          forgot to create the session, so with the new correct behavior you
+          may face malfunction caused by previously cloaked bugs of the Web
+          application. (It's the task of the MVC Controller to create the
+          session, except if the JSP tag that needs a session is written so it
+          creates it automatically, but then it doesn't expects that
+          <tt style="color: #A03D10">getSession()</tt> will do it.)</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_162"></a>Changes on the FTL side
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>New built-in: <a href="ref_builtins_string.html#ref_builtin_url"><tt>url</tt></a>. This
+              built-in can be used for URL escaping. Note, however, that to
+              use this built-in conveniently, the software that encapsulates
+              FreeMarker has to be 2.3.1 aware (programmers will find more
+              info bellow...).</p>
+            </li>
+
+            <li>
+              <p>New <a href="ref_specvar.html">special variables</a>:
+              <tt style="color: #A03D10">output_encoding</tt> and
+              <tt style="color: #A03D10">url_escaping_charset</tt>. Note, however, that to
+              use these, the software that encapsulates FreeMarker has to be
+              2.3.1 aware (programmers will find more info bellow...).</p>
+            </li>
+
+            <li>
+              <p>New built-ins for sequences: <a href="ref_builtins_sequence.html#ref_builtin_seq_contains"><tt>seq_contains</tt></a>,
+              <a href="ref_builtins_sequence.html#ref_builtin_seq_index_of"><tt>seq_index_of</tt></a>,
+              <a href="ref_builtins_sequence.html#ref_builtin_seq_last_index_of"><tt>seq_last_index_of</tt></a>.</p>
+            </li>
+
+            <li>
+              <p>New built-ins for strings: <a href="ref_builtins_string.html#ref_builtin_left_pad"><tt>left_pad</tt></a>,
+              <a href="ref_builtins_string.html#ref_builtin_right_pad"><tt>right_pad</tt></a>
+              and <a href="ref_builtins_string.html#ref_builtin_contains"><tt>contains</tt></a>.</p>
+            </li>
+
+            <li>
+              <p>New directive: <a href="ref_directive_attempt.html#ref.directive.attempt"><tt>attempt</tt>/<tt>recover</tt></a></p>
+            </li>
+
+            <li>
+              <p>The <a href="ref_builtins_string.html#ref_builtin_js_string"><tt>js_string</tt>
+              built-in</a> now escapes <tt style="color: #A03D10">&gt;</tt> as
+              <tt style="color: #A03D10">\&gt;</tt> (to avoid
+              <tt style="color: #A03D10">&lt;/script&gt;</tt>).</p>
+            </li>
+
+            <li>
+              <p>The <tt style="color: #A03D10">sort</tt> and <tt style="color: #A03D10">sort_by</tt>
+              built-ins now can sort by date values. Also,
+              <tt style="color: #A03D10">sort_by</tt> built-in now can sort by the
+              subvarible of a subvariable of a subvariable... etc. for any
+              level depth. (<a href="ref_builtins_sequence.html#ref_builtin_sort_by">Details...</a>)</p>
+            </li>
+
+            <li>
+              <p><tt style="color: #A03D10">freemarker.template.TemplateExceptionHandler.HTML_DEBUG_HANDLER</tt>
+              now prints more HTML-context-proof messages.</p>
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_163"></a>Changes on the Java side
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>New setting: <tt style="color: #A03D10">output_encoding</tt>. This
+              setting is used for informing FreeMarker about the charset that
+              the enclosing software (as a Web application framework) uses for
+              the output of FreeMarker. It's undefined by default, and
+              although it is not strictly required to set it, the enclosing
+              software should do so. This setting must be set if templates
+              want to use the new <tt style="color: #A03D10">output_encoding</tt> special
+              variable, and possibly if they want to use the new
+              <tt style="color: #A03D10">url</tt> built-in. Note that the FreeMarker API
+              allows you to set settings for each template execution
+              individually (look at
+              <tt style="color: #A03D10">Template.createProcessingEnvironment(...)</tt>).</p>
+            </li>
+
+            <li>
+              <p>New setting: <tt style="color: #A03D10">url_escaping_charset</tt>. This
+              is the charset used for calculating the escaped parts
+              (<tt style="color: #A03D10">%<i style="color: #DD4400">XX</i></tt>) when you do
+              URL escaping with the new <tt style="color: #A03D10">url</tt> built-in. If it
+              is not set, then the <tt style="color: #A03D10">url</tt> built-in uses the
+              value of the <tt style="color: #A03D10">output_encoding</tt> setting, and if
+              that's not set either, then the parameterless version of
+              <tt style="color: #A03D10">url</tt> built-in (<tt style="color: #A03D10">${foo?url}</tt>)
+              can't be used.</p>
+            </li>
+
+            <li>
+              <p>Using the singleton (static)
+              <tt style="color: #A03D10">Configuration</tt> instance is clearly a bad
+              practice, so related methods are now deprecated, and the Manual
+              was adjusted, and the <tt style="color: #A03D10">FreemarkerXmlTask</tt> was
+              updated as well.</p>
+            </li>
+
+            <li>
+              <p>The
+              <tt style="color: #A03D10">freemarker.template.utility.Constants</tt> class
+              was added that contains various static final fields that store
+              frequently used constant <tt style="color: #A03D10">TemplateModel</tt>
+              values, as <tt style="color: #A03D10">EMPTY_SEQUENCE</tt>,
+              <tt style="color: #A03D10">ZERO</tt>, ...etc.</p>
+            </li>
+
+            <li>
+              <p>When using <tt style="color: #A03D10">SecurityManager</tt> with
+              FreeMarker, accessing system properties may caused
+              AccessControlException. Now such exceptions are catched and
+              logged with warning level, and the default value of the property
+              is returned.</p>
+            </li>
+
+            <li>
+              <p>The needles <tt style="color: #A03D10">InvocationTargetException</tt>
+              is now removed from the exception cause trace in certain
+              cases.</p>
+            </li>
+
+            <li>
+              <p>Added a dirty hack that prints
+              <tt style="color: #A03D10">ServletException</tt> root cause in
+              <tt style="color: #A03D10">TemplateException</tt>'s stack trace if that's the
+              direct cause exception of the
+              <tt style="color: #A03D10">TemplateException</tt>, despite the poorly written
+              <tt style="color: #A03D10">ServletException</tt> class.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: FreeMarker's implementation of
+              <tt style="color: #A03D10">javax.servlet.jsp.PageContext.getSession()</tt>
+              was incorrect. The <tt style="color: #A03D10">getSession()</tt> method is a
+              convenience method by which the custom tag can get the current
+              <tt style="color: #A03D10">HttpSession</tt> object (possibly
+              <tt style="color: #A03D10">null</tt> if there is no session). Till now, if
+              the session didn't existed then it has created it automatically,
+              so it never returned <tt style="color: #A03D10">null</tt>. This was a bug, so
+              starting from 2.3.1 it never creates the session, just returns
+              <tt style="color: #A03D10">null</tt> if it doesn't exist. The old incorrect
+              behavior could cause page rendering to fail if the method is
+              called after the page is partially flushed. But beware, the old
+              behavior has possibly hidden some bugs of the Web application,
+              where it forgot to create the session, so with the new correct
+              behavior you may face malfunction caused by previously cloaked
+              bugs of the Web application. (It's the task of the MVC
+              Controller to create the session, except if the JSP tag that
+              needs a session is written so it creates it automatically, but
+              then it doesn't expects that <tt style="color: #A03D10">getSession()</tt>
+              will do it.)</p>
+            </li>
+
+            <li>
+              <p>Bugfix: The <tt style="color: #A03D10">BeansWrapper</tt> didn't always
+              handled properly the case of a Java class having both a public
+              static field and a public static method with the same
+              name.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: <tt style="color: #A03D10">SimpleMethodModel</tt> had
+              incorrectly propagate exceptions sometimes, causing null pointer
+              exception.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: The template execution may used outdated cached
+              values when you have processed the same
+              <tt style="color: #A03D10">Environment</tt> for multiple times, and changed
+              settings between the two processings. Note that this could
+              happen only in single-thread environment, where such setting
+              modifications are allowed.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: Some of the string built-ins has died with
+              <tt style="color: #A03D10">IndexOutOfBounds</tt> exception if the template
+              author has forgotten to specify required parameters. Now they
+              die with more helpful error messages.</p>
+            </li>
+
+            <li>
+              <p>Bugfix:
+              <tt style="color: #A03D10">freemarker.ext.dom.NodeModel.equals(...)</tt> has
+              died with null pointer exception if its argument was
+              <tt style="color: #A03D10">null</tt>.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: The cause exception of
+              <tt style="color: #A03D10">TemplateException</tt>-s was sometimes printed
+              twice in stack traces with J2SE 1.4 or later.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: The
+              <tt style="color: #A03D10">StringUtil.FTLStringLiteralEnc(String)</tt> method
+              was finished.</p>
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_164"></a>Other changes
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>Fixes and improvements in the Manual and in the API
+              JavaDoc.</p>
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_165"></a>The history of the releases before the final version
+  </h3>
+
+
+          
+              
+  
+  
+  <h4 class="section_level_3"><a name="autoid_166"></a>Differences between the preview release and final
+            release
+  </h4>
+
+
+                <div class="itemizedlist">
+<ul>
+              <li>
+                <p>Added a dirty hack that prints
+                <tt style="color: #A03D10">ServletException</tt> root cause in
+                <tt style="color: #A03D10">TemplateException</tt>'s stack trace if that's
+                the direct cause exception of the
+                <tt style="color: #A03D10">TemplateException</tt>, despite the poorly
+                written <tt style="color: #A03D10">ServletException</tt> class.</p>
+              </li>
+
+              <li>
+                <p>Bugfix:
+                <tt style="color: #A03D10">freemarker.ext.dom.NodeModel.equals(...)</tt>
+                has died with null pointer exception if its argument was
+                <tt style="color: #A03D10">null</tt>.</p>
+              </li>
+
+              <li>
+                <p>Bugfix: The cause exception of
+                <tt style="color: #A03D10">TemplateException</tt>-s was sometimes printed
+                twice in stack traces with J2SE 1.4 or later.</p>
+              </li>
+
+              <li>
+                <p>More minor improvements in the Manual.</p>
+              </li>
+            </ul>    </div>
+
+          
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="versions_2_3_2.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="app_versions.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="versions_2_3.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

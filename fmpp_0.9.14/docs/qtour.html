@@ -1,0 +1,215 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, tour">
+      <title>FMPP - Quick Tour</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">Quick Tour</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="basics.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="overview.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>Step 1: Just process a directory</a></li>
+    <li><a href="#sect2" class=toc>Step 2: Pulling data from a data source</a></li>
+    <li><a href="#sect3" class=toc>Step 3: Even more data</a></li>
+    <li><a href="#sect4" class=toc>Step 4: Multiple output files from the same source file</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<p>This chapter is a quick, very rough introduction to FMPP. Just to get some impression on its logic.</p>
+
+<a name="sect1"></a>
+     <h2><font color="#000000">Step 1: Just process a directory</font></h2>
+
+<p>The basic idea is that you have <b>source root directory</b> and an <b>output root directory</b>. The source root directory contains the files to process, and the output root directory will contain the processed files.  Processing the file either means that FMPP will execute the file as FreeMarker template, or that it will copy the file as is (in the case of image files, archive files, etc.). (In fact there are other seldom used processing modes as well, like <a href="settings.html#xmlRendering">XML rendering</a>.)</p>
+
+<p>To see an example, go to the <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/qtour_step1</font></code> directory. Here we have a directory called <code><font color="#017D01">src</font></code>:</p>
+
+<p><img alt="Quick tour step 1 src" src="img/qtour_step1_src.png" border="0" width="139" height="81"></p>
+
+<p>Also, you will find <code><font color="#017D01">config.fmpp</font></code> in the <code><font color="#017D01">qtour_step1</font></code> directory. This file contains the settings for FMPP, and now contains this:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">sourceRoot: src
+outputRoot: out<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>If you issue <code><font color="#017D01">fmpp</font></code> command from the command-line while you are in the <code><font color="#017D01">qtour_step1</font></code> directory, then FMPP will process the <code><font color="#017D01">src</font></code> directory and places the output into the <code><font color="#017D01">out</font></code> directory. On the console you will see something like:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">Note: Using the config.fmpp in the working directory.
+- Executing: index.html
+- Copying: falcon.png
+- Executing: subdir\something.html
+
+*** DONE ***
+
+2 executed + 1 copied = 3 processed
+0 failed, 0 warning(s)
+Time elapsed: 0.234 seconds<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>and the newly created <code><font color="#017D01">out</font></code> directory will contain exactly the same files and subdirectories as <code><font color="#017D01">src</font></code>.
+
+<p align="center"><img alt="Quick tour step 1 diagram" src="img/qtour_step1.png" border="0" width="390" height="130"></p>
+
+<p>The above messages suggest that the PNG file was copied, while the two HTML-s were executed:</p>
+<ul>
+  <li>"Copying" means that the file is copied as is, without changing even a bit compared to the original file (binary copy).
+  <li>"Executing" means that the file is interpreted by FreeMarker as template file, and the content of the output file is generated by FreeMarker. Template files are plain text files that can contain special parts, which are instructions to FreeMarker. Since in this first example the HTML files don't contain any such special parts, the output files will be identical to the original HTML-s.
+</ul>
+
+
+<a name="sect2"></a>
+     <h2><font color="#000000">Step 2: Pulling data from a data source</font></h2>
+
+<p>If you look into the two HTML-s of <code><font color="#017D01">qtour_step1/src</font></code>, you see that both contains this line:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;body bgcolor=&quot;#FFFFE0&quot; text=&quot;#000000&quot;&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>Assume you want to store these colors in a single centralized place, so if you change them, all pages will change. For this, you have to tell FMPP what <b>data</b> to expose for the templates. For now, tell FMPP to load data from a TDD file. A TDD file is a simple text file that stores name-value pairs. (It happens to be the same format that <code><font color="#017D01">config.fmpp</font></code> uses, but it's just accidental coincidence. You could load data from other type of data source in the same way.) If you go to the <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/qtour_step2</font></code> directory, you will find <code><font color="#017D01">style.tdd</font></code> in <code><font color="#017D01">src/data</font></code> that contains this:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">bgColor: #FFFFE0
+textColor: #000000<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Both line in both HTML-s has been changed to:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;body bgcolor=&quot;${bgColor}&quot; text=&quot;${textColor}&quot;&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>The two <code><font color="#017D01">${<i>...</i>}</font></code>-s are instructions to FreeMarker that insert the value of a variable. When I'm saying that FMPP exposes data for the templates, then it simply means that it creates variables for the templates, based on some data source. We tell FMPP to load data from <code><font color="#017D01">data/style.tdd</font></code> file before it starts to process the files, in the <code><font color="#017D01">config.tdd</font></code> of the <code><font color="#017D01">qtour_step2</font></code> directory:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">sourceRoot: src
+outputRoot: out
+data: tdd(data/style.tdd)<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>If you issue an <code><font color="#017D01">fmpp</font></code> command in the <code><font color="#017D01">qtour_step2</font></code> directory, and look into the result in the <code><font color="#017D01">out</font></code> directory, then you will see that the <code><font color="#017D01">${<i>...</i>}</font></code>-s in the HTML files are replaced with the actual colors.</p>
+
+<p align="center"><img alt="Quick tour step 2 diagram" src="img/qtour_step2.png" border="0" width="660" height="213"></p>
+
+<p>It is important that the <code><font color="#017D01">data</font></code> directory was not copied into the output (the files in it were not "executed" or "copied"). This is because <code><font color="#017D01">src/data</font></code> contains a file with name <code><font color="#017D01">ignoredir.fmpp</font></code>, and the presence of this file instructs FMPP not to process the directory.</p>
+
+
+<a name="sect3"></a>
+     <h2><font color="#000000">Step 3: Even more data</font></h2>
+
+<p>You can use any number of data sources, not only a single file. In <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/qtour_step3</font></code> I have added one more data source: <code><font color="#017D01">data/birds.csv</font></code>. CSV is a primitive format often used to exchange data among spread sheet applications and other applications. <code><font color="#017D01">bird.csv</font></code> stores a table with "name", "description" and "favoriteFood" columns. I want to use the content of this table in the generated HTML pages later, so let load this table into variable <code><font color="#017D01">birds</font></code>, in <code><font color="#017D01">config.fmpp</font></code>:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">sourceRoot: src
+outputRoot: out
+data: {
+    tdd(data/style.tdd)
+    birds: csv(data/birds.csv)
+}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Here FMPP creates variables for the templates from multiple data sources (<code><font color="#017D01">data/style.tdd</font></code>, <code><font color="#017D01">data/birds.csv</font></code>).</p>
+
+<p>The <code><font color="#017D01">index.html</font></code> now contains some new lines, that fetch the data form the CSV file via the <code><font color="#017D01">birds</font></code> variable, and print a list from it. The <code><font color="#017D01">&lt;#<i>...</i>></font></code> tags are instructions to FreeMarker (see in the <a href="freemarker/index.html">FreeMarker Manual</a>):</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;ul&gt;
+&lt;#list birds as bird&gt;
+  &lt;li&gt;${bird.name?cap_first}: ${bird.description}
+      Favorite food: ${bird.favoriteFood}
+&lt;/#list&gt;
+&lt;/ul&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>The output of the above template lines will be something like:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">  &lt;ul&gt;
+    &lt;li&gt;Arctic-tern: Flies very long distances all years.
+        Favorite food: sardine
+    &lt;li&gt;House-sparrow: Don't you say you don't know it...
+        Favorite food: sunflower
+    &lt;li&gt;Sakeret: Great hunter of the sky.
+        Favorite food: pigeon
+  &lt;/ul&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Note that the template uses <code><font color="#017D01">birds</font></code> variable independently of the actual file format (CSV) behind it. You could replace the CSV with whatever data source that can be interpreted as table (as a database table) and the templates could be the same, only the <code><font color="#017D01">config.fmpp</font></code> has to be adjusted. (However, FMPP supports only a few data source types out of the box yet, so maybe you have to write/obtain extension Java classes for it.)</p>
+
+<p>You can find more information about data and data loading <a href="overview.html#data">here</a>.</p>
+
+
+<a name="sect4"></a>
+     <h2><font color="#000000">Step 4: Multiple output files from the same source file</font></h2>
+
+<p>Let's say you want to create separate HTML pages for each birds, rather than listing all information about them on the index page, and you want only link to those pages on <code><font color="#017D01">index.html</font></code>. <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/qtour_step4</font></code> does this. The index page had trivial changes to generate the links. The interesting is that we have a new file, <code><font color="#017D01">bird.html</font></code>. This single file is the template for all bird pages, and will generate a separate HTML file for each birds:</p>
+
+<p align="center"><img alt="Quick tour step 4 diagram" src="img/qtour_step4.png" border="0" width="390" height="273"></p>
+
+<p>The <code><font color="#017D01">bird.html</font></code> looks as this:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;@pp.dropOutputFile /&gt;
+&lt;#list birds as bird&gt;
+&lt;@pp.changeOutputFile name=bird.name+&quot;.html&quot; /&gt;
+&lt;html&gt;
+&lt;head&gt;  
+  &lt;title&gt;${bird.name?cap_first}&lt;/title&gt;
+&lt;/head&gt;  
+&lt;body bgcolor=&quot;${bgColor}&quot; text=&quot;${textColor}&quot;&gt;
+  &lt;h1&gt;${bird.name?cap_first}&lt;/h1&gt;
+  
+  &lt;p&gt;${bird.description}&lt;/p&gt;
+
+  &lt;p&gt;&lt;b&gt;Favorite food:&lt;/b&gt; ${bird.favoriteFood}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;/#list&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>The <code><font color="#017D01">&lt;@<i>...</i>></font></code> tags are instructions to FreeMarker (see the <a href="freemarker/index.html">FreeMarker Manual</a>). The <a href="pphash.html"><b>pp variable</b></a> is defined by FMPP, and is always there, automatically. It stores the built-in variables of FMPP, e.g. directives as <code><font color="#017D01">dropOutputFile</font></code> above. <code><font color="#017D01">&lt;@pp.dropOutputFile /></font></code> instructs FMPP to drop the current output file, so we will not have <code><font color="#017D01">bird.html</font></code> in the output directory. <code><font color="#017D01">&lt;@pp.changeOutputFile <i>...</i>/></font></code> instructs FMPP to start a new output file with the given name. So <code><font color="#017D01">bird.html</font></code> will produce 3 output files (one output file for each row of the table): <code><font color="#017D01">arctic-tern.html</font></code>, <code><font color="#017D01">house-sparrow.html</font></code>, and <code><font color="#017D01">sakeret.html</font></code>.</p>
+
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="basics.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="overview.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

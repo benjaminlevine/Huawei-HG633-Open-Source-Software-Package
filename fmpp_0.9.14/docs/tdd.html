@@ -1,0 +1,326 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, TDD">
+      <title>FMPP - TDD - Textual Data Definition</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">TDD - Textual Data Definition</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="languages.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="pathpattern.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>Basics</a></li>
+    <li><a href="#modes" class=toc>Interpretation modes</a></li>
+    <li><a href="#hashAddition" class=toc>Hash addition</a></li>
+    <li><a href="#sect4" class=toc>TDD functions</a></li>
+    <li><a href="#sect5" class=toc>Comments</a></li>
+    <li><a href="#encoding" class=toc>Character encoding issues</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<a name="sect1"></a>
+     <h2><font color="#000000">Basics</font></h2>
+
+<p> TDD is a very simple expression language created for defining hierarchical data (hashes, sequences) with plain text. It is mostly used for configuring FMPP. For example, <a href="configfile.html">configuration files</a> use TDD syntax.</p>
+
+<p>TDD syntax is identical to the syntax of literals in FTL (FreeMarker Template Language). For example, this data structure:</p>
+
+<pre>
+(root)
+ |
+ +- user = "Big Joe"
+ |
+ +- tall = true
+ |
+ +- animals
+     |
+     +- (1st)
+     |   |
+     |   +- name = "white mouse"
+     |   |
+     |   +- price = 30
+     |
+     +- (2nd)
+     |   |
+     |   +- name = "black mouse"
+     |   |
+     |   +- price = 25
+     |
+     +- (3rd)
+         |
+         +- name = "green mouse"
+         |
+         +- price = 150
+</pre>
+
+<p>could be described with this TDD expression:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">{
+    &quot;user&quot;: &quot;Big Joe&quot;,
+    &quot;tall&quot;: true,
+    &quot;animals&quot;: [
+        {&quot;name&quot;: &quot;white mouse&quot;, &quot;price&quot;: 30},
+        {&quot;name&quot;: &quot;black mouse&quot;, &quot;price&quot;: 25},
+        {&quot;name&quot;: &quot;green mouse&quot;, &quot;price&quot;: 150}
+    ]
+}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>which is also a legal FTL expression. Please read <a href="freemarker/dgui_template_exp.html#dgui_template_exp_direct">the FreeMarker Manual about "Specify values directly"</a> if you are not familiar with them. TDD doesn't support any other FTL operators (as variables, built-ins, interpolations, etc.), only the "Specify values directly" part of FTL.</p>
+
+<p>TDD syntax allows terser expressions than FTL because of these additional syntactical rules:</p>
+<ul>
+  <li>Strings need not be quoted if they doesn't look like a legal boolean or number value, and they don't contain:
+     <ul>
+       <li>white-space: space, tab, line-break, etc.</li>
+       <li>Quotation marks or apostrophe-quote: <code><font color="#017D01">"</font></code>, <code><font color="#017D01">'</font></code></li>
+       <li>Separator-like chars: comma (<code><font color="#017D01">,</font></code>), semicolon (<code><font color="#017D01">;</font></code>). Colon (<code><font color="#017D01">:</font></code>) is allowed without quoting the string if the string is not a key in a hash.</li>
+       <li>Bracket-like chars: <code><font color="#017D01">(</font></code>, <code><font color="#017D01">)</font></code>, <code><font color="#017D01">[</font></code>, <code><font color="#017D01">]</font></code>, <code><font color="#017D01">{</font></code>, <code><font color="#017D01">}</font></code>, <code><font color="#017D01">&lt;</font></code>, <code><font color="#017D01">></font></code></li>
+       <li>Equals sign (<code><font color="#017D01">=</font></code>)</li>
+       <li>Plus sign (<code><font color="#017D01">+</font></code>)</li>
+     </ul>
+  </li>
+  <li>Line-break can be used instead of comma (<code><font color="#017D01">,</font></code>). That is, in practice, you can omit commas that would be at the end of the lines.</li>
+  <li>If in a hash the value is missing from a key:value pair, then the value defaults to boolean <code><font color="#017D01">true</font></code>.
+</ul>
+
+<p>Utilizing these rules, the example TDD expression can be written as:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">{
+    user: &quot;Big Joe&quot;
+    tall
+    animals: [
+        {name: &quot;white mouse&quot;, price: 30}
+        {name: &quot;black mouse&quot;, price: 25}
+        {name: &quot;green mouse&quot;, price: 150}
+    ]
+}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Back to the strings... Examples of legal unquoted strings:</p>
+<ul>
+  <li><code><font color="#017D01">**/foo-bar/baz.txt</font></code></li>
+  <li><code><font color="#017D01">C:\windows\system32</font></code></li>
+  <li><code><font color="#017D01">25%</font></code></li>
+  <li><code><font color="#017D01">#FF80FF</font></code></li>
+  <li><code><font color="#017D01">?!</font></code></li>
+  <li><code><font color="#017D01">7.txt</font></code></li>
+  <li><code><font color="#017D01">1-2</font></code></li>
+  <li><code><font color="#017D01">True</font></code></li>
+</ul>
+<p>Examples of strings where quotation had to be used:</p>
+<ul>
+  <li><code><font color="#017D01">"contains space"</font></code></li>
+  <li><code><font color="#017D01">"a'b"</font></code></li>
+  <li><code><font color="#017D01">"(c)"</font></code></li>
+  <li><code><font color="#017D01">"&lt;head>"</font></code></li>
+  <li><code><font color="#017D01">"7"</font></code></li>
+  <li><code><font color="#017D01">"true"</font></code></li>
+</ul>
+
+<p>TDD supports an escape sequence that FTL doesn't: backslash at the end of the line. It is used to break strings into multiple lines in the TDD, without actually introducing line-breaks and indentation in the value of the string. For example here:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">{
+    text: 'This is \
+           a single \
+           line.'
+}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>the value of <code><font color="#017D01">text</font></code> will be the same as with:
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">{
+    text: 'This is a single line.'
+}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>The exact rule is that if backslash is followed by a line-break (extra horizontal white-space is allowed between the backslash and the line-break), then all characters after the backslash will be removed until the first non-white-space character is reached, or a 2nd line-break is reached.</p>
+
+
+
+<a name="modes"></a>
+     <h2><font color="#000000">Interpretation modes</font></h2>
+
+<p>A text can be interpreted as TDD either in:</p>
+<ul>
+  <li>Single expression mode: this is the basic case.</li>
+  <li>Hash mode: The text is assumed to describe the name:value pair list of a hash.</li>
+  <li>Sequence mode: The text is assumed to describe the value list of a sequence.</li>
+</ul>
+
+<p>An example of hash mode are <a href="configfile.html">configuration files</a>. There you enter the settings as if you were already between <code><font color="#017D01">{</font></code> and <code><font color="#017D01">}</font></code>:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">sourceRoot: src
+outputRoot: out<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>and this will evaluate to a hash. In single expression mode, you could describe the same value with this:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">{
+    sourceRoot: src
+    outputRoot: out
+}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>An example of sequence mode is when you specify the <code><a href="settings.html#key_removeExtensions" class=s><font color="#20C000">removeExtensions</font></a></code> setting with command-line argument to the <a href="commandline.html">command-line tool</a> or as Ant task parameter. For example, when you enter this in the command-line:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">fmpp -S src -O out --removeExtensions &quot;foo, bar, baaz&quot;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Don't be confused on the quotation marks here, those are required by the command-line parser of the OS shell, it has nothing to do with TDD. What FMPP gets don't contain the quotation marks, only the text between them. So the TDD expression we are talking about is:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">foo, bar, baaz<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>The same value could be described in single expression mode as:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">[foo, bar, baaz]<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>When to use single expression mode, and when hash mode, and when sequence mode? Hash mode or sequence mode is used when you specify the value of something as discrete text (that is, not as the part of a larger, enclosing TDD expression), and it is known that the value must be hash or sequence respectively. For example, in the <code><font color="#017D01">--removeExtensions</font></code> example above, the TDD expression is given in an independent text fragment, and it is known that the <code><a href="settings.html#key_removeExtensions" class=s><font color="#20C000">removeExtensions</font></a></code> setting is a sequence. Compare it with the case, when you specify the same setting value in a configuration file:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">removeExtensions: [foo, bar, baaz]<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Here, the value is not a discrete text, because it is a fragment of a larger TDD expression (which is, by the way, a hash mode expression). Thus, the value must be specified in single expression mode, regardless that we know that it should be a sequence. Because, if you were allowed to write:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">removeExtensions: foo, bar, baaz<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>then there would be an ambiguity, as it could be also interpreted as:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">removeExtensions: foo
+bar: true
+baaz: true<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>(Since, if the value is missing from a key:value pair, then the value defaults to boolean <code><font color="#017D01">true</font></code>, and comma can be replaced with line-break) So be sure you don't forget the brackets in configuration files.</p>
+
+
+
+<a name="hashAddition"></a>
+     <h2><font color="#000000">Hash addition</font></h2>
+
+<p>TDD allows you to put hash value directly into another hash value, without specifying key for it. For example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">{a: A, b: B,  {c: C, d: D}}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>In this case, when the TDD interpretation passes the <code><font color="#017D01">{c: C, d: D}</font></code>, it will add all key:value pairs of it to the enclosing hash. So the final result hash will contain these key:value pairs: <code><font color="#017D01">a: A</font></code>, <code><font color="#017D01">b: B</font></code>, <code><font color="#017D01">c: C</font></code>, <code><font color="#017D01">d: D</font></code>.</p>
+
+<p>When the hash is added to its parent, it may overwrite keys in that. For example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">{a: A1, b: B1, c:C1, {b: B2, c: C2}, {c: C3}}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>will result in a hash that contains these key:value pairs: <code><font color="#017D01">a:A1</font></code>, <code><font color="#017D01">b:B2</font></code>, <code><font color="#017D01">c:C3</font></code>.</p>
+
+<p>You may wonder what is this all good for. Hash additions are useful with data loaders that return hashes. Read on...</p>
+
+
+
+<a name="sect4"></a>
+     <h2><font color="#000000">TDD functions</font></h2>
+
+<p>TDD has a construct called TDD function that is identical to FTL method calls. The meaning of TDD functions depends on which <a href="overview.html#settings">setting</a> do you use them in. For example, when you use TDD with the <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code> setting, then they are used to invoke data loaders, and their return value is the loaded data. A part form the configuration used in the <a href="qtour.html">Quick Tour</a>:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">data: {
+    tdd(data/style.tdd)
+    birds: csv(data/birds.csv)
+}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>The first function call (<code><font color="#017D01">tdd(<i>...</i>)</font></code>) returns the a hash that was built by interpreting the <code><font color="#017D01">data/style.tdd</font></code> file. There is no key given for it (like <code><font color="#017D01">someKey:&nbsp;tdd(<i>...</i>)</font></code>), so its key:value pairs will be added directly to the <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code> hash (<a href="#hashAddition">hash addition</a>). The second call (<code><font color="#017D01">csv(<i>...</i>)</font></code>) returns a sequence, which will be stored with key <code><font color="#017D01">birds</font></code> in the <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code> hash.</p>
+
+<p>Another example of the usage TDD functions is when method calls are used with the <code><a href="settings.html#key_modes" class=s><font color="#20C000">modes</font></a></code> setting. A fragment from a possible configuration file:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">modes: [copy(**/*.html, **/*.htm), ignore(tmp/)]<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>In this use case, you are not interested what kind of values do the function calls return. You just use the function calls for describing groups. It's the internal business of the FMPP core what the function calls return to solve this task.</p>
+
+<p>There is no restriction regarding the type of the value a TDD function returns. You may thought that TDD knows only these types: string, number, boolean, hash, sequence. These are the types for which you can specify values directly, but a sequence or a hash can store any type of Java objects as values, not only these. So any type of object can get into hashes or sequences as the return value of TDD function.</p>
+
+
+
+<a name="sect5"></a>
+     <h2><font color="#000000">Comments</font></h2>
+
+<p>TDD knows 2 types of comments:</p>
+<ul>
+  <li>FTL comment: These are delimited with <code><font color="#017D01">&lt;#--</font></code> and <code><font color="#017D01">--></font></code>, and can span multiple lines. They can be inserted everywhere where optional white-space could be inserted. FTL comments can't be nested into another FTL comment.</li>
+  
+  <li>Shell-script/"properties" style comment: These are lines starting with <code><font color="#017D01">#</font></code>, optionally preceded with white-space. The comment spreads until the end of the line. This comment can be inserted everywhere where optional line-break could be inserted.</li>
+</ul>
+
+<p>Comments will not work inside quoted strings, nor nested inside comments. That is, they will count as normal text in these places.</p> 
+
+<p>Example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px"># This is a test.
+# Now &quot;a&quot; will be 1
+a: 1 &lt;#-- now &quot;a&quot; is 1 --&gt;
+b &lt;#-- this was the key --&gt; : &lt;#-- now comes the value --&gt; 2
+  # Comments can be indented.
+&lt;#--
+  FTL-style comment
+  can span over multiple lines.
+--&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<a name="encoding"></a>
+     <h2><font color="#000000">Character encoding issues</font></h2>
+
+<p>If you load TDD from a file, then FMPP have to use an encoding (charset) to interpret the bytes as text. The default of this encoding depends on how do you load the TDD file:</p>
+<ul>
+  <li>If it is a configuration file: <code><font color="#017D01">ISO-8859-1</font></code> is used.</li>
+  <li>If it is loaded with <code><font color="#017D01">tdd</font></code> data loader as <code><font color="#017D01">tdd(<i>fileName</i>)</font></code>: <code><a href="settings.html#key_sourceEncoding" class=s><font color="#20C000">sourceEncoding</font></a></code> is used.</li>
+  <li>If it is loaded with data loader <code><font color="#017D01">tdd</font></code> as <code><font color="#017D01">tdd(<i>fileName</i>, <i>encoding</i>)</font></code>: the encoding suggested by the 2nd parameter is used.</li>
+</ul>
+
+<p>A TDD file can specify its own encoding with a special comment, in which case the default of the encoding (see above) is ignored. For example this TDD file will be always interpreted with UTF-8 encoding, doesn't mater how you load it:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px"># encoding: UTF-8
+some: tdd
+comes: here<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>The encoding comment must be the very first line of the TDD file. FTL-style comment can't be used for this purpose. Extra white-space, or no white-space is OK between the <code><font color="#017D01">#</font></code> and <code><font color="#017D01">encoding</font></code>, also extra white-space can be present around the colon. Word <code><font color="#017D01">charset</font></code> can be used instead of <code><font color="#017D01">encoding</font></code>. The words are not case sensitive.</p>
+
+<p>The encoding comment works only if the file can be correctly interpreted as US-ASCII until the end of the encoding name. So it will not work for UTF-16, UCS-2, UCS-4, and with EBCDIC based charsets. Note that an UTF-8 BOM at the begining of the file is automatically ignored.</p>
+
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="languages.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="pathpattern.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

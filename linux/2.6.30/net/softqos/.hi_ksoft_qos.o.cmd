@@ -1,0 +1,1 @@
+cmd_net/softqos/hi_ksoft_qos.o := /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/ccache /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/arm-hsan-linux-uclibcgnueabi-ld -EL    -r -o net/softqos/hi_ksoft_qos.o net/softqos/hi_kernel_soft_qos.o 

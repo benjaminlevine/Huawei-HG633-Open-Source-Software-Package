@@ -1,0 +1,139 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, front-end, front-ends, custom, write, embed">
+      <title>FMPP - Writing New Front-ends</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">Writing New Front-ends</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="ant.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="languages.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+      
+<p><i><b>Note:</b> I'm talking about writing front-ends here, but of course the same technique can be used to embed FMPP into your application that you couldn't call a front-end.</i></p>
+
+<p>The low-level method is to create an <code><font color="#017D01">fmpp.Engine</font></code> object, and then set it up with its methods, and then call its <code><font color="#017D01">process(<i>...</i>)</font></code> method to execute a processing session. The API of this object reflects the internal architecture of FMPP. Higher-level concepts as <a href="settings.html">settings</a> or <a href="configfile.html">configuration files</a> doesn't exist on this level. So I don't recommend you to work with <code><font color="#017D01">fmpp.Engine</font></code> objects directly.</p>
+
+<p>The high-level method is to create an <code><font color="#017D01">fmpp.setting.Settings</font></code> object, and fill it with the setting values. This object can load configuration files, and its API uses a higher level approach in general. This is the object where <a href="settings.html">FMPP settings</a> are implemented. After you set the setting values (and also you have added progress listeners and engine attributes you wanted), invoke <code><font color="#017D01">Settings.execute()</font></code> to execute a processing session.</p>
+
+    <p align=center>
+<img alt="FMPP architecture" src="img/fmpparch.png" border="0" width="527" height="252"><br>
+    <br><b>Figure:</b> <i>  The components involved in typical FMPP usage. Red arrow shows direct method invocation (or constructor invocation, or static field access) between the components. The arrow points from the caller towards the called. Dashed lines indicate unimportant or occasional access.
+</i>
+    </p>
+
+<p>Note that some settings are not implemented by <code><font color="#017D01">Settings</font></code> (as <code><a href="settings.html#key_echoFormat" class=s><font color="#20C000">echoFormat</font></a></code>, <code><a href="settings.html#key_logFile" class=s><font color="#20C000">logFile</font></a></code>, ...etc.), and should be implemented by the front-end.</p>
+
+<p>For more information, please see <a href="api/index.html">the API documentation</a>. Also, you can look into the source code of <code><font color="#017D01">fmpp.tools.CommandLine</font></code> and <code><font color="#017D01">fmpp.tools.AntTask</font></code>.</p>
+
+<p>Example: Below is the source code of a very simple command-line front-end. It accepts one argument, the name of the configuration file to use. If that's omitted, it tries to load a configuration file from the current directory.</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">package fmpp.testsuite;
+
+import java.io.File;
+
+import fmpp.ProcessingException;
+import fmpp.progresslisteners.ConsoleProgressListener;
+import fmpp.setting.SettingException;
+import fmpp.setting.Settings;
+import fmpp.util.MiscUtil;
+import freemarker.log.Logger;
+
+public class AdhocFrontEnd {
+    public static void main(String[] args) {
+        // Parse command-line args
+        File cfgFile = null;
+        if (args.length == 0) {
+            cfgFile = new File(&quot;.&quot;); // load the cfg. of the the current dir.
+        } else if (args.length == 1) {
+            cfgFile = new File(args[0]);
+        } else {
+            System.err.println(
+                    &quot;Usage: java AdhocFrontEnd [configuration-file]&quot;);
+            System.exit(-1);
+        }
+
+        // Shut FreeMarker logger up
+        try {
+            Logger.selectLoggerLibrary(Logger.LIBRARY_NONE);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(
+                    &quot;Failed to disable FreeMarker logging.&quot;);
+        }
+
+        // Now comes the meat...
+        try {
+            Settings ss = new Settings(new File(&quot;.&quot;));
+            ss.load(cfgFile);
+            ss.addProgressListener(new ConsoleProgressListener());
+            ss.execute();
+            System.out.println(&quot;Done.&quot;);
+        } catch (SettingException e) {
+            System.err.println(MiscUtil.causeMessages(e));
+            System.exit(-2);
+        } catch (ProcessingException e) {
+            System.err.println(MiscUtil.causeMessages(e));
+            System.exit(-3);
+        }
+    }
+}<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="ant.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="languages.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

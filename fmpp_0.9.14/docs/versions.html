@@ -1,0 +1,795 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, verions, version history">
+      <title>FMPP - Version History</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">Version History</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="knownproblems.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<img alt="-" src="img/next_gray.png" border="0" width="44" height="44">&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>0.9.14</a></li>
+    <li><a href="#sect2" class=toc>0.9.13</a></li>
+    <li><a href="#sect3" class=toc>0.9.12</a></li>
+    <li><a href="#sect4" class=toc>0.9.11</a></li>
+    <li><a href="#sect5" class=toc>0.9.10</a></li>
+    <li><a href="#sect6" class=toc>0.9.9</a></li>
+    <li><a href="#sect7" class=toc>0.9.8</a></li>
+    <li><a href="#sect8" class=toc>0.9.7</a></li>
+    <li><a href="#sect9" class=toc>0.9.6</a></li>
+    <li><a href="#sect10" class=toc>0.9.5</a></li>
+    <li><a href="#sect11" class=toc>0.9.4</a></li>
+    <li><a href="#sect12" class=toc>0.9.3</a></li>
+    <li><a href="#sect13" class=toc>0.9.2</a></li>
+    <li><a href="#sect14" class=toc>0.9.1</a></li>
+    <li><a href="#sect15" class=toc>0.9.0</a></li>
+    <li><a href="#sect16" class=toc>0.8.12</a></li>
+    <li><a href="#sect17" class=toc>0.8.11</a></li>
+    <li><a href="#sect18" class=toc>0.8.10</a></li>
+    <li><a href="#sect19" class=toc>0.8.9</a></li>
+    <li><a href="#sect20" class=toc>0.8.8</a></li>
+    <li><a href="#sect21" class=toc>0.8.7</a></li>
+    <li><a href="#sect22" class=toc>0.8.6</a></li>
+    <li><a href="#sect23" class=toc>0.8.5</a></li>
+    <li><a href="#sect24" class=toc>0.8.4</a></li>
+    <li><a href="#sect25" class=toc>0.8.3</a></li>
+    <li><a href="#sect26" class=toc>0.8.2</a></li>
+    <li><a href="#sect27" class=toc>0.8.1</a></li>
+    <li><a href="#sect28" class=toc>0.8.0</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<a name="sect1"></a>
+     <h2><font color="#000000">0.9.14</font></h2>
+  <p>Date of release: 2009-03-15</p>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li>Fixing bug that caused <code><a href="settings.html#key_skipUnchanged" class=s><font color="#20C000">skipUnchanged</font></a></code> to skip a file when the destination was newer than the source. Now it only skips files when the modification date of the source and destination files are exactly the same.</li>
+    <li>Fixing some TDD parser crashes occurring when parsing invalid TDD.</li>
+    <li>Preventing obviously useless traversing inside SVN and CVS directories.</li>
+    <li>Fixed some typos in the documentation.</li>
+  </ul>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li>FMPP now can create empty directories using one of the two new features (reminder: FMPP creates output directories on-demand before an actual output file is created in them, hence usually it doesn't create empty directories):
+    <ul>
+      <li>If a directory file contains a file named <code><font color="#017D01">createdir.fmpp</font></code> then that will ensure that the containing directory will exist in the output as well. The <code><font color="#017D01">createdir.fmpp</font></code> file itself will not appear in the output, it's only a marker.
+      <li>New setting, <code><a href="settings.html#key_alwaysCreateDirectories" class=s><font color="#20C000">alwaysCreateDirectories</font></a></code>: If this is set to <code><font color="#017D01">true</font></code>, all processed directories will produce a corresponding output directory, even when that directory will be empty.
+    </ul>
+    
+    <li>The <a href="dataloader.html#key_xml">XML data loader</a> now supports XInclude-s by setting its <code><font color="#017D01">xincludeAware</font></code> option to <code><font color="#017D01">true</font></code>.
+    
+    <li>To follow the Ant conventions, now <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> can alternatively be specified with the <code><font color="#017D01">srcdir</font></code> attribute, and <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code> with the <code><font color="#017D01">destdir</font></code> attribute of the Ant task.
+    
+    <li>API: New JavaBean propery in <code><font color="#017D01">fmpp.Engine</font></code> and <code><font color="#017D01">fmpp.setting.Settings</font></code>: <code><font color="#017D01">dontTraverseDirectories</font></code>. It should be set to <code><font color="#017D01">true</font></code> by front-ends that explicitly specify the list of all source files and source directories, rather than expecting the <code><font color="#017D01">Engine</font></code> to discover them. Till now such front-ends only specified the list of files, so this property wasn't needed. However, to support the new <code><font color="#017D01">alwaysCreateDirectories</font></code> setting, now the list of directories should be passed as well, and hence the need for this new property.</li>
+    
+    <li>Updated <code><font color="#017D01">freemarker.jar</font></code> and the included FreeMarker Manual to 2.3.15.</li>
+  </ul>
+
+<a name="sect2"></a>
+     <h2><font color="#000000">0.9.13</font></h2>
+  <p>Date of release: 2007-12-16</p>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li>The <code><a href="settings.html#key_skipUnchanged" class=s><font color="#20C000">skipUnchanged</font></a></code> setting haven't had any effect since 0.9.10. Now it works again.</li>
+    
+    <li>When detecting the dimensions of certain image files, new lines were printed to the standard output (i.e., to the console).</li>
+    
+    <li>The <code><font color="#017D01">slicedText</font></code> data loader has ignored the <code><font color="#017D01">encoding</font></code> parameter.</li>
+
+    <li><font color=red><b>Warning!</b> Incompatible change!</font>  The <code><font color="#017D01">csv</font></code>, <code><font color="#017D01">text</font></code> and <code><font color="#017D01">slicedText</font></code> data loaders didn't skipped the BOM (byte order mark) character at the beginning of the file. This was a problem as the Windows Notepad inserts a BOM there when it saves with UTF-8 encoding. This fix is not 100% backward compatible, as someone may indeed wanted to have that BOM.</li>
+    
+    <li>API: The <code><font color="#017D01">fmpp.dataloaders.AbstractTextDataLoader</font></code> ignored the encoding returned by the <code><font color="#017D01">parseExtraArguments</font></code> method.</li>
+    
+    <li>API: The <code><font color="#017D01">fmpp.dataloaders.AbstractTextDataLoader</font></code> didn't removed the BOM character from the beginning of files.</li>
+  </ul>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li>The <code><font color="#017D01">csv</font></code> data loader has a few new options: <code><font color="#017D01">normalizeHeaders</font></code>, <code><font color="#017D01">trimCells</font></code>, and <code><font color="#017D01">emptyValue</font></code>. <a href="dataloader.html#key_csv">More details...</a></li>
+    
+    <li><font color=red><b>Warning!</b> Incompatible change!</font>  New setting: <code><a href="settings.html#key_ignoreSvnFiles" class=s><font color="#20C000">ignoreSvnFiles</font></a></code>. This will ignore directories with name <code><font color="#017D01">.svn</font></code> inside the source root directory. This setting is by default on (<code><font color="#017D01">true</font></code>), so it's theoretically not backward compatible.</li>
+    
+    <li>API: <code><font color="#017D01">DataLoaderUtil.getStringArrayArgument</font></code> and <code><font color="#017D01">getStringArrayOption</font></code> now have an overload with <code><font color="#017D01">allowString</font></code> argument, so that a single item can be easily treated as an array of length 1.</li>
+    
+    <li>Updated <code><font color="#017D01">freemarker.jar</font></code> and the included FreeMarker Manual to 2.3.11.</li>
+
+    <li>The project has switched from CVS to SVN. The CVS repository is not used anymore.</li>    
+  </ul>
+
+
+<a name="sect3"></a>
+     <h2><font color="#000000">0.9.12</font></h2>
+  <p>Date of release: 2007-04-27</p>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font>  In TDD files value types were incorrectly forced to string if they were inside an explicitly defined hash (i.e. inside <code><font color="#017D01">{</font></code> and <code><font color="#017D01">}</font></code>). Like <code><font color="#017D01">{x: 1, y: false}</font></code> was interpreted as <code><font color="#017D01">{x: "1", y: "false"}</font></code>, that is, both values were strings. From now it is interpreted correctly, so with the above example <code><font color="#017D01">x</font></code> will be the number <code><font color="#017D01">1</font></code> and <code><font color="#017D01">y</font></code> will be the boolean <code><font color="#017D01">false</font></code>.</li>
+  </ul>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li>New data loader: <code><font color="#017D01">tddSequence</font></code> for loading a TDD file as a TDD sequence (i.e. list) rather than as a TDD hash (i.e. map). <a href="dataloader.html#key_tddSequence">More...</a>
+    <li>Updated <code><font color="#017D01">freemarker.jar</font></code> to 2.3.10, and <code><font color="#017D01">bhs.jar</font></code> (BeanShell) to 2.0b4 in the distribution pack.
+  </ul>
+  
+
+<a name="sect4"></a>
+     <h2><font color="#000000">0.9.11</font></h2>
+  <p>Date of release: 2006-03-15</p>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li>New setting: <code><a href="settings.html#key_tagSyntax" class=s><font color="#20C000">tagSyntax</font></a></code>. This let you access this new setting of FreeMaker 2.3.5.
+  
+    <li>For nightly FMPP builds the build date is now logged in additional to the version number.
+    
+    <li>Updated <code><font color="#017D01">freemarker.jar</font></code> to 2.3.6, and <code><font color="#017D01">bhs.jar</font></code> (BeanShell) to 2.0b1.1 in the distribution pack.
+  </ul>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li>The Ant task have processed all files of the source root directory if the number of selected file was 0.</li>
+    
+    <li><font color=red><b>Warning!</b> Incompatible change!</font>  When <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> was set to any empty list in a configuration file, the whole source root directory was processed in certain cases. From now it will process no files in that case. If you want to process the whole source root directory, don't specify the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting at all.
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font>  The <code><font color="#017D01">Settings</font></code> class was badly assumed that the whole source root directory has to be processed if the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting was an empty list. This was incorrect, as in that case simply 0 files should be processed, and processing the whole source directory should occur only if the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting was not set at all (it's <code><font color="#017D01">null</font></code> when you get it). So, if you want the whole source root directory to be processed, don't set the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting at all. If it is already set, you can "unset" it with <code><font color="#017D01">settings.remove(Settings.NAME_SOURCES)</font></code>.</li>
+    
+    <li>The Ant task didn't logged setting errors into the log file.</li>
+    
+    <li>The test suite now works with JDK 1.5, if you add <code><font color="#017D01">xpathSupport.lib</font></code> to the <code><font color="#017D01">build.properties</font></code>.
+    
+  </ul>
+
+  
+
+<a name="sect5"></a>
+     <h2><font color="#000000">0.9.10</font></h2>
+  <p>Date of release: 2005-10-23</p>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li>The <a href="pphash.html#key_newWritableSequence"><code><font color="#017D01">pp.newWritableSequence</font></code></a> and <a href="pphash.html#key_newWritableHash"><code><font color="#017D01">pp.newWritableHash</font></code></a> methods now have an optional parameter, which is the sequence or hash whose items are added to the new writable sequence or hash. This makes <a href="pphash.html#key_newWritableHash"><code><font color="#017D01">pp.copyWritable</font></code></a> deprecated, which was not able to create writable sequences/hashes based on non-writable ones.</li>
+  
+    <li>New setting: <code><a href="settings.html#key_objectWrapper" class=s><font color="#20C000">objectWrapper</font></a></code>. This let FreeMarker "experts" to create and fully configure the <code><font color="#017D01">freemarker.template.ObjectWrapper</font></code> object that FMPP will use.</li>
+  
+    <li>Java API: a new <code><font color="#017D01">fmpp.Engine</font></code> constructor now let you specify the <code><font color="#017D01">freemarker.template.ObjectWrapper</font></code> to use.</li>
+
+    <li>FreeMarker 2.3.4 is included in the distribution. Note the new feature of FreeMarket that let you use <code><font color="#017D01">[#<i>...</i>]</font></code>, <code><font color="#017D01">[@<i>...</i>]</font></code>, etc instead of <code><font color="#017D01">&lt;#<i>...</i>></font></code>, <code><font color="#017D01">&lt;@<i>...</i>></font></code>, etc if you start the template with <code><font color="#017D01">[#ftl]</font></code>.</li>
+    
+    <li><code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/multipage_list</font></code> was updated to use <code><font color="#017D01"><i>sequence</i>?chunk(<i>pageSize</i>)</font></code>, instead of complex BeanShell script that was needed before FreeMarker 2.3.3.</li>
+    
+    <li>Manual improvements.</li>
+  </ul>
+  
+  <p>Bug fixes:</p>
+  <ul>
+    <li>On Windows, <code><font color="#017D01">fmpp.bat</font></code> has sometimes build the <code><font color="#017D01">CLASSPATH</font></code> badly that ruined the command line call to java.exe and caused it to die with a strange <code><font color="#017D01">ClassNotFoundError</font></code>.</li>
+    
+    <li>When a file is copied in "copy" processing mode, FMPP now sets the last modification time of the destination file to the last modification time of the source file.</li>
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font>  The FMPP engine has used and modified the shared
+    <code><font color="#017D01">freemarker.template.ObjectWrapper.BEANS_WRAPPER</font></code> object, which is dangerous. From now by default it uses its own <code><font color="#017D01">ObjectWrapper</font></code> instance. If you have utilized that it uses the shared <code><font color="#017D01">ObjectWrapper.BEANS_WRAPPER</font></code> object (not recommended!), then for 100% backward compatibility you have to use the <code><a href="settings.html#key_objectWrapper" class=s><font color="#20C000">objectWrapper</font></a></code> setting with this value:<br>
+    <code><font color="#017D01">"ow = ObjectWrapper.BEANS_WRAPPER; ow.setSimpleMapWrapper(true); return ow;"</font></code><br>
+    (or if you don't use FMPP settings, do this in Java where you create the engine object: <code><font color="#017D01">ObjectWrapper ow = ObjectWrapper.BEANS_WRAPPER; ow.setSimpleMapWrapper(true); Engine eng = new Engine(ObjectWrapper.BEANS_WRAPPER);</font></code>)</li>
+  </ul>
+
+
+<a name="sect6"></a>
+     <h2><font color="#000000">0.9.9</font></h2>
+  <p>Date of release: 2005-04-12</p>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li>The <a href="dataloader.html#key_csv">csv data loader</a> was improved:
+       <ul>
+         <li>With the new <code><font color="#017D01">headers</font></code> option you can specify the header row for a CSV file that doesn't actually have a header row.</li>
+         <li>With the new <code><font color="#017D01">replaceHeaders</font></code> option you can override the header row of a CSV file.</li>
+         <li>The values returned for the rows are now not only hashes but also the sequences of the cells.
+       </ul>
+    <li>New data loader: <code><font color="#017D01">slicedText</font></code> for loading a text file as a sequence of strings. <a href="dataloader.html#key_slicedText">More...</a>
+    <li>Java API: New class: <code><font color="#017D01">fmpp.dataloaders.AbstractTextDataLoader</font></code>, to ease the creation of custom text file data loaders for Java programmers.</li>
+    <li>Java API: New <code><font color="#017D01">StringUtil</font></code> methods: <code><font color="#017D01">normalizeNewliens</font></code>, <code><font color="#017D01">split</font></code> with trimming.</li>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> The <code><font color="#017D01">+</font></code> operator in TDD files and configuration files is not allowed anymore. This operator was used for adding hashes prior 0.9.0. Since 0.9.0 the preferred (and now required) way of adding hashes is different. For example, assuming that your configuration file is in <a href="properties.html">"properties"</a> format (that is, the extension of the FMPP configuration file is <code><font color="#017D01">cfg</font></code> or <code><font color="#017D01">properties</font></code>), instead of this:<br>
+    <code><font color="#017D01">data={a:1, b:2} + properties(data/style.properties) + birds:csv(data/birds.csv)</font></code><br>
+    your should write this:<br>
+    <code><font color="#017D01">data=a:1, b:2, tdd(data/style.tdd), birds:csv(data/birds.csv)</font></code><br>
+    <a href="tdd.html#hashAddition">More information on hash addition...</a></li>
+  </ul>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li>The <code><font color="#017D01">csv</font></code> data loader has incorrectly interpreted <code><font color="#017D01">"\n\r"</font></code> as a single line-break.
+    <li>Fixed some mistakes in the Manual and in the JavaDocs.
+  </ul>
+
+<a name="sect7"></a>
+     <h2><font color="#000000">0.9.8</font></h2>
+  <p>Date of release: 2005-01-28</p>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li>FreeMarker 2.3.2mod (a stable nightly build after 2.3.2) is included.
+    <li>FMPP was updated to enable the new output encoding and URL escaping related features of FreeMarker 2.3.1. (The usage of 2.3.2mod is recommended because of a bug fix.)
+    <li>New setting: <code><a href="settings.html#key_urlEscapingCharset" class=s><font color="#20C000">urlEscapingCharset</font></a></code>
+    <li>Java API: added static final fields to <code><font color="#017D01">Engine</font></code> for reserved engine parameter (setting) value strings: <code><font color="#017D01">PARAMETER_VALUE_SOURCE</font></code>, <code><font color="#017D01">PARAMETER_VALUE_HOST</font></code>, <code><font color="#017D01">PARAMETER_VALUE_OUTPUT</font></code>. Also added the similar missing static fields to the <code><font color="#017D01">Settings</font></code> class.
+  </ul>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li>The reserved <code><font color="#017D01">"host"</font></code> output encoding value was not resolved in some rare cases.
+    <li>The the <code><font color="#017D01">pp.urlEnc</font></code>/<code><font color="#017D01">pp.urlPathEnc</font></code> functions and the <code><font color="#017D01">fmpp.util.StringUtil.urlEnc(...)</font></code>/<code><font color="#017D01">urlPathEnc(...)</font></code> methods were malfunctioned with a few charsets, for example with UTF-16, UTF-7, and EBCDIC based charsets. 
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> The documentation of <code><font color="#017D01">fmpp.ProgressListener.notifyProgressEvent(<i>...</i>)</font></code> forgot to mention regarding the <code><font color="#017D01">event</font></code> parameter that: "As new event types can be introduced with new FMPP versions (even if it happens very seldom), a progress listener implementation should survive events that it does not understand. That is, it must not stop with an error, but it should silently ignore the event." Note that there is no new event type in this version.</li>
+    <li>Many fixes in the Manual and in the the API JavaDocs.</li>
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> The <code><font color="#017D01">fmpp.util.NullWriter</font></code> and <code><font color="#017D01">fmpp.util.NullOutputStream</font></code> classes has no public constructor anymore. Use their static <code><font color="#017D01">INSTANCE</font></code> field to get the singleton.</li>
+    <li>Fixed test-suite bugs: Windows vs UN*X vs Mac line-breaks, class-path problem in the <code><font color="#017D01">build.xml</font></code>.</li>
+  </ul>
+
+<a name="sect8"></a>
+     <h2><font color="#000000">0.9.7</font></h2>
+  <p>Date of release: 2004-03-01</p>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li>New setting: <code><a href="settings.html#key_freemarkerLinks" class=s><font color="#20C000">freemarkerLinks</font></a></code>. This is a dirty hack to satisfy a frequent demand: <code><font color="#017D01">&lt;#include <i>...</i>></font></code>/<code><font color="#017D01">&lt;#import <i>...</i>></font></code> files that are outside the source root directory (as FTL macro libraries used by more projects).</li>
+    <li>Later nightly FreeMarker 2.3 build is included.</li>
+  </ul>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> From now, native separators (as backslash under Windows) are not tolerated in the paths used in <code><font color="#017D01">&lt;#import <i>...</i>></font></code> and  <code><font color="#017D01">&lt;#include <i>...</i>></font></code> directives. You must use <code><font color="#017D01">/</font></code> there.</li>
+    <li>Fixes in the Manual and in the the API JavaDocs.</li>
+  </ul>
+
+<a name="sect9"></a>
+     <h2><font color="#000000">0.9.6</font></h2>
+  <p>Date of release: 2004-01-20</p>
+  
+  <p>New features, improvements:</p>
+  <ul>
+    <li>New processing mode: <code><font color="#017D01">renderXml</font></code>. When a source file is processed in this mode, it's parsed as XML, and then the parsed XML document is rendered to output file(s) by a FreeMarker template, which is chosen based on the path or the document element of the XML document.
+      <ul>
+        <li>New setting: <code><a href="settings.html#key_xmlRenderings" class=s><font color="#20C000">xmlRenderings</font></a></code>. <a href="settings.html#xmlRendering">More info...</a></li>
+        <li>New <code><font color="#017D01">pp</font></code> variable: <code><font color="#017D01">pp.doc</font></code>. <a href="pphash.html#key_doc">More info...</a></li>
+        <li>Java API: New class: <code><font color="#017D01">fmpp.XmlRenderingConfiguration</font></code>. New <code><font color="#017D01">fmpp.Engine.PMODE_<i>...</i></font></code> constant: <code><font color="#017D01">PMODE_RENDER_XML</font></code>. New <code><font color="#017D01">Engine</font></code> methods to add/clean XML rendering configurations.</li>
+      </ul>
+    </li>
+
+    <li>When template execution dies with error, and it didn't generated any output yet, nor it flushed the output explicitly or by changing output file, then no 0 length output file will be generated.</li>
+    
+    <li>New target in the <code><font color="#017D01">build.xml</font></code>, <code><font color="#017D01">qinstall</font></code>. It's the same as <code><font color="#017D01">install</font></code>, but assumes <code><font color="#017D01">y</font></code> for all questions.</li>
+
+    <li>Added figures to the <a href="qtour.html">Quick Tour</a> chapter.</li>
+
+    <li>Java API: Added a new utility method to <code><font color="#017D01">Engine</font></code>: <code><font color="#017D01">static String getProgressListenerEventName(int event)</font></code></li>
+  </ul>
+  
+
+<a name="sect10"></a>
+     <h2><font color="#000000">0.9.5</font></h2>
+  <p>Date of release: 2004-01-14</p>
+  
+  <p>New features, improvements:</p>
+  <ul>
+    <li>Java API: Improvements to the <code><font color="#017D01">Settings</font></code> class:
+      <ul>
+        <li>The API of this class is now as stable as other FMPP API-s, so it is not marked as experimental anymore.</li>
+        <li>The <code><font color="#017D01">execute(Engine)</font></code> method is now deprecated, and will be soon removed. Use <code><font color="#017D01">execute()</font></code> instead. If you use <code><font color="#017D01">Settings</font></code>, then don't create <code><font color="#017D01">Engine</font></code> objects manually anymore, just use the <code><font color="#017D01">Settings</font></code> object alone. See an example <a href="writefrontend.html">here...</a></li>
+        <li>Methods have been added to deal with progress listeners and engine attributes.</li>
+      </ul>
+    </li>
+
+    <li>Java API: some convenience methods has been added: <code><font color="#017D01">Settings.set(String, boolean)</font></code>, <code><font color="#017D01">Settings.set(String, int)</font></code>, <code><font color="#017D01">Settings.setDefault(String, boolean)</font></code>, <code><font color="#017D01">Settings.setDefault(String, int)</font></code>, <code><font color="#017D01">Engine.isXmlSupportAvailable()</font></code>, <code><font color="#017D01">TddHashLocalDataLoader(String)</font></code></li>
+
+    <li>More API documentation.</li>
+
+    <li>More reliable and helpful <code><font color="#017D01">install</font></code> Ant target.</li>
+
+    <li>Terminology change: To prevent confusion, the settings of the <code><font color="#017D01">fmpp.Engine</font></code> object (known be people who use FMPP at Java API level) are now called "engine parameters", as the "settings" term is already used since version 0.9.0 for the high level settings seen by usual front-end users.</li>
+
+    <li>Many grammatical mistakes have been fixed in the documentation. Other minor improvements in the Manual.</li>
+  </ul>
+  
+  <p>Bug fixes:</p>
+  <ul>
+    <li>A later nightly FreeMarker 2.3 build is included, that fixes various bugs with XML related keys <code><font color="#017D01">@@markup</font></code>, <code><font color="#017D01">@@nested_markup</font></code>, <code><font color="#017D01">@@start_tag</font></code>, and <code><font color="#017D01">@@attributes_markup</font></code>. This is mostly important for people who uses data of XHTML format for generating (X)HTML pages.</li>
+  </ul>  
+
+
+<a name="sect11"></a>
+     <h2><font color="#000000">0.9.4</font></h2>
+  <p>Date of release: 2004-01-03</p>
+  
+  <p>New features, improvements:</p>
+  <ul>
+    <li>New setting: <code><a href="settings.html#key_localData" class=s><font color="#20C000">localData</font></a></code>
+      <ul>
+         <li>Till now, all source files (all templates) have started with the same data model, the one you have specified with the <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code> setting. With the new <code><a href="settings.html#key_localData" class=s><font color="#20C000">localData</font></a></code> setting you can add variables to, and override the variables of the common data model, for groups of source files selected by path patterns.</li>
+         <li>This feature also let you attach a BeanShell script to a template, that can done some complex calculations before template execution, and put the results into the data model for the individual template.</li>
+         <li>The <code><a href="settings.html#key_templateData" class=s><font color="#20C000">templateData</font></a></code> setting is now deprecated.</li>
+         <li>Java API changes: New interface <code><font color="#017D01">fmpp.LocalDataBuilder</font></code>, deprecates <code><font color="#017D01">fmpp.TemplateDataModelBuilder</font></code>.</li>
+      </ul>
+    </li>
+
+    <li>The <code><a href="settings.html#key_borders" class=s><font color="#20C000">borders</font></a></code> setting supports multiple layers. That is, multiple borders can be used at once for the same file.
+    
+    <li>In <code><font color="#017D01">&lt;@pp.renameOutputFile <i>...</i> /></font></code> you can use the <code><font color="#017D01">extension</font></code> parameter instead of <code><font color="#017D01">name</font></code>, to change only the extension of the output file. 
+    
+    <li>Java API: <code><font color="#017D01">TemplateEnvironment</font></code> has new methods, most importantly <code><font color="#017D01">static TemplateEnvironment getCurrentInstance()</font></code> for accessing the current template environment in FreeMarker transforms/methods.</li>
+
+    <li>Java API: New methods to <code><font color="#017D01">Engine</font></code>: <code><font color="#017D01">Object getData(name)</font></code> (returns unwrapped original values), <code><font color="#017D01">Object removeData(name)</font></code>, <code><font color="#017D01">cleatData()</font></code> (deprecates misnamed <code><font color="#017D01">clearSharedVariables()</font></code>).</li> 
+
+    <li>Java API: Engine attribute that implements <code><font color="#017D01">ProgressListener</font></code> get notifications about engine events.</li>
+
+    <li>Java API: <code><font color="#017D01">fmpp.tdd.FunctionCall</font></code> has public constructor now.</li>
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> <code><font color="#017D01">Engine.getData(<i>...</i>)</font></code> doesn't throw <code><font color="#017D01">TemplateModelException</font></code> anymore, because data wrapping is now deferred until the session execution.</li>
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> Synchronization was removed from <code><font color="#017D01">Engine</font></code>. It did the same as if you synchronize on the <code><font color="#017D01">Engine</font></code> instance and call the methods anyway...</li>
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> <code><font color="#017D01">ProgressListener.notifyProgressEvent(<i>...</i>)</font></code> is now allowed to throw <code><font color="#017D01">Exception</font></code>.
+
+    <li>More API documentation.</li>
+  </ul>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li><code><font color="#017D01">&lt;@pp.renameOutputFile <i>...</i> /></font></code> has malfunctioned when the buffer was already flushed.</li>
+  
+    <li>Minor documentation fixes.</li>
+    
+    <li>3rd party libraries BeanShell and ORO were upgraded. The upgrades fix a few bugs.</li>
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> Package <code><font color="#017D01">fmpp.listeners</font></code> were renamed to <code><font color="#017D01">fmpp.progresslisteners</font></code>.
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> <code><font color="#017D01">Engine.removeAttribue</font></code> was renamed to <code><font color="#017D01">Engine.removeAttribute</font></code>.
+  </ul>
+    
+  
+<a name="sect12"></a>
+     <h2><font color="#000000">0.9.3</font></h2>
+  <p>Date of release: 2003-12-22</p>
+
+  <p>New features, improvements:</p>
+  <ul>    
+    <li>In FreeMarker 2.3: The quotations in FreeMarker error messages are now terser and thus easier to read.</li>
+    
+    <li>Various really missing XML related features added (<a href="settings.html#xml">Detailed information...</a>):
+      <ul>  
+        <li>New settings: <code><a href="settings.html#key_xmlCatalogFiles" class=s><font color="#20C000">xmlCatalogFiles</font></a></code>, <code><a href="settings.html#key_xmlCatalogPrefer" class=s><font color="#20C000">xmlCatalogPrefer</font></a></code>. With these settings you can setup the OASIS catalogs that will be used for resolving entities in XML files. (See <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/xml_validating</font></code>)</li> 
+    
+        <li>New option to the xml data loader: <code><font color="#017D01">validate</font></code>. This specifies if the XML file will be checked for validity.</li> 
+    
+        <li>New setting: <code><a href="settings.html#key_validateXml" class=s><font color="#20C000">validateXml</font></a></code>. This specifies if by default XML files will be checked for validity.</li>
+        
+        <li>New setting: <code><a href="settings.html#key_xpathEngine" class=s><font color="#20C000">xpathEngine</font></a></code>. With this setting you can set if you want to use Jaxen or Xalan for XPath-s.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li>In FreeMarker 2.3: A bug that caused template processing to fail with <code><font color="#017D01">NullPointerException</font></code> on low memory conditions is now fixed. A bug in Jaxen XPath support that caused <code><font color="#017D01">NullPointerException</font></code>-s has been fixed. Etc.</li>
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> <code><font color="#017D01">Engine.process</font></code> doesn't throw sly unchecked <code><font color="#017D01">fmpp.IllegalConfigurationException</font></code>-s anymore. Also, <code><font color="#017D01">fmpp.IllegalConfigurationException</font></code> is not public from now; it wasn't mentioned in other public API-s anyway.</li>
+
+    <li>FMPP has died with internal error if somebody tried to use XML related features, and XML support was not available.</li>
+
+    <li>Minor documentation fixes.</li>
+  </ul>
+
+<a name="sect13"></a>
+     <h2><font color="#000000">0.9.2</font></h2>
+  <p>Date of release: 2003-11-12</p>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font>  Only Windows users (and the users of other operation systems where paths use something else instead of slash) are affected by this fix. Relative paths in <code><font color="#017D01">&lt;#include <i>...</i>></font></code> and <code><font color="#017D01">&lt;#import <i>...</i>></font></code> were badly interpreted relatively to the <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code>. Now they are correctly interpreted relatively to the directory of the template file. This bug fix is not backward compatible, if you have accidentally utilized the bad behavior. For example, you have included <code><font color="#017D01"><i>&lt;sourceRoot></i>/includes/foo.ftl</font></code> in a template file which is in not directly in the <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> like this: <code><font color="#017D01">&lt;#include "includes/foo.ftl"></font></code>. Now you should replace it with: <code><font color="#017D01">&lt;#include "/includes/foo.ftl"></font></code>.</li>
+    
+    <li>Minor documentation fixes.</li>
+  </ul>
+
+<a name="sect14"></a>
+     <h2><font color="#000000">0.9.1</font></h2>
+  <p>Date of release: 2003-11-09</p>
+
+  <p>New features, improvements:</p>
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> Data loader <code><font color="#017D01">antProperty</font></code> and <code><font color="#017D01">antProperties</font></code> now can convert the property values to numerical, boolean, or data/time/date-time variables. For example, to expose property <code><font color="#017D01">x</font></code> as numerical variable, use <code><font color="#017D01">antProperty(x?n)</font></code> instead of <code><font color="#017D01">antProperty(x)</font></code>. This causes backward compatibility problem only if you have Ant property names that ends with one of these: <code><font color="#017D01">?n</font></code>, <code><font color="#017D01">?b</font></code>, <code><font color="#017D01">?d</font></code>, <code><font color="#017D01">?t</font></code>, <code><font color="#017D01">?dt</font></code>, <code><font color="#017D01">?s</font></code>, and you have specified their name as parameter to these data loaders. In this case, append <code><font color="#017D01">?s</font></code> at the end of the parameters. <a href="dataloader.html#key_antProperty">More info...</a></li>
+    
+    <li>Data loader <code><font color="#017D01">csv</font></code> now supports columns of type date, time, and date-time. <a href="dataloader.html#key_csv">More info...</a></li>
+
+    <li>Later nightly build of FreeMarker 2.3 is included, that introduces new built-ins: <code><font color="#017D01">j_string</font></code>, <code><font color="#017D01">js_string</font></code>. These can be used to escape text with Java language or JavaScript string literal escaping rules. Also it contains some minor bug fixes.</li>
+
+    <li>The text hard-wrapper (used by the command-line tool) has some fixes and improvements.</li>
+
+    <li>Added a chapter about writing new front-ends. <a href="writefrontend.html">Here...</a></li>
+    
+    <li>A few minor fixes in the documentation and in the examples.</li>
+  </ul>
+
+  <p>Bug fixes:</p>
+  <ul>
+    <li>The <code><a href="settings.html#key_expert" class=s><font color="#20C000">expert</font></a></code> setting worked inverted with the Ant task when it decided if you are allowed to use the project base directory as <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code>.</li>
+    
+    <li>The <code><font color="#017D01">install</font></code> target of <code><font color="#017D01">build.xml</font></code> didn't stopped nicely if the <code><font color="#017D01">ANT_HOME</font></code> was not set.</li>
+  </ul>
+
+<a name="sect15"></a>
+     <h2><font color="#000000">0.9.0</font></h2>
+  <p>Date of release: 2003-10-30
+  
+  <p>New features, improvements:
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> The default configuration file format is TDD from now, instead of "Java properties" (to decrease the number of syntaxes user has to use). Files with extension <code><font color="#017D01">cfg</font></code> or <code><font color="#017D01">properties</font></code> are automatically interpreted as "Java properties" file, so the old <code><font color="#017D01">fmpp.cfg</font></code>-s will still work. But if your old configuration file doesn't use extension <code><font color="#017D01">cfg</font></code> or <code><font color="#017D01">properties</font></code>, then you have to rename it now. Also, note that the default file name for the new (TDD) configuration files is <code><font color="#017D01">config.fmpp</font></code>, which has priority over <code><font color="#017D01">fmpp.cfg</font></code> when both present in the same directory. <a href="configfile.html">More info...</a>
+    
+    <li>TDD was substantially revisited.
+      <ul>
+        <li>The TDD syntax has several improvements and also conceptual changes. The revisited TDD is backward compatible with the old. However, I will remove hash unions later, so <code><font color="#017D01">+</font></code> will be available for other purposes. To prepare for this future change, just replace <code><font color="#017D01">+</font></code> characters with comma (<code><font color="#017D01">,</font></code>) in your hash unions. <a href="tdd.html">See the chapter about the new TDD...</a>
+          <ul>
+            <li>All FTL string literal features are supported. Escapes, raw strings...</li>
+            <li>With a new escape sequence, strings can be broken into multiple lines visually, without affecting their value.</li>
+            <li>Much more character is allowed in unquoted strings.</li>
+            <li>FTL comments and single line <code><font color="#017D01">#</font></code> comments are supported.
+            <li>TDD files can specify their own encoding (charset) with a special comment in their first line.
+            <li>Line-break can be used instead of comma to separate items in listings.
+            <li>The hash union concept was gone. Instead, you can put hashes directly into the enclosing hash.
+            <li>In hashes the value can be omitted from the key:value pair, in which case it defaults to <code><font color="#017D01">true</font></code>.
+          </ul>
+        </li>
+
+        <li>TDD error messages show the error location (line, column, file) and quote the problematic line.</li>       
+
+        <li>TDD now uses term "TDD function" instead of "TDD directive".</li>       
+    
+        <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> <code><font color="#017D01">fmpp.tdd.TddParser</font></code> was gone, and <code><font color="#017D01">fmpp.tdd.Interpreter</font></code> was introduced instead, which has different API.</li>
+      </ul>
+    </li>
+
+    <li>The FMPP Ant task now can load the settings from configuration files, with the new attribute <code><font color="#017D01">configuration</font></code>. Thus, now you can store the settings in a single place if you use FMPP both as command-line tool and Ant task. Look at <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/build.xml</font></code> and <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/ant3</font></code> to see applications.
+
+    <li>New setting: <code><font color="#017D01">inheritConfiguration</font></code>. It is used for "customizing" an existing configuration by overriding some settings in it. See <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/inherit_cfg</font></code>. <a href="configfile.html#inheritance">More info...</a>
+    
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> Setting <code><font color="#017D01">sources</font></code> now uses TDD sequence syntax. Thus, you can't separate the files with <code><font color="#017D01">:</font></code> or <code><font color="#017D01">;</font></code> anymore, but with comma (<code><font color="#017D01">,</font></code>). According to TDD syntax, quote file names that contain problematic characters, e.g.:<br>
+    <code><font color="#017D01">no/problem/with.it, "but quote this.txt",<br>
+    C:\windows\path, r"C:\quote this win\path"</font></code></li>
+
+    <li>Error message creation mechanism was changed. The messages are now more "stupid mechanical", but there is far less chance that some helpful detail is accidentally left out.
+
+    <li>The default values of a few settings of the command-line tool can be customized with <code><font color="#017D01">.fmpprc</font></code> file placed into the user home directory or into the FMPP home directory. <a href="commandline.html#fmpprc">More info...</a>
+    
+    <li>The <code><font color="#017D01">get</font></code> data loader function returns the values of other variables in the data model. This can be used to pass previously loaded data to other data loaders as parameters, for example:<br>
+    <code><font color="#017D01">data: {doc:xml(data/foo.xml), index:com.example.IndexBuilderDataLoader(get(doc))}</font></code>. <a href="dataloader.html#key_get">More information...</a>
+    
+    <li>Data loader <code><font color="#017D01">eval</font></code> has an optional 2nd parameter, the hash of variables that will be available when the BeansScript is evaluated. For example:<br>
+    <code><font color="#017D01">data: eval('<i>...</i>', {foo:properties(foo.properties), items:get(items)})</font></code><br>
+    <a href="dataloader.html#key_eval">More info...</a>.
+    
+    <li>With the new <code><a href="settings.html#key_appendLogFile" class=s><font color="#20C000">appendLogFile</font></a></code> setting you can specify that the log file is continued, rather than restarted for each processing session.
+
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> The <code><font color="#017D01">fmpp</font></code> file extension is now reserved for the purposes of FMPP. Files with this extension are never processed (they are ignored). If you had to process files of this extension, protect them using double extension as <code><font color="#017D01">test.fmpp.keepme</font></code>, and then add the extra extension (<code><font color="#017D01">keepme</font></code> in this case) to the <code><a href="settings.html#key_removeExtensions" class=s><font color="#20C000">removeExtensions</font></a></code> setting.
+
+    <li>The <code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code> setting now accepts values <code><font color="#017D01">true</font></code>, <code><font color="#017D01">false</font></code>, and <code><font color="#017D01">reallyQuiet</font></code>. Integer values are supported for backward compatibility only.
+
+    <li>These settings were renamed: <code><font color="#20C000">removePostfix</font></code> to <code><a href="settings.html#key_removePostfixes" class=s><font color="#20C000">removePostfixes</font></a></code>, <code><font color="#20C000">removeExtension</font></code> to <code><a href="settings.html#key_removeExtensions" class=s><font color="#20C000">removeExtensions</font></a></code>, <code><font color="#20C000">replaceExtension</font></code> to <code><a href="settings.html#key_replaceExtensions" class=s><font color="#20C000">replaceExtensions</font></a></code>. This change is backward compatible, because the old names are internally translated. 
+
+    <li>New FMPP Ant task attribute: <code><font color="#017D01">antTaskFailOnError</font></code>. This tells if the FMPP Ant task should abort the Ant project with error if there were errors during the FMPP processing session.
+    
+    <li><code><font color="#017D01">Engine.process(File src, File out)</font></code> now modifies <code><font color="#017D01">null</font></code> <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> and/or <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code> settings for the time of the method call to the parent directories of the source and output files respectively.
+    
+    <li>FMPP build information (build date) can be queried with the new method, <code><font color="#017D01">Engine.getBuildInfo</font></code>. Also now the command-line tool prints it with <code><font color="#017D01">--version</font></code>.
+    
+    <li>Improvements to the command-line help, such as new command-line option <code><font color="#017D01">--long-help</font></code>.
+
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> <code><font color="#017D01">Engine.process</font></code> doesn't throw <code><font color="#017D01">IOException</font></code> anymore, only <code><font color="#017D01">ProcessingException</font></code>.
+
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> The built-in <code><font color="#017D01">DataLoader</font></code> implementations were moved into new package <code><font color="#017D01">tdd.dataloaders</font></code>.
+    
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> <code><font color="#017D01">tdd.util.StringUtil.excToStr(Throwable)</font></code> was removed.
+    
+    <li>Revisited documentation and site generator.
+
+    <li>Now mode x is set for <code><font color="#017D01">bin/*</font></code> in the tar file. 
+
+    <li>Added test suite. (But more test cases should be added...)
+  </ul>
+  
+  <p>Bug fixes:
+  <ul>
+    <li><code><font color="#017D01">fmpp.bat</font></code> was stopped with error if it didn't find Ant! AAARGH!
+
+    <li>A later nightly build of the uncompleted FreeMarker 2.3 is included. This fixes a FreeMarker bug that has caused the first empty line of the template files ignored, when the template has started with empty line.
+    
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> The FMPP Ant task didn't aborted the Ant project when <code><font color="#017D01">stopOnError="false"</font></code>, and the were skipped failed processing. Now it does. Note that the old behavior can be emulated using <code><font color="#017D01">antTaskFailOnError="false"</font></code>.
+    
+    <li><code><font color="#017D01">pp.locale</font></code> didn't followed the locale changes made at template execution time with <code><font color="#017D01">&lt;#setting locale=<i>...</i>></font></code>.</li>
+    
+    <li>Various other little fixes here and there... But don't be sad. Many exciting new bugs has been added during the refactorings... ;)
+  </ul>
+
+<a name="sect16"></a>
+     <h2><font color="#000000">0.8.12</font></h2>
+  <p>Date of release: 2003-09-30
+  <p>New features, improvements:
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> A later nightly build of the uncompleted FreeMarker 2.3 is included. Unfortunately it contains some incompatible changes (Sorry... :( I will not risk nightly FreeMarker builds anymore after 2.3 is out...):
+    <ul>
+      <li>White-space stripping is now more aggressive as before: it always removes leading and trailing white-space if the line only contains FTL tags. (Earlier the white-space was not removed if the tag was <code><font color="#017D01">&lt;#include ...></font></code> or user-defined directive tag with empty directive syntax as <code><font color="#017D01">&lt;@myMacro/></font></code> (or its equivalents: <code><font color="#017D01">&lt;@myMacro>&lt;/@myMacro></font></code> and <code><font color="#017D01">&lt;@myMacro>&lt;/@></font></code>). Now white-space is removed in these cases as well.) Also, top-level white-space that separates macro definitions and/or assignments is now ignored. <a href="freemarker/dgui_misc_whitespace.html#dgui_misc_whitespace_stripping">More information...</a>
+      <li>The return value of <code><font color="#017D01">freemarker.template.TemplateMethodModel.exec(...)</font></code> is <code><font color="#017D01">Object</font></code>, not <code><font color="#017D01">TemplateModel</font></code>.
+    </ul>
+    <li>New <code><font color="#017D01">pp</font></code> variable: <code><font color="#017D01">freemarkerVersion</font></code>. Also, new <code><font color="#017D01">fmpp.Engine</font></code> method: <code><font color="#017D01">fmpp.Engine.getFreeMarkerVersionNumber()</font></code>. Also, FreeMarker version number is printed together with FMPP version number everywhere. 
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> API change: <code><font color="#017D01">fmpp.Engine.getVersionNumber()</font></code> does not throw checked exceptions anymore.
+    <li>New <code><font color="#017D01">pp</font></code> directive: <code><font color="#017D01">pp.restartOutputFile</font></code>. This directive empties the output file, but does not delete the file or discards the further output as <code><font color="#017D01">pp.dropOutputFile</font></code> does.</li>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> New setting: "ignore temporary files". This filters out certain typical temporary/backup files (that is, it chooses ignore processing mode for them), unless you explicitly set this setting to false. The old <code><font color="#017D01">.bak</font></code> and <code><font color="#017D01">~*</font></code> filter mechanism was removed. Note that this all does not affect the FMPP Ant task. <a href="settings.html#processingMode">More information...</a>
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li>With setting "borders", using headers with a template that contains <code><font color="#017D01">&lt;#ftl <i>...</i>></font></code> resulted on illegal FreeMarker template, as nothing can precede the <code><font color="#017D01">ftl</font></code> directive. Now the header is intelligently moved after the <code><font color="#017D01">ftl</font></code> directive.
+    <li>The documentation of <code><font color="#017D01">pp.set</font></code> and <code><font color="#017D01">pp.add</font></code> was totally confused.
+    <li>The engine was unable to return the FMPP version number sometimes due class loader issues.
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> Setting "ignore CVS files" had lower priority than the processing mode chooser list. Now it has higher priority.
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> Setting "ignore CVS files" didn't ignored <code><font color="#017D01">.#?*</font></code> files. Now it does.
+  </ul>
+
+<a name="sect17"></a>
+     <h2><font color="#000000">0.8.11</font></h2>
+  <p>Date of release: 2003-08-11
+  <p>New features, improvements:
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> A later nighly build of the uncompleted FreeMarker 2.3 is included. Most importantly, its XML handling is now much better, but unfortunately has incompatible changes:
+    <ul>
+      <li>Attribute queries such as <code><font color="#017D01">foo.@bar</font></code> now return sequences (similarly to child element queries and XPath queries), not single nodes. Because of the rule with node sequences of size 1, it is still good to write <code><font color="#017D01">${foo.@bar}</font></code>, but built-ins such as <code><font color="#017D01">?exists</font></code>, <code><font color="#017D01">?if_exists</font></code> or <code><font color="#017D01">?default</font></code> don't work as before. For example, instead of <code><font color="#017D01">foo.@bar?default('black')</font></code>, you now have to write <code><font color="#017D01">foo.@bar[0]?default('black')</font></code>. So if you have used existence built-ins with attributes, you have to find those occurrences in the templates and add that <code><font color="#017D01">[0]</font></code>.</li>
+    
+      <li>XML name-space handling has been totally reworked and is absolutely incompatible with the old stuff. Don't worry about this if none of your XML input documents use <code><font color="#017D01">xmlns</font></code>.</li>
+    
+      <li>Special-keys <code><font color="#017D01">@@</font></code> and <code><font color="#017D01">@*</font></code> now return a sequence of attribute nodes instead of the hash of them.</li>
+    </ul>
+    <li>The <code><font color="#017D01">xml</font></code> data loader has a new boolean option: <code><font color="#017D01">namespaceAware</font></code>. If this is set to <code><font color="#017D01">false</font></code>, you can load XML files with the logic as XML has worked before the introduction of name-spaces.
+    <li>Minor fixes/improvements in the manual.
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li>The FMPP Ant task stopped with error if you have used nested elements and you have executed multiple "top-level" tasks with the same ant invocation.
+    <li>The snip function of the command-line tool has snipped the text-flood too late sometimes. 
+  </ul>
+
+<a name="sect18"></a>
+     <h2><font color="#000000">0.8.10</font></h2>
+  <p>Date of release: 2003-07-03
+  <p>New features, improvements:
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> This release uses a nightly build of the uncompleted FreeMarker 2.3. FreeMarker 2.3 adds several important new features to 2.2.x, but it is not fully backward compatible. Do not forget to read the <a href="freemarker/versions_2_3.html">list of uncompatible changes in the FreeMarker Manual</a>!
+    <li><code><font color="#017D01">antProperties</font></code> improved: You can give the names of Ant properties you want to expose, as parameters. So if you want to expose only properties <code><font color="#017D01">foo</font></code> and <code><font color="#017D01">bar</font></code>, then just write <code><font color="#017D01">antProperties(foo, bar)</font></code>. <a href="dataloader.html#key_antProperites">More info...</a>
+    <li>New data loader <code><font color="#017D01">antProperty</font></code>, to expose the value of a single Ant property. <a href="dataloader.html#key_antProperty">More info...</a>
+    <li>New data loader <code><font color="#017D01">xml</font></code>, which uses the new XML wrapper of FreeMarker. It replaces the old <code><font color="#017D01">xmlInfoset</font></code> data loader, which is kept only for backward compatibility. <a href="dataloader.html#key_xml">More info...</a>
+    <li>Some code clean-up (as removing a few unused variables).
+    <li>From now, <code><font color="#017D01">freemarker.jar</font></code> will be checked in to the CVS repository.
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font>  In <code><font color="#017D01">fmpp.util.FreemarkerUtil</font></code>, <code><font color="#017D01">FtlVarToCoreJavaObject</font></code> is now renamed to <code><font color="#017D01">ftlVarToCoreJavaObject</font></code>
+  </ul>
+
+<a name="sect19"></a>
+     <h2><font color="#000000">0.8.9</font></h2>
+  <p>Date of release: 2003-05-02
+  <p>New features, improvements:
+  <ul>
+    <li>Better error messages: FMPP tools now tend to show the whole cause chain, rather than just the top-level exception. 
+    <li>New data loader: <code><font color="#017D01">text</font></code>. This loads a plain text file into a string variable.
+    <li>New pp variable to retrieve the FMPP Engine version number: <code><font color="#017D01">pp.version</font></code>
+    <li>Easier to build:
+      <ul>
+        <li>Task for getting the latest nightly FMPP.
+        <li>Fixed the class loading issues of the "docs" task, so the default target is now "build".
+      </ul>
+    <li>The distribution now works with JDK 1.2.2
+    <li>Minor additions to the Manual.
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li>The Ant build was not working without <code><font color="#017D01">build.properties</font></code>.
+    <li>The localized lookup feature of FreeMarker was not disabled, and it could cause confusing effects.
+    <li>The log file didn't stored the source file path for errors that was logged before the "END OF PROCESSING SESSION" message.
+  </ul>
+
+<a name="sect20"></a>
+     <h2><font color="#000000">0.8.8</font></h2>
+  <p>Date of release: 2003-04-29
+  <p>New features, improvements:
+  <ul>
+    <li>Rewritten <code><font color="#017D01">fmpp.bat</font></code>; it is now more flexible.    
+    <li>More documentation. No more "Under Construction" logo.
+    <li>New <code><font color="#017D01">pp</font></code> hash methods: <code><font color="#017D01">outputFileLastModified</font></code>, <code><font color="#017D01">sourceFileLastModified</font></code>, <code><font color="#017D01">realFileLastModified</font></code>      
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li>Predefined data loader <code><font color="#017D01">now</font></code> didn't used the "time zone" FMPP engine setting.
+    <li>The "turns" setting was missing from the Manual.    
+    <li>Fixing some typos in the error messages and in the documentation.
+  </ul>
+
+<a name="sect21"></a>
+     <h2><font color="#000000">0.8.7</font></h2>
+  <p>Date of release: 2003-04-12
+  <p>New features, improvements:
+  <ul>
+    <li>New date/time related settings of FreeMarker 2.2.1 are exposed now: date format, time format, datetime format, time zone    
+    <li>Date/time related <code><font color="#017D01">pp</font></code> variables: <code><font color="#017D01">now</font></code>, <code><font color="#017D01">sessionStart</font></code>.    
+    <li>Final version of FreeMarker 2.2.1 is included.
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li>The classpath in <code><font color="#017D01">fmpp.jar</font></code> didn't included <code><font color="#017D01">bsh.jar</font></code>.
+  </ul>
+  
+<a name="sect22"></a>
+     <h2><font color="#000000">0.8.6</font></h2>
+  <p>Date of release: 2003-04-06
+  <p>New features, improvements:
+  <ul>
+    <li>New pp method: <code><font color="#017D01">pp.loadData(<i>dataLoaderName</i>, <i>args...</i>)</font></code>. This can be used to load data into a variable in templates, with the same data loaders as with the "data" setting. <a href="pphash.html#loadData">More information...</a>
+    <li>New <code><font color="#017D01">Engine</font></code> method: <code><font color="#017D01">TemplateModel wrap(Object obj)</font></code>
+    <li>Newer nightly build of FreeMarker is included (2.2.1). 
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li><font color=red><b>Warning!</b> Incompatible Java API change!</font> <code><font color="#017D01">DataLoader.load(engine, args)</font></code> now uses <code><font color="#017D01">List</font></code> instead of <code><font color="#017D01">ArrayList</font></code> for the <code><font color="#017D01">args</font></code>.
+    <li>The <code><font color="#017D01">install</font></code> target of <code><font color="#017D01">build.xml</font></code> forgot to copy <code><font color="#017D01">bsh.jar</font></code>.
+    <li>Minor fixes in the documentation.
+  </ul>
+
+<a name="sect23"></a>
+     <h2><font color="#000000">0.8.5</font></h2>
+  <p>Date of release: 2003-03-23
+  <p>New features, improvements:
+  <ul>
+    <li>New built-in data loader directive: <code><font color="#017D01">eval(<i>JavaExpression</i>)</font></code>
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li>Fixes in the documentation.
+  </ul>
+
+<a name="sect24"></a>
+     <h2><font color="#000000">0.8.4</font></h2>
+  <p>Date of release: 2003-03-21
+  <p>New features, improvements:
+  <ul>
+    <li>More documentation. Especially in the <a href="commandline.html">documentation of the command-line tool.</a>
+    <li>New setting: replace extension
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> If the option <code><font color="#017D01">remove-extension</font></code> or <code><font color="#017D01">remove-postfix</font></code> is specified both in the configuration file and in the command-line, then the two option parameter values will be merged.
+    <li>Newer nightly build of FreeMarker 2.2 is included.  
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li>The output file name deduction was applied twice in certain situations.
+  </ul>
+
+<a name="sect25"></a>
+     <h2><font color="#000000">0.8.3</font></h2>
+  <p>Date of release: 2003-03-16
+  <p>New features, improvements:
+  <ul>
+    <li><code><font color="#017D01">bin/fmpp</font></code> and <code><font color="#017D01">bin\fmpp.bat</font></code> now can load the FMPP realted jars from the <code><font color="#017D01">ANT_HOME</font></code>.
+    <li>Added <code><font color="#017D01">install</font></code> target to <code><font color="#017D01">build.xml</font></code> that copies the jars to the <code><font color="#017D01">ANT_HOME</font></code>.</li>
+    <li>More detailed installing instructions.</li>
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li><code><font color="#017D01">fmpp.FileUtil.compressPath</font></code> has died with <code><font color="#017D01">IndexOutOfBounds</font></code> in rare cases.
+    <li><code><font color="#017D01">rar</font></code> was missing from the list of static file extensions.
+  </ul>
+
+<a name="sect26"></a>
+     <h2><font color="#000000">0.8.2</font></h2>
+  <p>Date of release: 2003-03-13
+  <p>New features, improvements:
+  <ul>
+    <li>Block assignments instead of <code><font color="#017D01">@capture</font></code>. For example, instead of <code><font color="#017D01">&lt;@capture local="foo"><i>...</i>&lt;/@capture></font></code> you can write <code><font color="#017D01">&lt;#local foo><i>...</i>&lt;/#local></font></code>.
+    <li>New pp methods to calculate relative paths: <code><font color="#017D01"><a href="pphash.html#key_pathTo">pathTo</a></font></code> and <code><font color="#017D01"><a href="pphash.html#key_sourcePathTo">sourcePathTo</a></font></code>.</li>
+    <li><code><font color="#017D01">fmpp.FileUtil.getRelativePath</font></code> does no require anymore that the starting point is an ascendent directory of the destination.
+    <li>Newer nightly build of FreeMarker 2.2 is included (supports block assignments + bug fixes).  
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li><code><font color="#017D01">fmpp.FileUtil.getRelativePath</font></code> has returned bad results in some rare situations.
+  </ul>
+
+<a name="sect27"></a>
+     <h2><font color="#000000">0.8.1</font></h2>
+  <p>Date of release: 2003-03-10
+  <p>New features, improvements:
+  <ul>
+    <li>Added "ignore CVS files" setting.
+    <li>Added <code><font color="#017D01">xml_infoset</font></code> example.
+    <li>Simplified build process.
+    <li>Some minor fixes in the html-s and txt-s.
+    <li>Newer nightly build of FreeMarker 2.2 is included.  
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> <code><font color="#017D01">?chop</font></code> was renamed to <code><font color="#017D01">?chop_linebreak</font></code> (due the changes in the FreeMarker 2.2 CVS head)
+    <li><font color=red><b>Warning!</b> Incompatible change!</font> CVS files (<code><font color="#017D01">**/.cvsignore</font></code> and <code><font color="#017D01">**/CVS/</font></code>) in the source directory will be ignored by default.
+  </ul>
+  <p>Bug fixes:
+  <ul>
+    <li>The <code><font color="#017D01">Manifest.mf</font></code> in <code><font color="#017D01">fmpp.jar</font></code> was empty.
+    <li>Last-generated date was incorrect on the HTML pages.
+  </ul>
+
+<a name="sect28"></a>
+     <h2><font color="#000000">0.8.0</font></h2>
+  <p>Date of release: 2003-03-05
+  <p>The initial Sourceforge release.
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="knownproblems.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<img alt="-" src="img/next_gray.png" border="0" width="44" height="44">&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

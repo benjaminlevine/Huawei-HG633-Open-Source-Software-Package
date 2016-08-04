@@ -1,0 +1,120 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, tips, best practices">
+      <title>FMPP - Tips and Best Practices</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">Tips and Best Practices</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="miscellaneous.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="knownproblems.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>Finding out the reasons of errors</a></li>
+    <li><a href="#sect2" class=toc>Speeding up processing when you have many files</a></li>
+    <li><a href="#sect3" class=toc>Prevent too much programming logic in templates</a></li>
+    <li><a href="#sect4" class=toc>Showing information about something that will be generated further down</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<a name="sect1"></a>
+     <h2><font color="#000000">Finding out the reasons of errors</font></h2>
+
+<p>Error messages (especially FreeMarker error messages) are often not too helpful or simply bad, and it is hard to find out what the actual problem is. But if you use a log file (see: <code><a href="settings.html#key_logFile" class=s><font color="#20C000">logFile</font></a></code>), that will contain the full error stack trace. You often find helpful information there, such as the FTL stack strace. Also, if you are really lost, you may use temporary <code><font color="#017D01">pp.warning</font></code>-s as a poor man's debugger: you can see if a certain line in the template is reached, also you can print the current values of variables.</p>
+
+
+
+<a name="sect2"></a>
+     <h2><font color="#000000">Speeding up processing when you have many files</font></h2>
+
+<p>There are 3 main tricks:</p>
+<ul>
+  <li>Try to use <code><a href="settings.html#key_skipUnchanged" class=s><font color="#20C000">skipUnchanged</font></a></code> setting. For most applications you can safely use it with the <code><font color="#017D01">static</font></code> value, and it speeds up things a lot if you have many images or other static files.
+  
+  <li>Try to set the <code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code> setting to <code><font color="#017D01">true</font></code> or <code><font color="#017D01">reallyQuiet</font></code>, or set <code><a href="settings.html#key_echoFormat" class=s><font color="#20C000">echoFormat</font></a></code> to <code><font color="#017D01">terse</font></code> for the command-line tool. Surprising enough, some terminals (at least Windows 2000 command line window) scrolls screen slowly, so FMPP has to wait until it can print the next line to the screen, and this can even double the total session time. Funny...
+  
+  <li>Process only the files/directories that actually need reprocessing. You don't have to process the whole source root directory; you can select the set of files and directories that you want to process inside the source root, with the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting.
+</ul>
+
+
+<a name="sect3"></a>
+     <h2><font color="#000000">Prevent too much programming logic in templates</font></h2>
+<p>Some of your FreeMarker templates can become so complicated, that they are rather programs than templates. Implementing complex programming logic in FTL (FreeMarker Template Language) is not only cumbersome, but defeats the original purpose of templates: to be simple, almost the same as the output.</p>
+
+<p>To prevent this, pair BeanShell scripts with the problematic templates, and do the complex calculations in the script file, and then pass the results to the template for displaying. BeanShell is good in calculating data (and in whatever complex algorithms), FTL is good in displaying data. So you use the adequate languages for the subtasks. This can be implemented with the <code><a href="settings.html#key_localData" class=s><font color="#20C000">localData</font></a></code> setting and its <code><font color="#017D01">bsh</font></code> function.</p>
+
+<a name="sect4"></a>
+     <h2><font color="#000000">Showing information about something that will be generated further down</font></h2>
+
+<p>For example, you have to show a Table of Contents at the top of the page, but the list of headings is not known until the page generation reaches the bottom of the page. In this case, generate the section that contains the headings first, but capture the output in a variable with an assignment directive (as <code><font color="#017D01">&lt;#local <i>var</i>><i>...</i>&lt;/#local></font></code>). Then print the top of the page, and then the captured output. Check <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/capture</font></code> to see a working example.</p>
+
+
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="miscellaneous.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="knownproblems.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

@@ -1,0 +1,86 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, known problem">
+      <title>FMPP - Known Problems</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">Known Problems</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="tips.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="versions.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+      
+<p>This is the list of known bugs and other problems that are not fixed (yet...):</p>
+
+<ul>
+  <li><p>Aliasing problems with writable sequences and hashes. Writable sequences and hashes are an FMPP specific extension to FreeMarker, as FreeMarker does not support the modification of sequences and hashes. (This has good reasons in the on-the-fly dynamic page generation segment that FreeMarker mostly targets, but it is plain unacceptable in extreme FreeMarker applications as FMPP.) To read the variables of these sequences and hashes, you can use the same expressions as with plain sequences and hashes. But, to modify the contents of them, you have to use <code><font color="#017D01">pp</font></code> directives, since predefined directives as <code><font color="#017D01">&lt;#assign <i>...</i>></font></code> can't modify subvariables. Unfortunately, sub-sequence operator and <code><font color="#017D01">?reverse</font></code> does not copy the original sequence, just wrap it, so the sub-sequence and the reversed sequence will change as the original sequence changes... well, this is a problem. I have no idea how to solve these in general. As a work-around, if you want reverse or slice a writable sequence, create a copy with <code><font color="#017D01">pp.copyWritable</font></code> that you will not modify later, and apply the operators on that.</p></li>
+  
+  <li><p>FreeMarker template syntax looks as SGML (HTML, XML, etc.) at the first glance, but then it turns out to by anti-intuitive, especially regarding the directive parameter syntax. Well, I didn't find better Java template engine (not even something that is nearly as good as FreeMarker)... If I ever will have energy to do that, I will write a better.</p></li>
+
+  <li><p>FreeMarker error messages are in this-and-that situation bad, or very confusing. These are quality issues or bugs in FreeMarker, not in FMPP.</p></li>
+  
+  <li><p>In some rare cases, log file tells that the processing session has finished successfully, but FMPP still terminates with error. (Note that in these cases, the output files are OK, just some tricky problem occurred later.) Or, FMPP terminates with error in an early stage, and there is nothing in the log file. The reason of these problems is that FMPP has no real logging,  but it uses the processing event listener feature to implement log file creation, which is inadequate for this purpose. Adding real logging is on the TODO list...</p></li>
+  
+  <li><p>The boundary of output file changes (when you switch to another output file while still executing the same template file, for example with <code><font color="#017D01">pp.changeOutputFile</font></code>) can be inaccurate if the FreeMarker transform (filter) in use doesn't always obey flush instruction. Note that I have never actually run into this problem, but it theoretically exists. Workaround: Don't use highly antisocial transforms, try to change output file on places where the transform can flush, or close the transform block before invoking the <code><font color="#017D01">pp</font></code> directive that changes output file.</p></li>
+</ul>
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="tips.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="versions.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

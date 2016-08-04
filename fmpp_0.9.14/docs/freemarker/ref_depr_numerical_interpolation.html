@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - #{...}: Numerical interpolation
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="ref_depr_oldsyntax.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="ref_deprecated.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="app.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="ref_depr_numerical_interpolation"></a>#{...}: Numerical interpolation
+  </h2>
+
+ 
+<p>Deprecated: Use the <a href="ref_directive_setting.html#ref.setting.number_format"><tt>number_format</tt>
+        setting</a> and <a href="ref_builtins_number.html#ref_builtin_string_for_number">the
+        <tt>string</tt> built-in</a> instead. For formatting for
+        computer audience (i.e., no localized formatting) use the <a href="ref_builtins_number.html#ref_builtin_c"><tt>c</tt> built-in</a> (like
+        <tt style="color: #A03D10"><i style="color: #DD4400">number</i>?c</tt>).</p>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_130"></a>Synopsis
+  </h3>
+
+
+          <pre class="metaTemplate"><tt style="color: #A03D10">#{<i style="color: #DD4400">expression</i>}</tt>
+or
+<tt style="color: #A03D10">#{<i style="color: #DD4400">expression</i>; <i style="color: #DD4400">format</i>}</tt></pre>
+
+
+          <p>Where:</p>
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">expression</i></tt>:
+              expression that can be evaluated as a number.
+            </li>
+
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">format</i></tt>:
+              optional format specifier.
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_131"></a>Description
+  </h3>
+
+
+          <p>The numerical interpolation is used to output a number value.
+          If the expression doesn't evaluate to a number, the evaluation ends
+          with an error.</p>
+
+          <p>The optional format specifier specifies the minimum and the
+          maximum number of displayed fractional digits using syntax
+          <tt style="color: #A03D10">m<i style="color: #DD4400">min</i>M<i style="color: #DD4400">max</i></tt>.
+          For example, <tt style="color: #A03D10">m2M5</tt> means &quot;at least two, at most
+          five fractional digits&quot;. The minimum or the maximum specifier part
+          can be omitted. If only the minimum is specified, the maximum is
+          equal to the minimum. If only maximum is specified, the minimum is
+          0.</p>
+
+          <p>The decimal separator character of the output is
+          internationalized (according the current locale setting), which
+          means that it is not necessarily a dot.</p>
+
+          <p>Unlike <tt style="color: #A03D10">${...}</tt>, <tt style="color: #A03D10">#{...}</tt>
+          ignores the <a href="ref_directive_setting.html#ref.setting.number_format"><tt>number_format</tt>
+          setting</a>. This is actually a backward compatibility quirk, but
+          it can be useful when you print numbers in situations like
+          <tt style="color: #A03D10">&lt;a href=&quot;quertyDatabase?id=#{id}&quot;&gt;</tt>, where
+          you surely don't want grouping separators or something fancy like
+          that. However, starting from FreeMarker 2.3.3 rather use the <a href="ref_builtins_number.html#ref_builtin_c"><tt>?c</tt> built-in</a> for
+          this purpose, like <tt style="color: #A03D10">&lt;a
+          href=&quot;quertyDatabase?id=${id?c}&quot;&gt;</tt>.</p>
+
+          <p>Examples. Assume that <tt style="color: #A03D10">x</tt> is
+          <tt style="color: #A03D10">2.582</tt> and <tt style="color: #A03D10">y</tt> is
+          <tt style="color: #A03D10">4</tt>:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">           &lt;#-- If the language is US English the output is: --&gt;
+#{x}       &lt;#-- 2.582 --&gt;
+#{y}       &lt;#-- 4 --&gt;
+#{x; M2}   &lt;#-- 2.58 --&gt;
+#{y; M2}   &lt;#-- 4    --&gt;
+#{x; m1}   &lt;#-- 2.6 --&gt;
+#{y; m1}   &lt;#-- 4.0 --&gt;
+#{x; m1M2} &lt;#-- 2.58 --&gt;
+#{y; m1M2} &lt;#-- 4.0  --&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="ref_depr_oldsyntax.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="ref_deprecated.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="app.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

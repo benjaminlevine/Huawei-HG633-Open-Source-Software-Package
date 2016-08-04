@@ -1,0 +1,315 @@
+ntfsfix.o: ntfsfix.c ../config.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/unistd.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/features.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_config.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/cdefs.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/posix_opt.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/environments.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/wordsize.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/types.h \
+ /opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include/stddef.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/typesizes.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/pthreadtypes.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/endian.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/endian.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/byteswap.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/byteswap.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/byteswap-common.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/confname.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/getopt.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/stdlib.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/waitflags.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/waitstatus.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/types.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/time.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/select.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/select.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/sigset.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/time.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/sysmacros.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/alloca.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/stdint.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/wchar.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/stdio.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_stdio.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/wchar.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_mutex.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/pthread.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sched.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/sched.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_clk_tck.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/signal.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/setjmp.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_pthread.h \
+ /opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include/stdarg.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/stdio_lim.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/fcntl.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/fcntl.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uio.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/stat.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/stat.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/errno.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/errno.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/linux/errno.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm/errno.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm-generic/errno.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm-generic/errno-base.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/string.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/getopt.h \
+ ../include/ntfs-3g/types.h ../include/ntfs-3g/attrib.h \
+ ../include/ntfs-3g/types.h ../include/ntfs-3g/inode.h \
+ ../include/ntfs-3g/layout.h ../include/ntfs-3g/endians.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/param.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/limits.h \
+ /opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include-fixed/limits.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/posix1_lim.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/local_lim.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/linux/limits.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_local_lim.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/posix2_lim.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/xopen_lim.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/linux/param.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm/param.h \
+ ../include/ntfs-3g/support.h ../include/ntfs-3g/volume.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/mount.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/ioctl.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/ioctls.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm/ioctls.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm/ioctl.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm-generic/ioctl.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/ioctl-types.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/ttydefaults.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/mntent.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/paths.h \
+ ../include/ntfs-3g/param.h ../include/ntfs-3g/device.h \
+ ../include/ntfs-3g/device_io.h ../include/ntfs-3g/attrib.h \
+ ../include/ntfs-3g/index.h ../include/ntfs-3g/mft.h \
+ ../include/ntfs-3g/logging.h ../include/ntfs-3g/ntfstime.h \
+ /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/time.h \
+ ../include/ntfs-3g/unistr.h ../include/ntfs-3g/runlist.h \
+ ../include/ntfs-3g/debug.h ../include/ntfs-3g/volume.h \
+ ../include/ntfs-3g/bootsect.h ../include/ntfs-3g/mft.h \
+ ../include/ntfs-3g/device.h ../include/ntfs-3g/logfile.h \
+ ../include/ntfs-3g/runlist.h ../include/ntfs-3g/mst.h utils.h \
+ ../include/ntfs-3g/layout.h ../include/ntfs-3g/logging.h \
+ ../include/ntfs-3g/misc.h
+
+../config.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/unistd.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/features.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_config.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/cdefs.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/posix_opt.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/environments.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/wordsize.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/types.h:
+
+/opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include/stddef.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/typesizes.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/pthreadtypes.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/endian.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/endian.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/byteswap.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/byteswap.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/byteswap-common.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/confname.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/getopt.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/stdlib.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/waitflags.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/waitstatus.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/types.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/time.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/select.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/select.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/sigset.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/time.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/sysmacros.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/alloca.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/stdint.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/wchar.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/stdio.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_stdio.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/wchar.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_mutex.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/pthread.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sched.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/sched.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_clk_tck.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/signal.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/setjmp.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_pthread.h:
+
+/opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include/stdarg.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/stdio_lim.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/fcntl.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/fcntl.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uio.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/stat.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/stat.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/errno.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/errno.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/linux/errno.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm/errno.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm-generic/errno.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm-generic/errno-base.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/string.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/getopt.h:
+
+../include/ntfs-3g/types.h:
+
+../include/ntfs-3g/attrib.h:
+
+../include/ntfs-3g/types.h:
+
+../include/ntfs-3g/inode.h:
+
+../include/ntfs-3g/layout.h:
+
+../include/ntfs-3g/endians.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/param.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/limits.h:
+
+/opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include-fixed/limits.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/posix1_lim.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/local_lim.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/linux/limits.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/uClibc_local_lim.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/posix2_lim.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/xopen_lim.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/linux/param.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm/param.h:
+
+../include/ntfs-3g/support.h:
+
+../include/ntfs-3g/volume.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/mount.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/ioctl.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/ioctls.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm/ioctls.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm/ioctl.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/asm-generic/ioctl.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/bits/ioctl-types.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/ttydefaults.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/mntent.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/paths.h:
+
+../include/ntfs-3g/param.h:
+
+../include/ntfs-3g/device.h:
+
+../include/ntfs-3g/device_io.h:
+
+../include/ntfs-3g/attrib.h:
+
+../include/ntfs-3g/index.h:
+
+../include/ntfs-3g/mft.h:
+
+../include/ntfs-3g/logging.h:
+
+../include/ntfs-3g/ntfstime.h:
+
+/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/staging/usr/include/sys/time.h:
+
+../include/ntfs-3g/unistr.h:
+
+../include/ntfs-3g/runlist.h:
+
+../include/ntfs-3g/debug.h:
+
+../include/ntfs-3g/volume.h:
+
+../include/ntfs-3g/bootsect.h:
+
+../include/ntfs-3g/mft.h:
+
+../include/ntfs-3g/device.h:
+
+../include/ntfs-3g/logfile.h:
+
+../include/ntfs-3g/runlist.h:
+
+../include/ntfs-3g/mst.h:
+
+utils.h:
+
+../include/ntfs-3g/layout.h:
+
+../include/ntfs-3g/logging.h:
+
+../include/ntfs-3g/misc.h:

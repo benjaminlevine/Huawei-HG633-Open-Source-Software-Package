@@ -1,0 +1,66 @@
+#
+# drivers/mtd/hisfc/Kconfig
+#
+
+menu "HSAN SFC Support"
+	 
+config MTD_HSAN_SFC
+    bool "Support HSAN SPIFLASH Controller"
+    depends on HSAN
+    select YAFFS_FS
+    select MISC_FILESYSTEMS
+    select MTD_BLOCK
+    select YAFFS_YAFFS2
+    help
+	 HSAN SPIFLASH Controller Support
+
+config MTD_HSAN_SFC_CHIPNUM
+	hex "spi chip number of your board"
+	depends on MTD_HSAN_SFC
+	default 2
+	help
+	  how many spi chips is used on your board?
+	  
+config MTD_HSAN_SFC_REG_BASE_ADDRESS
+	hex "spi controller's register base address"
+	depends on MTD_HSAN_SFC
+	default 0x10A20000
+	help
+	  register base address of spi controller
+
+config MTD_HSAN_SFC_REG_BASE_ADDRESS_LEN
+	hex "spi controller's register base address len"
+	depends on MTD_HSAN_SFC
+	default 0x100
+	help
+	  register base address len of spi controller
+
+config MTD_HSAN_SFC_CS0_BUFFER_BASE_ADDRESS
+	hex "spi controller's cs0 buffer base address"
+	depends on MTD_HSAN_SFC
+	default 0x18000000
+	help
+	  buffer base address of spi controller cs0
+	
+config MTD_HSAN_SFC_CS0_BUFFER_BASE_ADDRESS_LEN
+	hex "spi controller's cs0 buffer base address len"
+	depends on MTD_HSAN_SFC
+	default 0x4000000
+	help
+	  buffer base address len of spi controller cs0
+	  
+config MTD_HSAN_SFC_CS1_BUFFER_BASE_ADDRESS
+	hex "spi controller's cs1 buffer base address"
+	depends on MTD_HSAN_SFC
+	default 0x1c000000
+	help
+	  buffer base address of spi controller cs1
+	
+config MTD_HSAN_SFC_CS1_BUFFER_BASE_ADDRESS_LEN
+	hex "spi controller's cs1 buffer base address len"
+	depends on MTD_HSAN_SFC
+	default 0x4000000
+	help
+	  buffer base address len of spi controller cs1
+	  
+endmenu

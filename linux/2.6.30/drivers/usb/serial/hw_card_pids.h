@@ -1,0 +1,113 @@
+/*
+    hw_card_pids.h - pids for huawei WCDMA datacard
+
+    * Initial work by:    
+     *   (c) 20090508 David Lv (l00135113@huawei.com)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*/
+
+/*基础形态*/
+//{0x1001,"modem:ttyUSB0\nvoice:ttyUSB1\npcui:ttyUSB2\n"},
+
+//{0x1003,"modem:ttyUSB0\npcui:ttyUSB1\n"},
+//{0x0,MODEM_DIAG_PCUI},
+{0x1001,MODEM_DIAG_PCUI},
+{0X1003,MODEM_PCUI},
+{0X1004,MODEM_DIAG_PCUI},
+{0X141E,MODEM_PCUI},
+#ifdef CONFIG_ATP_NDIS_QMI
+{0X1417,MODEM_NULL_DIAG_PCUI},
+#else
+{0X1417,MODEM_NDIS_DIAG_PCUI},
+#endif
+{0X1406,MODEM_PCUI},
+{0X1418,MODEM_DIAG_PCUI},
+{0X1420,MODEM_PCUI},
+{0X140A,MODEM_DIAG_PCUI},
+{0X140B,MODEM_DIAG_PCUI},
+{0X1422,MODEM_DIAG_PCUI},
+{0X1427,MODEM_NDIS_DIAG_PCUI},
+{0X1428,MODEM_HID_DIAG_PCUI},
+{0X1429,MODEM_NDIS_PCUI},
+{0X142A,MODEM_NDIS_PCUI},
+{0X1448,MODEM_PCUI},
+{0X1402,MODEM_NDIS_PCUI},
+
+#ifdef CONFIG_ATP_NDIS_QMI
+{0X14AC,MODEM_NULL_DIAG_PCUI},//适配E372.本来该ID值应该有ndis端口
+#else
+{0X14AC,MODEM_NDIS_DIAG_PCUI},//0x14AC MDM+NDIS+DIAG+PCUI+CDROM
+#endif
+
+{0X1465,MODEM_NULL_DIAG_PCUI },//0x1465
+
+{0x1464,MODEM_NULL_DIAG_PCUI },//K4505
+
+#ifdef CONFIG_ATP_NDIS_QMI
+{0X158E,NDIS_PCUI },//0x1465
+#endif
+
+/*扩展形态*/
+{0X141A,MODEM_DIAG_PCUI},
+{0x141B,MODEM_PCUI},
+{0x1406,MODEM_PCUI},
+{0x1411,MODEM_DIAG_PCUI},
+{0x1412,MODEM_DIAG_PCUI},
+{0x1413,MODEM_NDIS_DIAG_PCUI},
+{0x1414,MODEM_DIAG_PCUI},
+{0x1416,MODEM_DIAG_PCUI},
+{0x1419,MODEM_DIAG_PCUI},
+#ifdef CONFIG_ATP_NDIS_QMI
+{0x140C,MODEM_QMI_DIAG_PCUI},
+#else
+{0x140C,MODEM_NDIS_DIAG_PCUI},
+#endif
+{0x1429,MODEM_NDIS_PCUI},
+{0X141B,MODEM_PCUI},
+{0x141A,MODEM_DIAG_PCUI},
+{0x1404,MODEM_DIAG_PCUI},
+{0x1407,MODEM_PCUI},
+{0x142B,MODEM_PCUI},
+{0x1009,MODEM_DIAG_PCUI},
+{0x9002,MODEM_PCUI},
+{0x1506, MODEM_NDIS_PCUI }, //NDIS
+{0X1C05,MODEM_DIAG_PCUI},//E352s
+/*the end string,just for a terminate flag*/
+{0x9401,MODEM_DIAG_PCUI_NDIS}, //NDIS
+//j00202470 for zte mf serial support
+{ ZTE_DATACARD_PID_MF190_UNI,ZTE_DIAG_PCUI_MODEM},
+{ ZTE_DATACARD_PID_MF190_UNI_R,ZTE_DIAG_PCUI_MODEM},
+{ ZTE_DATACARD_PID_MF190, ZTE_UNKONWN2_PCUI_MODEM},
+{ ZTE_DATACARD_PID_MF193, ZTE_DIAG_PCUI_MODEM},
+//{ ZTE_DATACARD_PID_MF668, ZTE_7POINT_DIAG_PCUI_EXPANSION_MODEM_CARD_READER_NDIS},
+{ ZTE_DATACARD_PID_MF626, ZTE_4POINT_DIAG_PCUI_MODEM_CARD},
+{ ZTE_DATACARD_PID_MF626A, ZTE_4POINT_DIAG_PCUI_MODEM_CARD},
+{ ZTE_DATACARD_PID_MF626B, ZTE_4POINT_DIAG_PCUI_MODEM_CARD},
+{ ZTE_DATACARD_PID_MF626C, ZTE_4POINT_DIAG_PCUI_MODEM_CARD},
+//j00202470 for zte mf serial support end
+
+{ZTE_DATACARD_PID_K5006_Z, ZTE_K5006_Z_NDIS_MODEM_DIAG_PCUI},
+
+/* rndis mf667 modem mode */
+{0x0016, ZTE_MF667_MODEM_MODE},
+{0x1600, ZTE_MF667_MODEM_MODE},
+//ha35
+{ HA35_LTE_MODEL_PID, HA35_MODEM_VOICE_PCUI_NDIS},
+
+{0x0000,NULL},
+
+
+

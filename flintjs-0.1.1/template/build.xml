@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="$project_name" default="dist" basedir=".">
+  <!--
+  TODO: INSERT LICENSE HEADER HERE
+  -->
+  <description>
+    $project_description
+  </description>
+  
+  <!-- global properties -->
+  <property file="build.properties"/>
+  <property file="local.properties"/>
+  <import file="$${flintjs.dir}/flintjs.build.xml"/>
+</project>

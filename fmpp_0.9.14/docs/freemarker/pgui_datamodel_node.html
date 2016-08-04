@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - Node variables
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_datamodel_directive.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_datamodel_objectWrapper.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="pgui_datamodel_node"></a>Node variables
+  </h2>
+
+ 
+<p>A node variable embodies a node in a tree structure. Node
+        variables were introduced to help <a href="xgui.html">the handling of
+        XML documents in the data-model</a>, but they can be used for the
+        modeling of other tree structures as well. For more information about
+        nodes from the point of view of the template language <a href="dgui_datamodel_types.html#dgui_datamodel_node">read this earlier section</a>.</p><p>A node variable has the following properties, provided by the
+        methods of <tt style="color: #A03D10">TemplateNodeModel</tt> interface:</p>    <div class="itemizedlist">
+<ul>
+          <li>
+            <p>Basic properties:</p>
+
+                <div class="itemizedlist">
+<ul>
+              <li>
+                <p><tt style="color: #A03D10">TemplateSequenceModel
+                getChildNodes()</tt>: A node has sequence of children
+                (except if the node is a leaf node, in which case the method
+                return an empty sequence or null). The child nodes should be
+                node variables as well.</p>
+              </li>
+
+              <li>
+                <p><tt style="color: #A03D10">TemplateNodeModel getParentNode()</tt>: A
+                node has exactly 1 parent node, except if the node is root
+                node of the tree, in which case the method returns
+                <tt style="color: #A03D10">null</tt>.</p>
+              </li>
+            </ul>    </div>
+
+          </li>
+
+          <li>
+            <p>Optional properties. If a property does not make sense in
+            the concrete use case, the corresponding method should return
+            <tt style="color: #A03D10">null</tt>:</p>
+
+                <div class="itemizedlist">
+<ul>
+              <li>
+                <p><tt style="color: #A03D10">String getNodeName()</tt>: The node name
+                is the name of the macro, that handles the node when you use
+                <a href="ref_directive_visit.html#ref.directive.recurse"><tt>recurse</tt></a>
+                and <a href="ref_directive_visit.html#ref.directive.visit"><tt>visit</tt></a>
+                directives. Thus, if you want to use these directives with the
+                node, the node name is .</p>
+              </li>
+
+              <li>
+                <p><tt style="color: #A03D10">String getNodeType()</tt>: In the case of
+                XML: <tt style="color: #A03D10">&quot;element&quot;</tt>, <tt style="color: #A03D10">&quot;text&quot;</tt>,
+                <tt style="color: #A03D10">&quot;comment&quot;</tt>, ...etc. This information, if
+                available, is used by the <tt style="color: #A03D10">recurse</tt> and
+                <tt style="color: #A03D10">visit</tt> directives to find the default
+                handler macro for a node. Also it can be useful for other
+                application specific purposes.</p>
+              </li>
+
+              <li>
+                <p><tt style="color: #A03D10">String getNamespaceURI()</tt>: The node
+                namespace (has nothing to do with FTL namespaces used for
+                libraries) this node belongs to. For example, in the case of
+                XML, this is the URI of the XML namespace the element or
+                attribute belongs to. This information, if available, is used
+                by the <tt style="color: #A03D10">recurse</tt> and <tt style="color: #A03D10">visit</tt>
+                directives to find the FTL namespaces that store the handler
+                macros.</p>
+              </li>
+            </ul>    </div>
+
+          </li>
+        </ul>    </div>
+<p>On the FTL side, the direct utilization of node properties is
+        done with <a href="ref_builtins_node.html">node built-ins</a>, and
+        with the <tt style="color: #A03D10">visit</tt> and <tt style="color: #A03D10">recurse</tt>
+        macros.</p><p>In most use cases, variables that implement
+        <tt style="color: #A03D10">TemplateNodeModel</tt>, implement other interfaces as
+        well, since node variable properties just provide the basic
+        infrastructure for navigating between nodes. For a concrete example,
+        see <a href="xgui.html">how FreeMarker deals with XML</a>.</p>  
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_datamodel_directive.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_datamodel_objectWrapper.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

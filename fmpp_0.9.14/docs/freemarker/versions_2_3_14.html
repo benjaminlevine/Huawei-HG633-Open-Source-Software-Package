@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - 2.3.14
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="versions_2_3_15.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="app_versions.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="versions_2_3_13.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="versions_2_3_14"></a>2.3.14
+  </h2>
+
+ 
+<p>Date of release: 2008-09-01</p>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_135"></a>Changes on the FTL side
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>New built-in: <tt style="color: #A03D10">xhtml</tt>. See more <a href="ref_builtins_string.html#ref_builtin_xhtml">here...</a></p>
+            </li>
+
+            <li>
+              <p>New special variable: <tt style="color: #A03D10">template_name</tt>.
+              See more <a href="ref_specvar.html">here...</a></p>
+            </li>
+
+            <li>
+              <p>Now you can use the values of parameters as the defaults
+              of other parameters, for example <tt style="color: #A03D10">&lt;#macro section
+              title label=title&gt;</tt>. In earlier versions it worked
+              unreliably. There are no restriction regarding the order of
+              parameters, like <tt style="color: #A03D10">&lt;#macro section label=title
+              title&gt;</tt> works too.</p>
+            </li>
+
+            <li>
+              <p>Added a new <a href="ref_builtins_number.html#ref_builtin_string_for_number">number format
+              specifier</a>, <tt style="color: #A03D10">computer</tt>. This uses the
+              same formatting as
+              <tt style="color: #A03D10"><i style="color: #DD4400">exp</i>?c</tt>.</p>
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_136"></a>Changes on the Java side
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>The constructor to
+              <tt style="color: #A03D10">freemarker.ext.servlet.AllHttpScopesHashModel</tt>
+              is now public, allowing it to be reused in 3rd party web
+              frameworks.</p>
+            </li>
+
+            <li>
+              <p>Bugfix:
+              <tt style="color: #A03D10">freemarker.ext.beans.SimpleMapModel</tt> (unlike
+              either <tt style="color: #A03D10">freemarker.ext.beans.MapModel</tt> or
+              <tt style="color: #A03D10">freemarker.template.SimpleHash</tt>) didn't allow
+              lookup by <tt style="color: #A03D10">java.lang.Character</tt> key when passed
+              a single-character string as a key.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: permissive unwrapping in
+              <tt style="color: #A03D10">freemarker.template.utility.DeepUnwrap</tt> class
+              was not recursively permissive with elements of sequences and
+              hashes.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: <tt style="color: #A03D10">freemarker.ext.beans.MapModel</tt>
+              returns <tt style="color: #A03D10">BeansWrapper.wrap(null)</tt> instead of
+              <tt style="color: #A03D10">null</tt> for <tt style="color: #A03D10">null</tt> values
+              explicitly bound into the map.</p>
+            </li>
+
+            <li>
+              <p>Bugfix: Fixed a subtle bug with property getters of
+              classes implementing a type-parametrized interface.</p>
+            </li>
+
+            <li>
+              <p>Bug fixed: A further corner case of <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1939742&amp;group_id=794&amp;atid=100794">[1939742]</a>.</p>
+            </li>
+          </ul>    </div>
+
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="versions_2_3_15.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="app_versions.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="versions_2_3_13.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

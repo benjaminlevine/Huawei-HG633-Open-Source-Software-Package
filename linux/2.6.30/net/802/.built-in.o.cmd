@@ -1,0 +1,1 @@
+cmd_net/802/built-in.o :=  /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/ccache /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/arm-hsan-linux-uclibcgnueabi-ld -EL    -r -o net/802/built-in.o net/802/p8022.o net/802/psnap.o net/802/stp.o 

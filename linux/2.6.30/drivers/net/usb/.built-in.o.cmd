@@ -1,0 +1,1 @@
+cmd_drivers/net/usb/built-in.o :=  /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/ccache /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/arm-hsan-linux-uclibcgnueabi-ld -EL    -r -o drivers/net/usb/built-in.o drivers/net/usb/hw_cdc_driver.o drivers/net/usb/qmitty.o drivers/net/usb/usbnet.o 

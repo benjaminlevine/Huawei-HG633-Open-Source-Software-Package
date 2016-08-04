@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="flintjs" default="dist" basedir=".">
+  <!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+  <description>
+    The FlintJS JavaScript build framework.
+  </description>
+
+  <dirname property="flintjs.basedir" file="${ant.file.flintjs}"/>
+  <property name="flintjs.libdir" location="${flintjs.basedir}/lib"/>
+
+  <!-- default properties -->
+  <property name="src.reldir" value="src"/> <!-- req'd for docs -->
+  <property name="src.dir" location="${src.reldir}"/>
+  <property name="lib.dir" location="lib"/>
+  <property name="dist.dir" location="dist"/>
+  <property name="docs.dir" location="docs"/>
+  <property name="test.dir" location="test"/>
+  <property name="build.dir" location="build"/>
+
+  <property name="docs.template" value="jsdoc"/>
+  <property name="docs.featuredpages" value=""/>
+
+  <!-- init target -->
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build.dir}"/>
+    <copy overwrite="true" todir="${build.dir}/src">
+      <fileset dir="${src.dir}"/>
+    </copy>
+
+    <!-- set up custom JS build tasks -->
+    <ant
+      antfile="${flintjs.basedir}/jsbuildtasks/build.xml"
+      target="jar"
+      inheritAll="false"/>
+    <property
+      name="jsbuildtasks.jar"
+      location="${flintjs.basedir}/jsbuildtasks/JsBuildTasks.jar"/>
+    <taskdef
+      name="js.isolatetests"
+      classpath="${jsbuildtasks.jar}"
+      classname="IsolateTests"/>
+    <taskdef
+      name="js.resolveincludes"
+      classpath="${jsbuildtasks.jar}"
+      classname="ResolveIncludes"/>
+    <taskdef
+      name="js.smartconcat"
+      classpath="${jsbuildtasks.jar}"
+      classname="SmartConcat"/>
+  </target>
+
+  <!-- public targets -->
+  <target name="dist"
+          depends="concat"
+          description="Builds .js and .pack.js library distribution files.">
+    <fail
+      if="instrumented"
+      message="Cannot create dist files while creating instrumented tests."/>
+
+    <!-- generate uncompressed dist file -->
+    <concat destfile="${dist.dir}/${dist.name}.js">
+      <file file="${lib.dir}/license-header.js"/>
+      <file file="${build.dir}/concat.js"/>
+    </concat>
+
+    <!-- generate compressed dist file -->
+    <java jar="${flintjs.libdir}/yuicompressor-2.4.2.jar" fork="true" failonerror="true">
+      <arg value="-o"/>
+      <arg value="${build.dir}/concat.pack.js"/>
+      <arg value="${build.dir}/concat.js"/>
+    </java>
+    <concat destfile="${dist.dir}/${dist.name}.pack.js">
+      <file file="${lib.dir}/license-header.js"/>
+      <file file="${build.dir}/concat.pack.js"/>
+    </concat>
+    <delete dir="${build.dir}"/>
+
+    <echo>Distribution files are ready.</echo>
+  </target>
+
+  <target name="tests"
+          depends="concat"
+          description="Builds the test suite.">
+    <copy overwrite="true" todir="${test.dir}">
+      <fileset dir="${flintjs.libdir}/test/"/>
+    </copy>
+    <copy overwrite="true" todir="${test.dir}">
+      <fileset dir="${lib.dir}/test/"/>
+    </copy>
+    <concat destfile="${test.dir}/${dist.name}.tests.js">
+      <fileset dir="${build.dir}/src" includes="**/*.tests.js"/>
+    </concat>
+    <copy
+      file="${build.dir}/concat.js"
+      tofile="${test.dir}/${dist.name}.js"
+      overwrite="true"/>
+    <echo>Tests are ready. Run ${test.dir}/test-runner.html</echo>
+  </target>
+
+  <target name="coveragetests"
+          depends="isolatetests, resolveincludes, instrument, tests"
+          description="Builds an instrumented test suite ready for JSCoverage.">
+    <copy overwrite="true" todir="${test.dir}">
+      <fileset dir="${build.dir}/src/"/>
+    </copy>
+    <echo>
+      JSCoverage-instrumented tests are ready.
+      Open ${test.dir}/jscoverage.html?test-runner.html in a browser.
+    </echo>
+  </target>
+
+  <target name="docs"
+          depends="concat"
+          description="Generates the documentation.">
+    <!-- see http://code.google.com/p/jsdoc-toolkit/wiki/CommandlineOptions -->
+    <java classname="org.mozilla.javascript.tools.shell.Main" failonerror="true">
+      <arg value="${flintjs.libdir}/jsdoc-toolkit/app/run.js"/>
+      <arg value="-s"/>
+      <arg value="-r"/>
+      <arg value="-t=${flintjs.libdir}/jsdoc-toolkit/templates/${docs.template}/"/>
+      <arg value="-d=${docs.dir}"/>
+      <arg value="${src.reldir}"/>
+      <arg value="-j=${flintjs.libdir}/jsdoc-toolkit/app/run.js"/>
+      <classpath>
+        <pathelement path="${classpath}"/>
+        <pathelement location="${flintjs.libdir}/rhino.jar"/>
+      </classpath>
+    </java>
+    <echo>Docs are ready.</echo>
+  </target>
+
+  <target name="lint"
+          depends="init"
+          description="Runs JSLint on the source files.">
+    <delete file="${build.dir}/lint.out"/>
+    <echo>Running JSLint...</echo>
+    <apply executable="java" output="${build.dir}/lint.out" append="true" logError="false">
+      <arg value="-classpath"/>
+      <arg value=".:${flintjs.libdir}/rhino.jar"/>
+      <arg value="org.mozilla.javascript.tools.shell.Main"/>
+      <arg value="${flintjs.libdir}/jslint.js"/>
+
+      <fileset dir="${src.dir}" includes="**/*.js"/>
+    </apply>
+    <echo>JSLint results are stored in ${build.dir}/lint.out.</echo>
+  </target>
+
+  <target name="clean"
+          description="Clean up generated files.">
+    <delete dir="${build.dir}"/>
+    <delete dir="${docs.dir}"/>
+    <delete dir="${test.dir}"/>
+    <delete>
+      <fileset dir="${dist.dir}" includes="*.js"/>
+    </delete>
+  </target>
+
+  <!-- private targets -->
+  <target name="concat"
+          depends="init, isolatetests, resolveincludes">
+    <!-- strip copyright headers -->
+    <replaceregexp flags="gs">
+      <regexp pattern="/\*\nCopyright (.*?)\*/\n"/>
+      <substitution expression=""/>
+      <fileset dir="${build.dir}/src" includes="**/*.js"/>
+    </replaceregexp>
+
+    <!-- smart concat (i.e. factor in dependencies) -->
+    <js.smartconcat destfile="${build.dir}/concat.js">
+      <fileset dir="${build.dir}/src" includes="**/*.js">
+        <exclude name="**/*.tests.js"/>
+        <exclude name="**/*jscoverage.js"/>
+      </fileset>
+    </js.smartconcat>
+  </target>
+
+  <target name="isolatetests"
+          depends="init">
+    <js.isolatetests>
+      <fileset
+        dir="${build.dir}/src"
+        includes="**/*.js"
+        excludes="**/*.tests.js"/>
+    </js.isolatetests>
+  </target>
+
+  <target name="resolveincludes"
+          depends="init">
+    <js.resolveincludes origdir="${src.dir}">
+      <fileset
+        dir="${build.dir}/src"
+        includes="**/*.js"
+        excludes="**/*.tests.js"/>
+    </js.resolveincludes>
+  </target>
+
+  <target name="instrument"
+          depends="init">
+    <fail message="JSCoverage binary not found in lib directory.">
+      <condition>
+        <not>
+          <available file="${lib.dir}/jscoverage"/>
+        </not>
+      </condition>
+    </fail>
+
+    <property name="instrumented" value="yes"/>
+    
+    <!-- remove headers and footers first, since they may not be
+         not syntactically correct -->
+    <mkdir dir="${build.dir}/src.uninstrumented"/>
+    <mkdir dir="${build.dir}/src.instrumented"/>
+    <copy overwrite="true" todir="${build.dir}/src.uninstrumented">
+      <fileset dir="${build.dir}/src" includes="**/*.js">
+        <exclude name="**/_header.js"/>
+        <exclude name="**/_footer.js"/>
+        <exclude name="**/*.tests.js"/>
+      </fileset>
+    </copy>
+
+    <exec executable="${lib.dir}/jscoverage">
+      <arg value="${build.dir}/src.uninstrumented"/>
+      <arg value="${build.dir}/src.instrumented"/>
+    </exec>
+
+    <!-- add back the headers and footers -->
+    <copy overwrite="true" todir="${build.dir}/src">
+      <fileset dir="${build.dir}/src.instrumented"/>
+    </copy>
+  </target>
+</project>

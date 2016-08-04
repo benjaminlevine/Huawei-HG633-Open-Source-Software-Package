@@ -1,0 +1,87 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, Path Pattern">
+      <title>FMPP - Path Patterns</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">Path Patterns</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="tdd.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="ftl.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+      
+<p>Probably you have already used commands like <code><font color="#017D01">dir *.txt</font></code> (or <code><font color="#017D01">ls *.txt</font></code> on UN*X). This lists all files in the current directory where the name of the file ends with <code><font color="#017D01">.txt</font></code>. The <code><font color="#017D01">*.txt</font></code> stuff is called a path pattern.</p>
+
+<p>With FMPP you also use path patterns to select certain files, say, in the <code><a href="settings.html#key_modes" class=s><font color="#20C000">modes</font></a></code> setting, to tell FMPP which files to copy as is, and which files to execute as template. A path pattern looks like a path, but it can contain some special parts:</p>
+<ul>
+  <li><code><font color="#017D01">*</font></code>: matches zero or more characers, except slash (<code><font color="#017D01">/</font></code>). For example <code><font color="#017D01">a*c</font></code> matches to <code><font color="#017D01">abc</font></code>, <code><font color="#017D01">axyzc</font></code> and <code><font color="#017D01">ac</font></code>, but not <code><font color="#017D01">a/c</font></code>.
+  <li><code><font color="#017D01">?</font></code>: matches exactly one characer, except slash (<code><font color="#017D01">/</font></code>). For example <code><font color="#017D01">a?c</font></code> matches to <code><font color="#017D01">abc</font></code>, but not <code><font color="#017D01">axyzc</font></code> or <code><font color="#017D01">ac</font></code> or <code><font color="#017D01">a/c</font></code>.
+  <li><code><font color="#017D01">**</font></code>: This matches zero or more directories of the path. For example <code><font color="#017D01">a/**/c</font></code> matches to <code><font color="#017D01">a/b/c</font></code>, <code><font color="#017D01">a/b/xyz/c</font></code> and <code><font color="#017D01">a/c</font></code>. Another example: <code><font color="#017D01">**/*.gif</font></code> matches to <code><font color="#017D01">foo.gif</font></code>, <code><font color="#017D01">a/foo.gif</font></code> and , <code><font color="#017D01">a/b/foo.gif</font></code>. Also, if you use <code><font color="#017D01">**</font></code> at the end of the pattern, then it match with all file names as well. Thus, <code><font color="#017D01">foo/**</font></code> will match all files inside <code><font color="#017D01">foo</font></code>, such as <code><font color="#017D01">foo/bar.txt</font></code> or <code><font color="#017D01">foo/sub/bar.txt</font></code>. Furthermore, if the pattern ends with <code><font color="#017D01">/</font></code>, then it is considered as shorthand for <code><font color="#017D01">/**</font></code>, so <code><font color="#017D01">foo/</font></code> is the same as <code><font color="#017D01">foo/**</font></code>. 
+</ul>
+
+<p>If your operating system use something else instead of <code><font color="#017D01">/</font></code> (as <code><font color="#017D01">\</font></code> on Windows), FMPP will internally convert the native paths to UN*X format, so do not worry about this.  Just use slash in the patterns. (Or, in fact, you can even use the native "slash" in patterns, just it is not a good practice in general.)</p>
+
+<p>Note that pattern as <code><font color="#017D01">*.gif</font></code> will match only the GIF files in the current directory. If you want to match all GIF files of the subdirectories (and sub-subdirectories, etc.) as well, use <code><font color="#017D01">**/*.gif</font></code>.
+
+<p>The meaning of "current directory" in FMPP depends on the concrete situation where you use the path. In most cases where you will use path patterns (as with the <code><a href="settings.html#key_modes" class=s><font color="#20C000">modes</font></a></code> setting) it will be the source root directory. Also, the meaning of "root directory" is depends on where you use the path. That is, absolute path <code><font color="#017D01">/foo.txt</font></code> maybe means <code><font color="#017D01">foo.txt</font></code> in the source root directory (this is the typical), or in the output root directory, or in the real root directory of the file system, etc.</p>
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="tdd.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="ftl.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

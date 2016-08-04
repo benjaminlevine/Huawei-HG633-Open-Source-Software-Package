@@ -1,0 +1,11 @@
+#NETEM = 1
+#GENL = 1
+IP = 1
+TC = 1
+#如果需要开启MISC下面的内容那么先要打开本开关
+MISC = 1
+MISC_NSTAT = 1
+MISC_IFSTAT = 1
+MISC_RTACCT = 1
+MISCLNSTAT = 1
+#MISC_ARPD = 1

@@ -1,0 +1,251 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, ant, ant task">
+      <title>FMPP - The Ant Task</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">The Ant Task</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="commandline.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="writefrontend.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>Description</a></li>
+    <li><a href="#sect2" class=toc>Parameters</a></li>
+    <li><a href="#sect3" class=toc>Nested elements</a></li>
+    <li><a href="#sect4" class=toc>Examples</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<a name="sect1"></a>
+     <h2><font color="#000000">Description</font></h2>
+
+<p>If you need the FMPP Ant task in a project xml (<code><font color="#017D01">build.xml</font></code>), use the <code><font color="#017D01">taskdef</font></code> core task:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;taskdef name=&quot;fmpp&quot; classname=&quot;fmpp.tools.AntTask&quot; /&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>Then you can use the <code><font color="#017D01">&lt;fmpp <i>...</i>></font></code> task further down. You may remember the 4th step of <a href="qtour.html">Quick Tour</a>. This is an Ant equivalent:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;project name=&quot;FMPP test&quot; default=&quot;build&quot;&gt;
+    &lt;taskdef name=&quot;fmpp&quot; classname=&quot;fmpp.tools.AntTask&quot; /&gt;
+    
+    &lt;target name=&quot;build&quot;&gt;
+        &lt;fmpp
+              sourceRoot=&quot;src&quot; outputRoot=&quot;out&quot;
+              data=&quot;tdd(data/style.tdd), birds:csv(data/birds.csv)&quot;
+        /&gt;
+    &lt;/target&gt;
+&lt;/project&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Almost all parameters of the Ant task correspond to the <a href="settings.html">FMPP settings</a>. If the setting value is of scalar type (as string, boolean, number) then just enter the value simply with Ant-ish syntax, not with TDD syntax. If the setting value is of more tricky type, as hash or sequence, then use <a href="tdd.html">TDD syntax</a> for it. For hash settings the value is <a href="tdd.html#modes">hash mode TDD</a>, and for sequence setting it is sequence mode TDD, so the brackets should be omitted, as with <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code> above.</p>
+
+<p>The <a href="configfile.html#configurationBase">configuration base</a> for the setting values given with Ant parameters is the Ant project base directory. That is, if you enter <code><font color="#017D01">sourceRoot="src"</font></code>, then <code><font color="#017D01">src</font></code> is interpreted relatively to the project base directory.</p>
+
+<p>There is no parameter that directly corresponds to the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting. The sources are chosen with nested <code><font color="#017D01">&lt;fileset></font></code>-style parameters and nested elements (as <code><font color="#017D01">include</font></code> and <code><font color="#017D01">exclude</font></code>). However, if you use the <code><a href="settings.html#key_outputFile" class=s><font color="#20C000">outputFile</font></a></code> setting, you can't use <code><font color="#017D01">&lt;fileset></font></code>-style stuff, and <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> will be specified with the  <code><font color="#017D01">sourceFile</font></code> parameter.
+
+<p>Alternatively, the <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code>, <code><a href="settings.html#key_localData" class=s><font color="#20C000">localData</font></a></code>, <code><a href="settings.html#key_borders" class=s><font color="#20C000">borders</font></a></code>, <code><a href="settings.html#key_modes" class=s><font color="#20C000">modes</font></a></code>, <code><a href="settings.html#key_turns" class=s><font color="#20C000">turns</font></a></code>, <code><a href="settings.html#key_xmlRenderings" class=s><font color="#20C000">xmlRenderings</font></a></code> and <code><a href="settings.html#key_freemarkerLinks" class=s><font color="#20C000">freemarkerLinks</font></a></code> settings can be specified with nested elements instead of parameters. For example, this is equivalent with the above example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;project name=&quot;FMPP test&quot; default=&quot;build&quot;&gt;
+    &lt;taskdef name=&quot;fmpp&quot; classname=&quot;fmpp.tools.AntTask&quot; /&gt;
+    
+    &lt;target name=&quot;build&quot;&gt;
+        &lt;fmpp sourceRoot=&quot;src&quot; outputRoot=&quot;out&quot;&gt;
+            &lt;data&gt;
+                 tdd(data/style.tdd)
+                 birds: csv(data/birds.csv)
+            &lt;/data&gt;
+        &lt;/fmpp&gt;
+    &lt;/target&gt;
+&lt;/project&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>This can be useful, if the setting value is long. The content of the element can be a CDATA section, which is useful if the setting value contains HTML or XML fragments. Unlike with attributes, Ant property interpolations (<code><font color="#017D01">${foo}</font></code>) in the text are not expanded, unless you force that with the <code><font color="#017D01">expandProperties</font></code> attribute of the element (<code><font color="#017D01">&lt;data expandProperties="yes"><i>...</i></font></code>).</p> 
+
+<p>About the support and interpretation of FMPP settings:</p>
+<ul>
+  <li>The values of settings <code><a href="settings.html#key_ignoreCvsFiles" class=s><font color="#20C000">ignoreCvsFiles</font></a></code>, <code><a href="settings.html#key_ignoreSvnFiles" class=s><font color="#20C000">ignoreSvnFiles</font></a></code> and <code><a href="settings.html#key_ignoreTemporaryFiles" class=s><font color="#20C000">ignoreTemporaryFiles</font></a></code> are always set to <code><font color="#017D01">false</font></code>, and there is no Ant task parameter for them. This is so that they don't interfere with Ant's standard <code><font color="#017D01">defaultExcludes</font></code> parameter.</li>
+  <li>Settings <code><a href="settings.html#key_echoFormat" class=s><font color="#20C000">echoFormat</font></a></code>, <code><a href="settings.html#key_snip" class=s><font color="#20C000">snip</font></a></code> and <code><a href="settings.html#key_columns" class=s><font color="#20C000">columns</font></a></code> are ignored, and there is no Ant task parameter for them.</li>
+  <li>The <code><a href="settings.html#key_quiet" class=s><font color="#20C000">quiet</font></a></code> setting implements only grades <code><font color="#017D01">true</font></code> and <code><font color="#017D01">false</font></code>. <code><font color="#017D01">reallyQuiet</font></code> is the same as <code><font color="#017D01">true</font></code>.</li>
+  <li>All <a href="settings.html#logging">logging related settings</a> are supported.</li>
+</ul>
+
+<p>To access the Ant properties and other Ant specific data in the templates, you can use data loaders such as <code><font color="#017D01">antProperty()</font></code>, <code><font color="#017D01">antProperties()</font></code>, <code><font color="#017D01">antProject()</font></code> and <code><font color="#017D01">antTask()</font></code>. Read the <a href="dataloader.html">chapter about data loaders</a> for more details.</p>
+
+
+
+<a name="sect2"></a>
+     <h2><font color="#000000">Parameters</font></h2>
+
+<p>The FMPP task accepts the following parameters:</p>
+<ul>
+  <li><a href="settings.html">All FMPP settings</a> except <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code>, <code><a href="settings.html#key_ignoreCvsFiles" class=s><font color="#20C000">ignoreCvsFiles</font></a></code>, <code><a href="settings.html#key_ignoreSvnFiles" class=s><font color="#20C000">ignoreSvnFiles</font></a></code>, <code><a href="settings.html#key_ignoreTemporaryFiles" class=s><font color="#20C000">ignoreTemporaryFiles</font></a></code>, <code><a href="settings.html#key_echoFormat" class=s><font color="#20C000">echoFormat</font></a></code>, <code><a href="settings.html#key_snip" class=s><font color="#20C000">snip</font></a></code> and <code><a href="settings.html#key_columns" class=s><font color="#20C000">columns</font></a></code>. If the setting value is of scalar type (as string, boolean, number) then just enter the value simply with Ant-ish syntax, not with TDD syntax. If the setting value is of more tricky type, as hash or sequence, then use TDD syntax for it. For hash settings the value is hash mode TDD, and for sequence setting it is sequence mode TDD, so the brackets should be omitted. The <a href="configfile.html#configurationBase">configuration base</a> for the setting values is the Ant project base directory.</li>
+  
+  <li>To follow the Ant conventions, <code><font color="#017D01">srcdir</font></code> and <code><font color="#017D01">destdir</font></code> attribute names can be optionally used instead of <code><font color="#017D01">sourceRoot</font></code> and <code><font color="#017D01">outputRoot</font></code> attribute names. These are just alias names.</li>
+  
+  <li>Configuration file handling:
+    <ul>
+      <li><code><font color="#017D01">configuration</font></code>: Loads a <a href="configfile.html">configuration file</a>. The setting values given with the parameters has higher precedence.</li>
+
+      <li><code><font color="#017D01">configurationBase</font></code>: Emulates that <code><a href="settings.html#key_configurationBase" class=s><font color="#20C000">configurationBase</font></a></code> meta setting is present in configuration file with the given value.</li>
+  
+      <li><code><font color="#017D01">inheritConfiguration</font></code>: Emulates that <code><a href="settings.html#key_inheritConfiguration" class=s><font color="#20C000">inheritConfiguration</font></a></code> meta setting is present in configuration file with the given value.</li>
+    </ul>
+  </li>
+  
+  <li>Ant <code><font color="#017D01">&lt;fileset></font></code>-style attributes (see the Ant documentation for more details). Used for specifing the value of the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting:
+    <ul>
+      <li><code><font color="#017D01">dir</font></code>: The directory that the patterns are relative to. If this attribute is omitted, then the FMPP source root will be used as the base. Note that regardless of the value of this attribute, all source files must be inside the source root.
+      <li><code><font color="#017D01">casesensitive</font></code>: Sets case sensitivity of the file names. (Same as the FMPP setting)
+      <li><code><font color="#017D01">defaultexcludes</font></code>: Indicates whether default excludes should be used or not (<code><font color="#017D01">"yes"</font></code> or <code><font color="#017D01">"no"</font></code>); default excludes are used when omitted.
+      <li><code><font color="#017D01">excludes</font></code>: comma- or space-separated list of patterns of files that must be excluded; no files (except default excludes) are excluded when omitted.
+      <li><code><font color="#017D01">excludesfile</font></code>: the name of a file; each line of this file is taken to be an exclude pattern.
+      <li><code><font color="#017D01">followsymlinks</font></code>: Shall symbolic links be followed? Defaults to true.
+      <li><code><font color="#017D01">includes</font></code>: Comma- or space-separated list of patterns of files that must be included; all files are included when omitted. Note that be default all files of the source root directory are included.
+      <li><code><font color="#017D01">includesfile</font></code>: The name of a file; each line of this file is taken to be an include pattern.  
+    </ul>
+  </li>
+  
+  <li><code><font color="#017D01">sourceFile</font></code>: It can be used only if the <code><a href="settings.html#key_outputFile" class=s><font color="#20C000">outputFile</font></a></code> setting is specified. It specifies the value of the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting, as a simple string (not a comma separated list) that specifies the path of a single file. <code><font color="#017D01">&lt;fileset></font></code>-style attributes/elements will be ignored.</li>
+  
+  <li><code><font color="#017D01">antTaskFailOnError</font></code>: Specifies if the Ant task should fail if there were errors during the execution of the processing session. Defaults to <code><font color="#017D01">true</font></code>. It has nothing to do with the <code><a href="settings.html#key_stopOnError" class=s><font color="#20C000">stopOnError</font></a></code> setting. If this parameter is <code><font color="#017D01">true</font></code>, the Ant task will fail if there were any failed file processing during the processing session, even if it was skipped because <code><a href="settings.html#key_stopOnError" class=s><font color="#20C000">stopOnError</font></a></code> was <code><font color="#017D01">true</font></code> (so the session wasn't aborted). If this parameter is <code><font color="#017D01">false</font></code>, then the Ant task will be successful regardless of the failed file processings or other errors during the processing session, even if the processing session was aborted. But, it never suppresses errors occurred during the initialization of the FMPP engine (i.e. errors occurred before the processing session could be stated).</li>
+</ul>
+
+<p>Either the <code><font color="#017D01">configuration</font></code> parameter, or <code><font color="#017D01">sourceRoot</font></code>+<code><font color="#017D01">outputRoot</font></code> parameters, or <code><font color="#017D01">sourceFile</font></code>+<code><font color="#017D01">outputFile</font></code> parameters are required. All other parameters are optional. When you use <code><font color="#017D01">configuration</font></code>, any Ant task parameters can become optional, when the value of the coressponding settings are given in the configuration file.</p>
+
+<p><b>Attention!</b> When you specify the <code><a href="settings.html#key_sources" class=s><font color="#20C000">sources</font></a></code> setting in a configuration file, its value will be added to the set of files and directories that the Ant task itself selects, which is, following the Ant tradition, by default all files and directories inside the source root. Thus, usually you will want to exclude all files in the Ant task, so only those specified in the configuration file will remain:
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp configuration=&quot;config-with-sources-setting.fmpp&quot; excludes=&quot;**/*&quot; /&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+
+<a name="sect3"></a>
+     <h2><font color="#000000">Nested elements</font></h2>
+
+<p>The FMPP task accepts the following nested elements:
+<ul>
+  <li>Elements for attribute substitution: Using these elements is the same as if you were use the attributes (parameters) with the same name, and with the same value as the nested text (or CDATA section) of the elements. Ant property values (<code><font color="#017D01">${foo}</font></code>) are not expanded by default, but you can override this with a <code><font color="#017D01">expandProperties="yes"</font></code> attribute. Note that you etiher give a certain setting with attribute, or with element, but not both.
+    <ul>
+      <li><code><font color="#017D01">data</font></code>
+      <li><code><font color="#017D01">localData</font></code>
+      <li><code><font color="#017D01">borders</font></code>
+      <li><code><font color="#017D01">modes</font></code>
+      <li><code><font color="#017D01">turns</font></code>
+      <li><code><font color="#017D01">xmlRenderings</font></code>
+      <li><code><font color="#017D01">freemarkerLinks</font></code>
+    </ul>
+  <li><code><font color="#017D01">&lt;fileset></font></code>-style elements (see the Ant documentation for more details):
+    <ul>
+      <li><code><font color="#017D01">patternset</font></code>
+      <li><code><font color="#017D01">include</font></code>: Note that be default all files inside the source root directory are included.
+      <li><code><font color="#017D01">exclude</font></code>
+      <li><code><font color="#017D01">includesfile</font></code>
+      <li><code><font color="#017D01">excludesfile</font></code>
+    </ul> 
+</ul>
+
+
+
+<a name="sect4"></a>
+     <h2><font color="#000000">Examples</font></h2>
+
+<p>Run processing session with the settings stored in <code><font color="#017D01"><i>&lt;projectBaseDir></i>/config.fmpp</font></code> (or <code><font color="#017D01">fmpp.cfg</font></code>):</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp configuration=&quot;.&quot; /&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>As the previous, but override <code><a href="settings.html#key_outputEncoding" class=s><font color="#20C000">outputEncoding</font></a></code>:</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp configuration=&quot;.&quot; outputEncoding=&quot;UTF-8&quot; /&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Processes all files in <code><font color="#017D01">src/www</font></code> and stores the output in <code><font color="#017D01">build/www</font></code>:</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp sourceRoot=&quot;src/www&quot; outputRoot=&quot;build/www&quot; /&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Same as the previous, but processes files with extension <code><font color="#017D01">ftl</font></code> only:</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp
+    sourceRoot=&quot;src/www&quot; outputRoot=&quot;build/www&quot;
+    includes=&quot;**/*.ftl&quot;
+/&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Same as the previous:</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp sourceRoot=&quot;src/www&quot; outputRoot=&quot;build/www&quot;&gt;
+    &lt;include name=&quot;**/*.ftl&quot; /&gt;
+&lt;/fmpp&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Run processing session with the settings stored in <code><font color="#017D01"><i>&lt;projectBaseDir></i>/src/wwwconfig.fmpp</font></code>, but process files with extension <code><font color="#017D01">ftl</font></code> only:</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp configuration=&quot;src/wwwconfig.fmpp&quot; includes=&quot;**/*.ftl&quot; /&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Processes a single file:</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp sourceFile=&quot;src/test.txt&quot; outputFile=&quot;build/test.txt&quot; /&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Exposes Ant properties <code><font color="#017D01">foo</font></code>, <code><font color="#017D01">bar</font></code> and <code><font color="#017D01">baaz</font></code> for the templates:</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp sourceRoot=&quot;src/www&quot; outputRoot=&quot;build/www&quot;
+        data=&quot;antProperties(foo, bar, baaz)&quot;
+/&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>Just to show something more complex...:</p>
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;fmpp sourceRoot=&quot;src/www&quot; outputRoot=&quot;build/www&quot;
+        replaceExtension=&quot;ftl, html&quot;
+        modes=&quot;copy(**/*.html, **/*.htm)&quot;
+&gt;
+    &lt;borders&gt;&lt;![CDATA[
+        border('&lt;#escape x as x?html&gt;', '&lt;/#escape&gt;', **/*.ftl)
+    ]]&gt;&lt;/borders&gt;
+    &lt;data&gt;
+        bgColor: white
+        fgColor: black
+        antProps: antProperties()
+    &lt;/data&gt;
+&lt;/fmpp&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="commandline.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="writefrontend.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

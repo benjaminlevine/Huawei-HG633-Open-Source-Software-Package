@@ -1,0 +1,9 @@
+kernel/drivers/scsi/scsi_wait_scan.ko
+kernel/drivers/net/usb/rmnet_ethernet.ko
+kernel/drivers/usb/storage/usb-storage.ko
+kernel/drivers/usb/serial/option.ko
+kernel//home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/driver/component/wlan/rtl8192cd/hisi/src/rtl8192cd.ko
+kernel//home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/driver/hisi/sd5610/source/k_space/ipc/ipcdrv.ko
+kernel//home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/driver/hisi/sd5610/source/k_space/trictl/tri_ctl.ko
+kernel//home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/driver/hisi/sd5610/source/k_space/hisihwfirewall/hisihwfirewall.ko
+kernel/net/softqos/hi_ksoft_qos.ko

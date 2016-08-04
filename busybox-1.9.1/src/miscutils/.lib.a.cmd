@@ -1,0 +1,1 @@
+cmd_miscutils/lib.a := rm -f miscutils/lib.a; /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/arm-hsan-linux-uclibcgnueabi-ar  rcs miscutils/lib.a miscutils/crond.o miscutils/crontab.o miscutils/makedevs.o miscutils/taskset.o

@@ -1,0 +1,190 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, installing, install, setup">
+      <title>FMPP - Installing</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">Installing</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="manual.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="basics.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>Warning!</a></li>
+    <li><a href="#sect2" class=toc>Pre-requirements</a></li>
+    <li><a href="#sect3" class=toc>Extracting</a></li>
+    <li><a href="#commandLineTool" class=toc>Setup the command-line tool</a></li>
+    <li><a href="#sect9" class=toc>Setup the Ant task</a></li>
+    <li><a href="#sect10" class=toc>Installing optional parts and custom extensions</a></li>
+    <li><a href="#updatingFreeMarker" class=toc>Updating FreeMarker</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<a name="sect1"></a>
+     <h2><font color="#000000">Warning!</font></h2>
+<p>Please understand that FMPP, as a bulk file processor, may generates high amount of output files, and <b>overwrites all files</b> with the same names as the names of output files without warning. It's a practical decision comes from the usage pattern of the tool. So watch where will the output files go.</p>
+
+<p>Also note that, according <a href="license.html">the license</a> (BSD), the author does not take responsibly if the usage of FMPP causes harm for you somehow.</p>
+
+<a name="sect2"></a>
+     <h2><font color="#000000">Pre-requirements</font></h2>
+<ul>
+  <li>Java must be installed on your machine (Java2 platform Standard Edition 1.2 or later). Sun's free implementation can be downloaded here: <a href="http://java.sun.com/j2se/">http://java.sun.com/j2se/</a>. Download J2SE JRE there (or if you have J2SE JDK, that includes the JRE, so that's good as well). Note that Java is available for various platforms (Windows, "Linux", Mac, etc.), so FMPP works on many platforms.
+  <li>If you want to use the FMPP Ant task, you need Ant 1.5.1 or later. If you don't know what's Ant then don't worry, you will not need it.
+</ul>
+
+<a name="sect3"></a>
+     <h2><font color="#000000">Extracting</font></h2>
+<p>Extract the downloaded archive file (<code><font color="#017D01">fmpp_<i>X</i>.<i>X</i>.<i>X</i>.tar.gz</font></code> or <code><font color="#017D01">fmpp_<i>X</i>.<i>X</i>.<i>X</i>.zip</font></code>) into the directory where you prefer to store FMPP. For Windows users it is typically <code><font color="#017D01">C:\fmpp</font></code> or  <code><font color="#017D01">C:\Program Files\fmpp</font></code>, for UN*X users it is typically <code><font color="#017D01">~/opt/fmpp</font></code> or <code><font color="#017D01">/opt/fmpp</font></code> (where <code><font color="#017D01">fmpp</font></code> is the extracted <code><font color="#017D01">fmpp_<i>X</i>.<i>X</i>.<i>X</i></font></code> directory after renaming). From now I will refer to this directory as <code><font color="#017D01"><i>&lt;FMPP></i></font></code>.</p>
+
+<p>
+
+
+<a name="commandLineTool"></a>
+     <h2><font color="#000000">Setup the command-line tool</font></h2>
+
+<a name="sect5"></a>
+     <h3><font color="#000000">Windows (95/98/Me, NT/2000/XP, ...etc.)</font></h3>
+
+<p>Quickly and simply: If you have unpacked FMPP into the <code><font color="#017D01">C:\Program Files\fmpp</font></code> (or <code><font color="#017D01">C:\Programme\fmpp</font></code>) or the <code><font color="#017D01">C:\fmpp</font></code> directory, then just copy <code><font color="#017D01"><i>&lt;FMPP></i>\bin\fmpp.bat</font></code> into <code><font color="#017D01">C:\Windows</font></code> (if that's the Windows directory on your installation... some systems use <code><font color="#017D01">C:\WinNT</font></code> or <code><font color="#017D01">C:\Win_ME</font></code>). Now you can use the <code><font color="#017D01">fmpp</font></code> command in the command-line anywhere. That's all.</p>
+
+<p>Note the <code><font color="#017D01">java.exe</font></code> (this comes with Java) must be in the path, or the <code><font color="#017D01">JAVA_HOME</font></code> environment variable must be correctly set. Otherwise <code><font color="#017D01">fmpp.bat</font></code> will fail when it tries to invoke <code><font color="#017D01">java.exe</font></code>.
+
+<p><i>If the above was not good for you, or you run into some problems, then read on...</i></p>
+
+<p>To run FMPP from command-line, execute <code><font color="#017D01"><i>&lt;FMPP></i>\bin\fmpp.bat</font></code>. You should put the <code><font color="#017D01"><i>&lt;FMPP></i>\bin</font></code> into the path, so you can issue an <code><font color="#017D01">fmpp</font></code> command from anywhere. Or, just drop <code><font color="#017D01">fmpp.bat</font></code> into a directory which is already in the path (say, into the Windows directory), if <code><font color="#017D01"><i>&lt;FMPP></i></font></code> is <code><font color="#017D01"><i>&lt;SystemDrive></i>:\fmpp</font></code> or <code><font color="#017D01"><i>&lt;SystemDrive></i>:\Progra<i>&lt;AnythingLongerThan2Characters></i>\fmpp</font></code> (e.g. <code><font color="#017D01">C:\Program Files\fmpp</font></code>). 
+
+<p>For those of you who don't know how to set the path: To set the path in Windows NT/2K/XP, use Control Panel/System/Advanced/Environment variables, and edit the <code><font color="#017D01">PATH</font></code> variable (upper/lower-case differences doesn't matter). To set the path in Win9x, add line <br>
+<code><font color="#017D01">set PATH=%PATH%;<i>&lt;FMPP></i>\bin</font></code><br>
+to the end of <code><font color="#017D01">C:\autoexec.bat</font></code>. You should restart Windows if the changes do not take effect.</p>
+
+<p>Because of the limitations of <code><font color="#017D01">.bat</font></code> files, you may get error messages as 
+"The input line is too long.". To solve this, install FMPP in a more "shallow" directory, so that the path to the FMPP related files is shorter.</p>
+
+<p><b>Windows 95/98/Me users please note</b>: Because of the deficiencies of the shell, there are limitations regarding <code><font color="#017D01">fmpp.bat</font></code>:
+<ul>
+  <li><code><font color="#017D01"><i>&lt;FMPP></i></font></code> must be <code><font color="#017D01">C:\fmpp</font></code> or  <code><font color="#017D01">C:\Progra<i>&lt;AnythingLongerThan2Characters></i>\fmpp</font></code>, or you have to set the <code><font color="#017D01">FMPP_HOME</font></code> environment variable to point to <code><font color="#017D01"><i>&lt;FMPP></i></font></code>. You can set environment variables in the same way as <code><font color="#017D01">PATH</font></code> above (since <code><font color="#017D01">PATH</font></code> is an environment variable too).
+  <li>If you set some environment variables (such as <code><font color="#017D01">FMPP_HOME</font></code>): the path stored by the environment variable can't contain spaces. Also, the <code><font color="#017D01">FMPP_HOME</font></code> can't contain directory names longer than 8 characters, so instead of <code><font color="#017D01">C:/Progidamina/fmpp</font></code> you have to write something like <code><font color="#017D01">C:/PROGID~1/fmpp</font></code>, that is, you have to use the DOS 8.3 equivalent of the long names. 
+  <li>It can happen that the size of "environment" that Windows gives be default is too small. In this case <code><font color="#017D01">fmpp.bat</font></code> will print error messages about the "environment", and probably will malfunction. To solve this, please add this line to the <code><font color="#017D01">config.sys</font></code>:
+  <br><code><font color="#017D01">SHELL=C:\COMMAND.COM /E:4096 /P</font></code>
+  <br>or find the Microsoft Knowledge Base artice with title "Out of Environment Space Error Message in MS-DOS Programs" (KB230205) on the Internet. 
+</ul> 
+
+<p>Anybody contributes with a good convenient installer ("setup.exe" built with Install Shield Wizard or something) is welcome.</p>
+
+
+<a name="sect6"></a>
+     <h3><font color="#000000">UN*X (Linux, FreeBSD, Solaris, Mac OS X, ...etc.)</font></h3>
+<p>To run FMPP from command-line, execute <code><font color="#017D01"><i>&lt;FMPP></i>/bin/fmpp</font></code>.
+You may want to create a soft link in a directory that is in the common <code><font color="#017D01">PATH</font></code>, such as <code><font color="#017D01">/bin</font></code>, so users can issue an <code><font color="#017D01">fmpp</font></code> command from anywhere:<br>
+<code><font color="#017D01">ln -s <i>&lt;FMPP></i>/bin/fmpp /bin/fmpp</font></code>
+
+<a name="sect7"></a>
+     <h3><font color="#000000">Other operation systems</font></h3>
+  <p>Unfortunatelly, there is no shell script written for you. But you can still use the command-line tool. You will have to execute <code><font color="#017D01"><i>&lt;FMPP></i>/lib/fmpp.jar</font></code> with Java. Please refer to the documentation of the Java implementation you are using for more details. If it can't execute <code><font color="#017D01">jar</font></code>-s, then you have to execute the <code><font color="#017D01">fmpp.tools.CommandLine</font></code> class with Java. For this, <code><font color="#017D01"><i>&lt;FMPP></i>/lib/fmpp.jar</font></code> must be in the so called "class path". Again, please refer to the documentation of the Java implementation you are using.</p>
+
+<a name="sect8"></a>
+     <h3><font color="#000000">Notes for all operating systems</font></h3>
+<ul>
+  <li>The <code><font color="#017D01">JAVA_HOME</font></code> environment variable must be correctly set, or <code><font color="#017D01">java.exe</font></code> (<code><font color="#017D01">java</font></code> on UN*X) must be in the <code><font color="#017D01">PATH</font></code>.</li>
+  <li>You can move <code><font color="#017D01">fmpp.bat</font></code> or (<code><font color="#017D01">fmpp</font></code> on UN*X) into any directory.</li>
+  <li>You can move the jars into the <code><font color="#017D01">lib</font></code> subdirectory of Ant (if you want to use the Ant task anyway). If you do this, the command line tool need Ant be installed on a "standard" location (like <code><font color="#017D01">C:\Program Files\ant</font></code>), or <code><font color="#017D01">ANT_HOME</font></code> must be correctly set.</li>
+  <li>If these shell scripts are not good for you somehow, just call the <code><font color="#017D01">fmpp.tools.CommandLine</font></code> class with <code><font color="#017D01">java</font></code>; of course <code><font color="#017D01">fmpp.jar</font></code>, and optional jars/classes (if any) and extension jars/classes (if any) must be in the <code><font color="#017D01">CLASSPATH</font></code>. Also, at least with Sun's Java implementations, you can run <code><font color="#017D01">fmpp.jar</font></code> directly with <code><font color="#017D01">java -jar <i>&lt;FMPP></i>/lib/fmpp.jar</font></code>.</li>
+</ul>
+  
+
+
+<a name="sect9"></a>
+     <h2><font color="#000000">Setup the Ant task</font></h2>
+
+<p>If you want to use FMPP as Ant task, copy the required jar files from <code><font color="#017D01"><i>&lt;FMPP></i>/lib</font></code> into the <code><font color="#017D01">lib</font></code> directory of your Ant installation (issuing <code><font color="#017D01">ant&nbsp;install</font></code> from <code><font color="#017D01"><i>&lt;FMPP></i></font></code> will do this for you), or ensure that the jars are in the <code><font color="#017D01">CLASSPATH</font></code> environment variable. Then, whenever you need the FMPP task in a project, add this line to your <code><font color="#017D01">build.xml</font></code>:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">&lt;taskdef name=&quot;fmpp&quot; classname=&quot;fmpp.tools.AntTask&quot;/&gt;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+
+<p>And then you can use the <code><font color="#017D01">&lt;fmpp <i>...</i>></font></code> task.
+
+
+<a name="sect10"></a>
+     <h2><font color="#000000">Installing optional parts and custom extensions</font></h2>
+
+<p>For the command-line tool, simply drop the jar file that contains the required classes into the <code><font color="#017D01"><i>&lt;FMPP></i>/lib</font></code> directory (or, into the Ant <code><font color="#017D01">lib</font></code> directory, if you store <code><font color="#017D01">fmpp.jar</font></code> there only). For the Ant task, either ensure that the required jars are in the <code><font color="#017D01">CLASSPATH</font></code>, or drop the jars into the <code><font color="#017D01">lib</font></code> directory of your Ant installation.</p>
+
+<p>If you need <b>XML support</b>, you should use J2SE 1.4 or later. If you use earlier Java, then install some JAXP 1.2+/SAX 2.0+/DOM Level 2 implementation with name-space support, for example: <a href="http://xerces.apache.org/">Xerces</a> (recommended) or <a href="http://xml.apache.org/crimson/">Crimson</a>. (Note that Ant comes with Xerces, so when you use the FMPP Ant task, the XML related classes will be available.)</p>
+  
+<p><b>XPath expressions</b> will work only if <a href="http://jaxen.org/">Jaxen</a> (recommended, use 1.1-beta-8 or later!) or <a href="http://xml.apache.org/xalan/">Apache Xalan</a> classes are available (Xalan was included with Sun J2SE 1.4, but not with 1.5).</p>
+
+
+<a name="updatingFreeMarker"></a>
+     <h2><font color="#000000">Updating FreeMarker</font></h2>
+
+<p>FMPP comes with FreeMarker just for the sake of simplicity. You can replace FreeMarker with a later version as far as it is backward compatible with the version that FMPP comes with. For this, <a href="http://freemarker.org/freemarkerdownload.html">download the latest backward compatible FreeMarker release</a>, and overwrite the <code><font color="#017D01"><i>&lt;FMPP></i>/lib/freemarker.jar</font></code> with the <code><font color="#017D01">lib/freemarker.jar</font></code> of the FreeMarker release. (Of course, if you are using the FMPP Ant task, you may need to replace the <code><font color="#017D01">freemarker.jar</font></code> in the <code><font color="#017D01">lib</font></code> directory of the Ant installation too.)</p>
+
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="manual.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="basics.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

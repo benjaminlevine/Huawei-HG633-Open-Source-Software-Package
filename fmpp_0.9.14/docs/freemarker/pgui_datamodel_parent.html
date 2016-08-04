@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - Containers
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_datamodel_scalar.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_datamodel_method.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="pgui_datamodel_parent"></a>Containers
+  </h2>
+
+ 
+<p>These are hashes, sequences, and collections.</p>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_31"></a>Hashes
+  </h3>
+
+
+          
+
+          <p>Hashes are java objects that implement
+          <tt style="color: #A03D10">TemplateHashModel</tt> interface.
+          <tt style="color: #A03D10">TemplateHashModel</tt> contains two methods:
+          <tt style="color: #A03D10">TemplateModel get(String key)</tt>, which returns the
+          subvariable of the given name, and <tt style="color: #A03D10">boolean
+          isEmpty()</tt>, which indicates if the hash has zero
+          subvariable or not. The <tt style="color: #A03D10">get</tt> method returns null
+          if no subvariable with the given name exists.</p>
+
+          <p>The <tt style="color: #A03D10">TemplateHashModelEx</tt> interface extends
+          <tt style="color: #A03D10">TemplateHashModel</tt>. It adds methods by which <a href="ref_builtins_hash.html#ref_builtin_values">values</a> and <a href="ref_builtins_hash.html#ref_builtin_keys">keys</a> built-ins can enumerate the
+          subvariables of the hash.</p>
+
+          <p>The commonly used implementation is
+          <tt style="color: #A03D10">SimpleHash</tt>, which implements
+          <tt style="color: #A03D10">TemplateHashModelEx</tt>. Internally it uses a
+          <tt style="color: #A03D10">java.util.Hash</tt> to store the subvariables.
+          <tt style="color: #A03D10">SimpleHash</tt> has methods by which you can add and
+          remove subvariable. These methods should be used to initialize the
+          variable directly after its creation.</p>
+
+          <p>Containers are immutable within FTL. That is, you can't add,
+          replace or remove the subvariables they contain.</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_32"></a>Sequences
+  </h3>
+
+
+          
+
+          <p>Sequences are java objects that implement
+          <tt style="color: #A03D10">TemplateSequenceModel</tt>. It contains two methods:
+          <tt style="color: #A03D10">TemplateModel get(int index)</tt> and <tt style="color: #A03D10">int
+          size()</tt>.</p>
+
+          <p>The commonly used implementation is
+          <tt style="color: #A03D10">SimpleSequence</tt>. It uses internally a
+          <tt style="color: #A03D10">java.util.List</tt> to store its subvariables.
+          <tt style="color: #A03D10">SimpleSequence</tt> has methods by which you can add
+          subvariables. These methods should be used to populate the sequence
+          directly after its creation.</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_33"></a>Collections
+  </h3>
+
+
+          
+
+          <p>Collections are java objects that implement the
+          <tt style="color: #A03D10">TemplateCollectionModel</tt> interface. That interface
+          has one method: <tt style="color: #A03D10">TemplateModelIterator iterator()</tt>.
+          The <tt style="color: #A03D10">TemplateModelIterator</tt> interface is similar to
+          <tt style="color: #A03D10">java.util.Iterator</tt>, but it returns
+          <tt style="color: #A03D10">TemplateModels</tt> instead of
+          <tt style="color: #A03D10">Object</tt>-s, and it can throw
+          <tt style="color: #A03D10">TemplateModelException</tt>s.</p>
+
+          <p>The commonly used implementation is
+          <tt style="color: #A03D10">SimpleCollection</tt>.</p>
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_datamodel_scalar.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_datamodel_method.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

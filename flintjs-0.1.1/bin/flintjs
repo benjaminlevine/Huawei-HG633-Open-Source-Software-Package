@@ -1,0 +1,145 @@
+#!/usr/bin/env python
+
+# Copyright 2010 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+import optparse
+import os
+import os.path
+import re
+import string
+import sys
+
+
+# ../flintjs/bin/flintjs --> ../flintjs/
+FLINTJS_DIR = os.path.dirname(os.path.dirname(__file__))
+FLINTJS_VERSION = '0.1'
+
+
+def main():
+  usage = 'usage: %prog [-v] -p path [-n name | -u] [-d desc]'
+  parser = optparse.OptionParser(
+                    usage=usage,
+                    version='%prog ' + FLINTJS_VERSION)
+  parser.add_option('-n', '--name',
+                    dest='project_name',
+                    metavar='NAME',
+                    help='set project name')
+  parser.add_option('-p', '--path',
+                    dest='project_path',
+                    metavar='PATH',
+                    help='set destination path')
+  parser.add_option('-d', '--description',
+                    dest='project_description',
+                    metavar='DESC',
+                    help='set project description')
+  parser.add_option('-u', '--update',
+                    dest='update',
+                    action='store_true',
+                    help='update flintjs path in local.properties')
+  parser.add_option('-v', '--verbose',
+                    dest='verbose',
+                    action='store_true',
+                    help='verbose')
+  (options, args) = parser.parse_args()
+
+  def verbose(s):
+    if options.verbose:
+      print s
+
+  RUN_HELP_STR = 'Run with the -h command to see options.'
+
+  if not options.project_path:
+    parser.error('Project path is required. ' + RUN_HELP_STR)
+
+  if not options.update and not options.project_name:
+    parser.error('Project name is required. ' + RUN_HELP_STR)
+
+  # Ensure project path exists
+  try:
+    os.makedirs(options.project_path)
+  except OSError:
+    pass
+
+  if options.update:
+    do_update(options)
+  else:
+    do_create(options)
+
+
+def do_update(options):
+  local_prop_tmpl_path = os.path.join(FLINTJS_DIR, 'template', 'local.properties')
+  local_prop_proj_path = os.path.join(options.project_path, 'local.properties')
+
+  local_prop_out = ''
+
+  if os.path.exists(local_prop_proj_path):
+    inf = open(local_prop_proj_path)
+    local_prop_cur = inf.read()
+    inf.close()
+
+    local_prop_cur = re.sub(r'\s*flintjs\.dir\s*=.*', '', local_prop_cur)
+    local_prop_out = local_prop_cur + '\nflintjs.dir=' + FLINTJS_DIR
+
+  else:
+    inf = open(local_prop_tmpl_path)
+    tmpl = string.Template(inf.read())
+    inf.close()
+    local_prop_out = tmpl.substitute(dict(flintjs_dir=FLINTJS_DIR))
+
+  outf = open(local_prop_proj_path, 'w')
+  outf.write(local_prop_out)
+  outf.close()
+
+
+def do_create(options):
+  # Generate project skeleton
+  template_params = dict(flintjs_dir=FLINTJS_DIR)
+  template_params.update(options.__dict__)
+  if not template_params['project_description']:
+    template_params['project_description'] = ''
+
+  template_dir = os.path.join(FLINTJS_DIR, 'template')
+
+  path_sep_re = re.compile(r'[/\\]+')
+
+  for path, dirs, files in os.walk(template_dir):
+    subdir = path[len(template_dir) + 1:]
+
+    if filter(lambda c: c.startswith('.'), path_sep_re.split(subdir)):
+      continue
+
+    for f in filter(lambda f: not f.startswith('.'), files):
+      inf = open(os.path.join(path, f))
+      tmpl = string.Template(inf.read())
+      inf.close()
+
+      outf_path = os.path.join(options.project_path, subdir, f)
+      if os.path.exists(outf_path):
+        print >> sys.stderr, "File exists, skipping: %s" % outf_path
+        continue
+
+      outf = open(os.path.join(options.project_path, subdir, f), 'w')
+      outf.write(tmpl.substitute(template_params))
+      outf.close()
+
+    for d in filter(lambda d: not d.startswith('.'), dirs):
+      try:
+        os.makedirs(os.path.join(options.project_path, subdir, d))
+      except OSError:
+        pass
+
+
+if __name__ == '__main__':
+  main()

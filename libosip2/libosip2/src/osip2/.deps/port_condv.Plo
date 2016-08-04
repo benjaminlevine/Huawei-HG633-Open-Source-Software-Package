@@ -1,0 +1,143 @@
+port_condv.lo: port_condv.c ../../include/osip2/internal.h \
+ ../../osip-config.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/string.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/features.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_config.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/cdefs.h \
+ /opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include/stddef.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/stdio.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/types.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/wordsize.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/typesizes.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/pthreadtypes.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/endian.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/endian.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/byteswap.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/byteswap.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/byteswap-common.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_stdio.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/wchar.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/wchar.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_mutex.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/pthread.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sched.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/time.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/sched.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/time.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_clk_tck.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/signal.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/sigset.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/setjmp.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_pthread.h \
+ /opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include/stdarg.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/stdio_lim.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/stdlib.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/types.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/select.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/select.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/sysmacros.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/alloca.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/stdint.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/time.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/semaphore.h \
+ /home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/semaphore.h \
+ ../../include/osipparser2/osip_port.h \
+ ../../include/osipparser2/osip_const.h \
+ ../../include/osipparser2/osip_list.h ../../include/osip2/osip_mt.h \
+ ../../include/osip2/osip_condv.h
+
+../../include/osip2/internal.h:
+
+../../osip-config.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/string.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/features.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_config.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/cdefs.h:
+
+/opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include/stddef.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/stdio.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/types.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/wordsize.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/typesizes.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/pthreadtypes.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/endian.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/endian.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/byteswap.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/byteswap.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/byteswap-common.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_stdio.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/wchar.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/wchar.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_mutex.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/pthread.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sched.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/time.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/sched.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/time.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_clk_tck.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/signal.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/sigset.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/setjmp.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_pthread.h:
+
+/opt/toolchain_hisi_ipsec/arm-hsan-linux-uclibcgnueabi/bin/../lib/gcc/arm-hsan-linux-uclibcgnueabi/4.4.6/include/stdarg.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/stdio_lim.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/stdlib.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/types.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/select.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/select.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/sysmacros.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/alloca.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/stdint.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/sys/time.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/semaphore.h:
+
+/home/luokunling/HG633-TA/BR-R5-HG633-TA-20140913/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/usr/include/bits/semaphore.h:
+
+../../include/osipparser2/osip_port.h:
+
+../../include/osipparser2/osip_const.h:
+
+../../include/osipparser2/osip_list.h:
+
+../../include/osip2/osip_mt.h:
+
+../../include/osip2/osip_condv.h:

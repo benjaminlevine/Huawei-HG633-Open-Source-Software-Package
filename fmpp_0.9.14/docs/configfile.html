@@ -1,0 +1,182 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, configuration file">
+      <title>FMPP - Configuration Files</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="left">
+	    <h1 style="font-family: Arial, sans-serif"><font color="#000000">Configuration Files</font></h1>
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br>&nbsp;&nbsp;<a href="settings.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="pphash.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>Basics</a></li>
+    <li><a href="#configurationBase" class=toc>The configuration base</a></li>
+    <li><a href="#inheritance" class=toc>Configuration inheritance</a></li>
+    <li><a href="#sect4" class=toc>Configuration files with TDD syntax</a></li>
+    <li><a href="#sect5" class=toc>Configuration files with &quot;properties&quot; syntax</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<a name="sect1"></a>
+     <h2><font color="#000000">Basics</font></h2>
+
+<p>Configuration files are text files that store setting values. They can use two syntaxes (two formats):</p>
+<ul>
+  <li><a href="tdd.html">TDD</a>: This is the preferred format.</li>
+  <li><a href="properties.html">Java "Properties"</a>: This is mostly supported for backward compatibility with the FMPP 0.8.X series.</li>
+</ul>
+
+<p>The syntax that a configuration file uses is detected with the file extension. For "properties" configuration files, the file extension must be <code><font color="#017D01">cfg</font></code> or <code><font color="#017D01">properties</font></code>. For TDD files, the preferred file extension is <code><font color="#017D01">fmpp</font></code>, but it can be anything but <code><font color="#017D01">cfg</font></code> and <code><font color="#017D01">properties</font></code>.</p>
+
+<p>When you want to load a configuration file, you specify the path of the file for the front-end somehow (read <a href="frontends.html">the documentation of the front-end</a>). But if the configuration file name is one of these standard names:</p>
+<ul>
+  <li><code><font color="#017D01">config.fmpp</font></code></li>
+  <li><code><font color="#017D01">fmpp.cfg</font></code></li>
+</ul>
+
+<p>then it is enough to give the path of the directory that contains the configuration file. (<code><font color="#017D01">config.fmpp</font></code> has higher priority if both file is present.)</p>
+
+
+
+<a name="configurationBase"></a>
+     <h2><font color="#000000">The configuration base</font></h2>
+
+<p>The configuration base is the directory used as base for resolving relative <a href="overview.html#realPath">real paths</a> in setting values. Be default, the configuration base is the directory that contains the configuration file. For example, if <code><font color="#017D01">/home/me/project1/config.fmpp</font></code> contains <code><font color="#017D01">sourceRoot:&nbsp;src</font></code>, then the <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> will be <code><font color="#017D01">/home/me/project1/src</font></code>.</p>
+
+<p>The configuration base can be changed with the <code><a href="settings.html#key_configurationBase" class=s><font color="#20C000">configurationBase</font></a></code> meta setting. For example, if in the previous example <code><font color="#017D01">config.fmpp</font></code> contains <code><font color="#017D01">configurationBase:&nbsp;../project2</font></code>, then the <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> will be <code><font color="#017D01">/home/me/project2/src</font></code>. The <code><a href="settings.html#key_configurationBase" class=s><font color="#20C000">configurationBase</font></a></code> setting applies only for the setting values specified in the same file it is stored in.</p>
+
+<p>Not all relative paths in settings are resolved relatively to the <code><a href="settings.html#key_configurationBase" class=s><font color="#20C000">configurationBase</font></a></code>. Relative <a href="overview.html#virtualPath">virtual paths</a>, for example, are relative to the <code><a href="settings.html#key_sourceRoot" class=s><font color="#20C000">sourceRoot</font></a></code> or <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code>. Relative paths of data files passed to data loaders are relative to the <code><a href="settings.html#key_dataRoot" class=s><font color="#20C000">dataRoot</font></a></code>.</p>
+
+<p>If the setting value comes not from a configuration file (such as from a command-line argument), then the front-end specifies what the configuration base is for that setting value (see the documentation of the front-end).</p>
+
+
+
+<a name="inheritance"></a>
+     <h2><font color="#000000">Configuration inheritance</font></h2>
+
+<p>A configuration file can inherit setting values from another configuration file, with the <code><a href="settings.html#key_inheritConfiguration" class=s><font color="#20C000">inheritConfiguration</font></a></code> meta setting. When the FMPP core loads a configuration file, and it finds <code><a href="settings.html#key_inheritConfiguration" class=s><font color="#20C000">inheritConfiguration</font></a></code> setting in it, it will automatically load that configuration file too, and then merge its settings with the settings loaded from the inheriting (the first) configuration file. The settings stored in the inheriting configuration file have higher priority than the settings stored in the inherited configuration file. Thus, if both file contains the same setting, then the value stored in the inheriting file will be used, or it will be merged with the other value if the setting supports merging.</p>
+
+<p>The above description is applicable recursively. That is, an inherited configuration file can inherit another configuration file, and that can inherit yet another configuration file, and so on.</p>
+
+<p><a href="settings.html#metaSettings">Meta settings</a> (as <code><a href="settings.html#key_inheritConfiguration" class=s><font color="#20C000">inheritConfiguration</font></a></code> and <code><a href="settings.html#key_configurationBase" class=s><font color="#20C000">configurationBase</font></a></code>) are never inherited. They influence only the file where they are actually present.</p>
+
+<p>A possible usage of configuration inheritance is to customize a common configuration file. See: <code><font color="#017D01"><i>&lt;FMPP></i>/docs/examples/inherit_config</font></code>.</p>
+
+
+
+<a name="sect4"></a>
+     <h2><font color="#000000">Configuration files with TDD syntax</font></h2>
+
+<p>These files start in TDD hash mode. For example:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">sourceRoot: src
+outputRoot: out
+data: {tdd(data/style.tdd), birds:csv(data/birds.csv)}
+removeExtensions: [ftl, t2]
+datetimeFormat: &quot;MMM d, yyyy hh:mm a zzz&quot;
+caseSensitive<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>According the TDD syntax, values of type sequence (as <code><a href="settings.html#key_removeExtensions" class=s><font color="#20C000">removeExtensions</font></a></code>) was put into square brackets. However, for sequence settings, if the sequence would contain exactly 1 element, then you can just give that element directly:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">removeExtensions: ftl<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>and the value will be automatically converted to a sequence that contains the a single string <code><font color="#017D01">ftl</font></code>, as it is known that <code><a href="settings.html#key_removeExtensions" class=s><font color="#20C000">removeExtensions</font></a></code> must be a sequence. This is a feature of the setting handling mechanism, not TDD, so don't try to use this trick elsewhere.</p>
+
+<p>TDD configuration files always use ISO-8859-1 encoding, if there is no other encoding suggested in the file with <a href="tdd.html#encoding">TDD's encoding comment</a>.</p>
+
+<p>For more information about TDD, please read <a href="tdd.html">the chapter about TDD</a>.</p>
+
+
+
+<a name="sect5"></a>
+     <h2><font color="#000000">Configuration files with &quot;properties&quot; syntax</font></h2>
+
+<p><b>Attention:</b> "properties" configuration files must use <code><font color="#017D01">cfg</font></code> or <code><font color="#017D01">properties</font></code> file extension.</p>
+
+<p>This is the previous example configuration file with "properties" format:</p>
+
+<div align="left"><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td><table bgcolor="#FFFFFF" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">sourceRoot = src
+outputRoot = out
+data = tdd(data/style.tdd), birds:csv(data/birds.csv)
+removeExtensions = ftl, t2
+datetimeFormat = MMM d, yyyy hh:mm a zzz
+caseSensitive<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td><td height="1" width="1" bgcolor="black"><img src="img/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td></tr></table></div>
+<p>The differences to TDD configuration files are:</p>
+<ul>
+  <li>It uses <a href="properties.html">"properties" syntax</a>...</li>
+  <li>The values do not use TDD syntax, except for composite types as hashes and sequences. For example, the value of <code><a href="settings.html#key_datetimeFormat" class=s><font color="#20C000">datetimeFormat</font></a></code> is not quoted (in TDD it was, as the string contains spaces and coma), it is just entered directly.</li>
+  <li>The <code><font color="#017D01">{</font></code> and <code><font color="#017D01">}</font></code> for the <code><a href="settings.html#key_data" class=s><font color="#20C000">data</font></a></code> hash and the <code><font color="#017D01">[</font></code> and <code><font color="#017D01">]</font></code> for the <code><a href="settings.html#key_removeExtensions" class=s><font color="#20C000">removeExtensions</font></a></code> sequence is omitted. This is because the value of a hash setting is parsed as hash mode TDD, and the value of a sequence setting is parsed as sequence mode TDD, so the brackets are implied.</li>
+  <li>For boolean settings, empty-string is considered as <code><font color="#017D01">true</font></code> (see the line that sets <code><a href="settings.html#key_caseSensitive" class=s><font color="#20C000">caseSensitive</font></a></code>).</li>
+  <li>Setting names can be written with lower case dashed form (as <code><font color="#20C000">output-root</font></code>) instead of mixed case (as <code><a href="settings.html#key_outputRoot" class=s><font color="#20C000">outputRoot</font></a></code>). This is for backward compatibility with FMPP 0.8.X, where configuration files were use to store options to the command-line tool. The two forms can be used mixed in the same configuration file.</li>
+</ul>
+
+<p>Otherwise "properties" configuration files work in the same way as TDD configuration files. For example, they can inherit an other configuration file. It is not a problem if a "properties" configuration file inherits TDD configuration file or the opposite.</p>
+
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"><a href="settings.html"><img alt="Prev" src="img/prev.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="pphash.html"><img alt="Next" src="img/next.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="manual.html"><img alt="Contents" src="img/contents.png" border="0" width="44" height="44"></a>&nbsp;&nbsp;<a href="index.html"><img alt="Home" src="img/home.png" border="0" width="39" height="44"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="reportbug.html"><img alt="Report bug" src="img/reportbug.png" border="0" width="90" height="40"></a>&nbsp;&nbsp;</td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - User-defined directive (&lt;@...&gt;)
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="ref_directive_setting.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="ref_directives.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="ref_directive_macro.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="ref_directive_userDefined"></a>User-defined directive (&lt;@...&gt;)
+  </h2>
+
+ 
+<a name="ref.directive.userDefined"></a>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_101"></a>Synopsis
+  </h3>
+
+
+          <pre class="metaTemplate">
+<tt style="color: #A03D10">&lt;@<i style="color: #DD4400">user_def_dir_exp</i> <i style="color: #DD4400">param1</i>=<i style="color: #DD4400">val1</i> <i style="color: #DD4400">param2</i>=<i style="color: #DD4400">val2</i> <i style="color: #DD4400">...</i> <i style="color: #DD4400">paramN</i>=<i style="color: #DD4400">valN</i>/&gt;</tt>
+(Note the XML-style <tt style="color: #A03D10">/</tt> before the <tt style="color: #A03D10">&gt;</tt>)  
+or if you need loop variables (<a href="#ref_directive_userDefined_loopVar">more details...</a>)
+<tt style="color: #A03D10">&lt;@<i style="color: #DD4400">user_def_dir_exp</i> <i style="color: #DD4400">param1</i>=<i style="color: #DD4400">val1</i> <i style="color: #DD4400">param2</i>=<i style="color: #DD4400">val2</i> <i style="color: #DD4400">...</i> <i style="color: #DD4400">paramN</i>=<i style="color: #DD4400">valN</i> ; <i style="color: #DD4400">lv1</i>, <i style="color: #DD4400">lv2</i>, <i style="color: #DD4400">...</i>, <i style="color: #DD4400">lvN</i>/&gt;</tt>
+
+Or the same as the above two but with end-tag (<a href="#ref_directive_userDefined_entTag">more details...</a>):
+
+<tt style="color: #A03D10">&lt;@<i style="color: #DD4400">user_def_dir_exp</i> <i style="color: #DD4400">...</i>&gt;
+  ...
+&lt;/@<i style="color: #DD4400">user_def_dir_exp</i>&gt;</tt>
+or
+<tt style="color: #A03D10">&lt;@<i style="color: #DD4400">user_def_dir_exp</i> <i style="color: #DD4400">...</i>&gt;
+  ...
+&lt;/@&gt;</tt>
+
+Or all above but with positional parameter passing (<a href="#ref_directive_userDefined_positionalParam">more details...</a>):
+
+<tt style="color: #A03D10">&lt;@<i style="color: #DD4400"></i> <i style="color: #DD4400">val1</i>, <i style="color: #DD4400">val2</i>, <i style="color: #DD4400">...</i>, <i style="color: #DD4400">valN</i>/&gt;</tt>
+...etc.
+</pre>
+
+
+          <p>Where:</p>
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">user_def_dir_exp</i></tt>:
+              Expression evaluates to an user-defined directive (for example a
+              macro), that will be called.
+            </li>
+
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">param1</i></tt>,
+              <tt style="color: #A03D10"><i style="color: #DD4400">param2</i></tt>, ...etc.:
+              The name of parameters. They are 
+              expressions.
+            </li>
+
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">val1</i></tt>,
+              <tt style="color: #A03D10"><i style="color: #DD4400">val2</i></tt>, ...etc.: The
+              value of parameters. They 
+              expressions.
+            </li>
+
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">lv1</i></tt>,
+              <tt style="color: #A03D10"><i style="color: #DD4400">lv2</i></tt>, ...etc.: The
+              name of <a href="dgui_misc_var.html">loop variables</a>.
+              They are  expressions.
+            </li>
+          </ul>    </div>
+
+
+          <p>The number of parameters can be 0 (i.e. no parameters).</p>
+
+          <p>The order of parameters is not significant (unless you use
+          positional parameter passing). The name of parameters must be
+          unique. Lower- and uppercase letters are considered as different
+          letters in parameter names (i.e. <tt style="color: #A03D10">Color</tt> and
+          <tt style="color: #A03D10">color</tt> is not the same).</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_102"></a>Description
+  </h3>
+
+
+          <p>This will call an user-defined directive, for example a macro.
+          The meaning of parameters, and the set of supported and required
+          parameters depend on the concrete user-defined directive.</p>
+
+          <p>You may read <a href="dgui_misc_userdefdir.html">the tutorial
+          about user-defined directives</a>.</p>
+
+          <p>Example 1: Calls the directive that is stored in the variable
+          <tt style="color: #A03D10">html_escape</tt>:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;@html_escape&gt;
+  a &lt; b
+  Romeo &amp; Juliet
+&lt;/@html_escape&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>Output:</p>
+
+          <div align="left"><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+  a &amp;lt; b
+  Romeo &amp;amp; Juliet&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>Example 2: Calls a macro with parameters:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;@list items=[&quot;mouse&quot;, &quot;elephant&quot;, &quot;python&quot;] title=&quot;Animals&quot;/&gt;
+<i>...</i>
+&lt;#macro list title items&gt;
+  &lt;p&gt;${title?cap_first}:
+  &lt;ul&gt;
+    &lt;#list items as x&gt;
+      &lt;li&gt;${x?cap_first}
+    &lt;/#list&gt;
+  &lt;/ul&gt;
+&lt;/#macro&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>Output:</p>
+
+          <div align="left"><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+  &lt;p&gt;Animals:
+  &lt;ul&gt;
+      &lt;li&gt;Mouse
+      &lt;li&gt;Elephant
+      &lt;li&gt;Python
+  &lt;/ul&gt;
+  
+<i>...</i>&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          
+              
+  
+  
+  <h4 class="section_level_3"><a name="ref_directive_userDefined_entTag"></a>End-tag
+  </h4>
+
+
+            <p>You can omit the
+            <tt style="color: #A03D10"><i style="color: #DD4400">user_def_dir_exp</i></tt> in
+            the <a href="gloss.html#gloss.endTag">end-tag</a>. That is, you can
+            always write <tt style="color: #A03D10">&lt;/@&gt;</tt> instead of
+            <tt style="color: #A03D10">&lt;/@<i style="color: #DD4400">anything</i>&gt;</tt>.
+            This rule is mostly useful when the
+            <tt style="color: #A03D10"><i style="color: #DD4400">user_def_dir_exp</i></tt>
+            expression is too complex, because you don't have to repeat the
+            expression in the end-tag. Furthermore, if the expression contains
+            other than simple variable names and dots, you are not allowed to
+            repeat the expression. For example,
+            <tt style="color: #A03D10">&lt;@a_hash[a_method()]&gt;<i style="color: #DD4400">...</i>&lt;/@a_hash[a_method()]&gt;</tt>
+            is an error; you must write
+            <tt style="color: #A03D10">&lt;@a_hash[a_method()]&gt;<i style="color: #DD4400">...</i>&lt;/@&gt;</tt>.
+            But
+            <tt style="color: #A03D10">&lt;@a_hash.foo&gt;<i style="color: #DD4400">...</i>&lt;/@a_hash.foo&gt;</tt>
+            is OK.</p>
+          
+
+          
+              
+  
+  
+  <h4 class="section_level_3"><a name="ref_directive_userDefined_loopVar"></a>Loop variables
+  </h4>
+
+
+            <p>Some user-defined directives create loop variables
+            (similarly to <tt style="color: #A03D10">list</tt> directive). As with the
+            predefined directives (as <tt style="color: #A03D10">list</tt>) the
+             of loop variables is given when you call
+            the directive (as <tt style="color: #A03D10">foo</tt> in <tt style="color: #A03D10">&lt;#list
+            foos as
+            foo&gt;<i style="color: #DD4400">...</i>&lt;/#list&gt;</tt>),
+            while the  of the variable is set by the
+            directive itself. In the case of user-defined directives the
+            syntax is that the name of loop variables is given after a
+            semicolon. For example:</p>
+
+            <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;@myRepeatMacro count=4 ; <b>x, last</b>&gt;
+  ${<b>x</b>}. Something... &lt;#if <b>last</b>&gt; This was the last!&lt;/#if&gt;
+&lt;/@myRepeatMacro&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+            <p>Note that the number of loop variable created by the
+            user-defined directive and the number of loop variables specified
+            after the semicolon need not match. Say, if you are not interested
+            if the repetition is the last, you can simply write:</p>
+
+            <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;@myRepeatMacro count=4 ; <b>x</b>&gt;
+  ${<b>x</b>}. Something...
+&lt;/@myRepeatMacro&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+            <p>or you can even:</p>
+
+            <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;@myRepeatMacro count=4&gt;
+  Something...
+&lt;/@myRepeatMacro&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+            <p>Furthermore, it does not cause error if you specify more
+            loop variables after the semicolon than the user-defined directive
+            creates, just the last few loop variables will not be created
+            (i.e. those will be undefined in the nested content). Trying to
+            use the undefined loop variables, however, will cause error
+            (unless you use built-ins like <tt style="color: #A03D10">?default</tt>), since
+            you try to access a non-existing variable.</p>
+
+            <p>See the <a href="dgui_misc_userdefdir.html">the tutorial
+            about user-defined directives</a> for more explanation.</p>
+          
+
+          
+              
+  
+  
+  <h4 class="section_level_3"><a name="ref_directive_userDefined_positionalParam"></a>Positional parameter passing
+  </h4>
+
+
+            
+
+            <p>Positional parameter passing (as <tt style="color: #A03D10">&lt;@heading
+            &quot;Preface&quot;, 1/&gt;</tt>) is a shorthand form of normal named
+            parameter passing (as <tt style="color: #A03D10">&lt;@heading title=&quot;Preface&quot;
+            level=1/&gt;</tt>), where you omit the parameter name. This
+            shorthand form should be used if a user-defined directive has only
+            one parameter, or if it is easy to remember the order of
+            parameters for a frequently used user-defined directive. To use
+            this form, you have to know the order in which the named
+            parameters are declared (trivial if the directive has only one
+            parameter). Say, if <tt style="color: #A03D10">heading</tt> was created as
+            <tt style="color: #A03D10">&lt;#macro heading title
+            level&gt;<i style="color: #DD4400">...</i></tt>, then
+            <tt style="color: #A03D10">&lt;@heading &quot;Preface&quot;, 1/&gt;</tt> is equivalent
+            with <tt style="color: #A03D10">&lt;@heading title=&quot;Preface&quot; level=1/&gt;</tt>
+            (or <tt style="color: #A03D10">&lt;@heading level=1 title=&quot;Preface&quot;/&gt;</tt>;
+            if you use parameter names, the order is not important). Note that
+            positional parameter passing is currently only supported for
+            macros.</p>
+          
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="ref_directive_setting.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="ref_directives.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="ref_directive_macro.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

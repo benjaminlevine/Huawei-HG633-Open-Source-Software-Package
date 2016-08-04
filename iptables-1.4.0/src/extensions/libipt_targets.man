@@ -1,0 +1,412 @@
+.SS CLASSIFY
+This module allows you to set the skb->priority value (and thus classify the packet into a specific CBQ class).
+.TP
+.BI "--set-class " "MAJOR:MINOR"
+Set the major and minor class value.
+.SS CLUSTERIP
+This module allows you to configure a simple cluster of nodes that share
+a certain IP and MAC address without an explicit load balancer in front of
+them.  Connections are statically distributed between the nodes in this
+cluster.
+.TP
+.BI "--new "
+Create a new ClusterIP.  You always have to set this on the first rule
+for a given ClusterIP.
+.TP
+.BI "--hashmode " "mode"
+Specify the hashing mode.  Has to be one of
+.B sourceip, sourceip-sourceport, sourceip-sourceport-destport
+.TP
+.BI "--clustermac " "mac"
+Specify the ClusterIP MAC address.  Has to be a link-layer multicast address
+.TP
+.BI "--total-nodes " "num"
+Number of total nodes within this cluster.
+.TP
+.BI "--local-node " "num"
+Local node number within this cluster.
+.TP
+.BI "--hash-init " "rnd"
+Specify the random seed used for hash initialization.
+.SS DNAT
+This target is only valid in the
+.B nat
+table, in the
+.B PREROUTING
+and
+.B OUTPUT
+chains, and user-defined chains which are only called from those
+chains.  It specifies that the destination address of the packet
+should be modified (and all future packets in this connection will
+also be mangled), and rules should cease being examined.  It takes one
+type of option:
+.TP
+.BR "--to-destination " "[\fIipaddr\fP][-\fIipaddr\fP][:\fIport\fP-\fIport\fP]"
+which can specify a single new destination IP address, an inclusive
+range of IP addresses, and optionally, a port range (which is only
+valid if the rule also specifies
+.B "-p tcp"
+or
+.BR "-p udp" ).
+If no port range is specified, then the destination port will never be
+modified. If no IP address is specified then only the destination port
+will be modified.
+
+In Kernels up to 2.6.10 you can add several --to-destination options.  For
+those kernels, if you specify more than one destination address, either via an
+address range or multiple --to-destination options, a simple round-robin (one
+after another in cycle) load balancing takes place between these addresses.
+Later Kernels (>= 2.6.11-rc1) don't have the ability to NAT to multiple ranges
+anymore.
+.TP
+.BR "--random"
+If option
+.B "--random"
+is used then port mapping will be randomized (kernel >= 2.6.22).
+.RS
+.PP
+.SS LOG
+Turn on kernel logging of matching packets.  When this option is set
+for a rule, the Linux kernel will print some information on all
+matching packets (like most IP header fields) via the kernel log
+(where it can be read with
+.I dmesg
+or 
+.IR syslogd (8)).
+This is a "non-terminating target", i.e. rule traversal continues at
+the next rule.  So if you want to LOG the packets you refuse, use two
+separate rules with the same matching criteria, first using target LOG
+then DROP (or REJECT).
+.TP
+.BI "--log-level " "level"
+Level of logging (numeric or see \fIsyslog.conf\fP(5)).
+.TP
+.BI "--log-prefix " "prefix"
+Prefix log messages with the specified prefix; up to 29 letters long,
+and useful for distinguishing messages in the logs.
+.TP
+.B --log-tcp-sequence
+Log TCP sequence numbers. This is a security risk if the log is
+readable by users.
+.TP
+.B --log-tcp-options
+Log options from the TCP packet header.
+.TP
+.B --log-ip-options
+Log options from the IP packet header.
+.TP
+.B --log-uid
+Log the userid of the process which generated the packet.
+.SS MASQUERADE
+This target is only valid in the
+.B nat
+table, in the
+.B POSTROUTING
+chain.  It should only be used with dynamically assigned IP (dialup)
+connections: if you have a static IP address, you should use the SNAT
+target.  Masquerading is equivalent to specifying a mapping to the IP
+address of the interface the packet is going out, but also has the
+effect that connections are
+.I forgotten
+when the interface goes down.  This is the correct behavior when the
+next dialup is unlikely to have the same interface address (and hence
+any established connections are lost anyway).  It takes one option:
+.TP
+.BR "--to-ports " "\fIport\fP[-\fIport\fP]"
+This specifies a range of source ports to use, overriding the default
+.B SNAT
+source port-selection heuristics (see above).  This is only valid
+if the rule also specifies
+.B "-p tcp"
+or
+.BR "-p udp" .
+.TP
+.BR "--random"
+Randomize source port mapping
+If option
+.B "--random"
+is used then port mapping will be randomized (kernel >= 2.6.21).
+.RS
+.PP
+.SS MIRROR
+This is an experimental demonstration target which inverts the source
+and destination fields in the IP header and retransmits the packet.
+It is only valid in the
+.BR INPUT ,
+.B FORWARD
+and
+.B PREROUTING
+chains, and user-defined chains which are only called from those
+chains.  Note that the outgoing packets are
+.B NOT
+seen by any packet filtering chains, connection tracking or NAT, to
+avoid loops and other problems.
+.SS NETMAP
+This target allows you to statically map a whole network of addresses onto
+another network of addresses.  It can only be used from rules in the
+.B nat
+table.
+.TP
+.BI "--to "  "address[/mask]"
+Network address to map to.  The resulting address will be constructed in the
+following way: All 'one' bits in the mask are filled in from the new `address'.
+All bits that are zero in the mask are filled in from the original address.
+.SS NFLOG
+This target provides logging of matching packets. When this target is
+set for a rule, the Linux kernel will pass the packet to the loaded
+logging backend to log the packet. This is usually used in combination
+with nfnetlink_log as logging backend, which will multicast the packet
+through a
+.IR netlink
+socket to the specified multicast group. One or more userspace processes
+may subscribe to the group to receive the packets. Like LOG, this is a
+non-terminating target, i.e. rule traversal continues at the next rule.
+.TP
+.BI "--nflog-group " "nlgroup"
+The netlink group (1 - 2^32-1) to which packets are (only applicable for
+nfnetlink_log). The default value is 0.
+.TP
+.BI "--nflog-prefix " "prefix"
+A prefix string to include in the log message, up to 64 characters
+long, useful for distinguishing messages in the logs.
+.TP
+.BI "--nflog-range " "size"
+The number of bytes to be copied to userspace (only applicable for
+nfnetlink_log). nfnetlink_log instances may specify their own
+range, this option overrides it.
+.TP
+.BI "--nflog-threshold " "size"
+Number of packets to queue inside the kernel before sending them
+to userspace (only applicable for nfnetlink_log). Higher values
+result in less overhead per packet, but increase delay until the
+packets reach userspace. The default value is 1.
+.BR
+.SS NFQUEUE
+This target is an extension of the QUEUE target. As opposed to QUEUE, it allows
+you to put a packet into any specific queue, identified by its 16-bit queue
+number.  
+.TP
+.BR "--queue-num " "\fIvalue"
+This specifies the QUEUE number to use. Valud queue numbers are 0 to 65535. The default value is 0.
+.TP
+It can only be used with Kernel versions 2.6.14 or later, since it requires
+the
+.B
+nfnetlink_queue
+kernel support.
+.SS NOTRACK
+This target disables connection tracking for all packets matching that rule.
+.TP
+It can only be used in the
+.B raw
+table.
+.SS REDIRECT
+This target is only valid in the
+.B nat
+table, in the
+.B PREROUTING
+and
+.B OUTPUT
+chains, and user-defined chains which are only called from those
+chains.  It redirects the packet to the machine itself by changing the
+destination IP to the primary address of the incoming interface
+(locally-generated packets are mapped to the 127.0.0.1 address).  It
+takes one option:
+.TP
+.BR "--to-ports " "\fIport\fP[-\fIport\fP]"
+This specifies a destination port or range of ports to use: without
+this, the destination port is never altered.  This is only valid
+if the rule also specifies
+.B "-p tcp"
+or
+.BR "-p udp" .
+.TP
+.BR "--random"
+If option
+.B "--random"
+is used then port mapping will be randomized (kernel >= 2.6.22).
+.RS
+.PP
+.SS REJECT
+This is used to send back an error packet in response to the matched
+packet: otherwise it is equivalent to
+.B DROP
+so it is a terminating TARGET, ending rule traversal.
+This target is only valid in the
+.BR INPUT ,
+.B FORWARD
+and
+.B OUTPUT
+chains, and user-defined chains which are only called from those
+chains.  The following option controls the nature of the error packet
+returned:
+.TP
+.BI "--reject-with " "type"
+The type given can be
+.nf
+.B " icmp-net-unreachable"
+.B " icmp-host-unreachable"
+.B " icmp-port-unreachable"
+.B " icmp-proto-unreachable"
+.B " icmp-net-prohibited"
+.B " icmp-host-prohibited or"
+.B " icmp-admin-prohibited (*)"
+.fi
+which return the appropriate ICMP error message (\fBport-unreachable\fP is
+the default).  The option
+.B tcp-reset
+can be used on rules which only match the TCP protocol: this causes a
+TCP RST packet to be sent back.  This is mainly useful for blocking 
+.I ident
+(113/tcp) probes which frequently occur when sending mail to broken mail
+hosts (which won't accept your mail otherwise).
+.TP
+(*) Using icmp-admin-prohibited with kernels that do not support it will result in a plain DROP instead of REJECT
+.SS SAME
+Similar to SNAT/DNAT depending on chain: it takes a range of addresses
+(`--to 1.2.3.4-1.2.3.7') and gives a client the same
+source-/destination-address for each connection.
+.TP
+.BI "--to " "<ipaddr>-<ipaddr>"
+Addresses to map source to. May be specified more than once for
+multiple ranges.
+.TP
+.B "--nodst"
+Don't use the destination-ip in the calculations when selecting the
+new source-ip
+.TP
+.B "--random"
+Port mapping will be forcely randomized to avoid attacks based on 
+port prediction (kernel >= 2.6.21).
+.SS SNAT
+This target is only valid in the
+.B nat
+table, in the
+.B POSTROUTING
+chain.  It specifies that the source address of the packet should be
+modified (and all future packets in this connection will also be
+mangled), and rules should cease being examined.  It takes one type
+of option:
+.TP
+.BR "--to-source  " "\fIipaddr\fP[-\fIipaddr\fP][:\fIport\fP-\fIport\fP]"
+which can specify a single new source IP address, an inclusive range
+of IP addresses, and optionally, a port range (which is only valid if
+the rule also specifies
+.B "-p tcp"
+or
+.BR "-p udp" ).
+If no port range is specified, then source ports below 512 will be
+mapped to other ports below 512: those between 512 and 1023 inclusive
+will be mapped to ports below 1024, and other ports will be mapped to
+1024 or above. Where possible, no port alteration will
+
+In Kernels up to 2.6.10, you can add several --to-source options.  For those
+kernels, if you specify more than one source address, either via an address
+range or multiple --to-source options, a simple round-robin (one after another
+in cycle) takes place between these addresses.
+Later Kernels (>= 2.6.11-rc1) don't have the ability to NAT to multiple ranges
+anymore.
+.TP
+.BR "--random"
+If option
+.B "--random"
+is used then port mapping will be randomized (kernel >= 2.6.21).
+.RS
+.PP
+.SS TRACE
+This target marks packes so that the kernel will log every rule which match 
+the packets as those traverse the tables, chains, rules. (The ipt_LOG module 
+is required for the logging.) The packets are logged with the string prefix: 
+"TRACE: tablename:chainname:type:rulenum " where type can be "rule" for 
+plain rule, "return" for implicit rule at the end of a user defined chain 
+and "policy" for the policy of the built in chains. 
+.br
+It can only be used in the
+.BR raw
+table.
+.SS ULOG
+This target provides userspace logging of matching packets.  When this
+target is set for a rule, the Linux kernel will multicast this packet
+through a
+.IR netlink 
+socket. One or more userspace processes may then subscribe to various 
+multicast groups and receive the packets.
+Like LOG, this is a "non-terminating target", i.e. rule traversal
+continues at the next rule.
+.TP
+.BI "--ulog-nlgroup " "nlgroup"
+This specifies the netlink group (1-32) to which the packet is sent.
+Default value is 1.
+.TP
+.BI "--ulog-prefix " "prefix"
+Prefix log messages with the specified prefix; up to 32 characters
+long, and useful for distinguishing messages in the logs.
+.TP
+.BI "--ulog-cprange " "size"
+Number of bytes to be copied to userspace.  A value of 0 always copies
+the entire packet, regardless of its size.  Default is 0.
+.TP
+.BI "--ulog-qthreshold " "size"
+Number of packet to queue inside kernel.  Setting this value to, e.g. 10
+accumulates ten packets inside the kernel and transmits them as one
+netlink multipart message to userspace.  Default is 1 (for backwards
+compatibility).
+.br
+.SS connmark_j
+This module sets the netfilter mark value associated with a connection
+.TP
+.B --set-mark mark[/mask]
+Set connection mark. If a mask is specified then only those bits set in the
+mask is modified.
+.TP
+.B --save-mark [--mask mask]
+Copy the netfilter packet mark value to the connection mark. If a mask
+is specified then only those bits are copied.
+.TP
+.B --restore-mark [--mask mask]
+Copy the connection mark value to the packet. If a mask is specified
+then only those bits are copied. This is only valid in the
+.B mangle
+table.
+.SS dscp_j
+This target allows to alter the value of the DSCP bits within the TOS
+header of the IPv4 packet.  As this manipulates a packet, it can only
+be used in the mangle table.
+.TP
+.BI "--set-dscp " "value"
+Set the DSCP field to a numerical value (can be decimal or hex)
+.TP
+.BI "--set-dscp-class " "class"
+Set the DSCP field to a DiffServ class.
+.SS tos_j
+This is used to set the 8-bit Type of Service field in the IP header.
+It is only valid in the
+.B mangle
+table.
+.TP
+.BI "--set-tos " "tos"
+You can use a numeric TOS values, or use
+.nf
+ iptables -j TOS -h
+.fi
+to see the list of valid TOS names.
+.SS ttl_j
+This is used to modify the IPv4 TTL header field.  The TTL field determines
+how many hops (routers) a packet can traverse until it's time to live is
+exceeded.
+.TP
+Setting or incrementing the TTL field can potentially be very dangerous,
+so it should be avoided at any cost.  
+.TP
+.B Don't ever set or increment the value on packets that leave your local network!
+.B mangle
+table.
+.TP
+.BI "--ttl-set " "value"
+Set the TTL value to `value'.
+.TP
+.BI "--ttl-dec " "value"
+Decrement the TTL value `value' times.
+.TP
+.BI "--ttl-inc " "value"
+Increment the TTL value `value' times.

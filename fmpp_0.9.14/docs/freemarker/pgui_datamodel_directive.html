@@ -1,0 +1,473 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - Directives
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_datamodel_method.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_datamodel_node.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="pgui_datamodel_directive"></a>Directives
+  </h2>
+
+ 
+<p>Java programmers can implement user-defined directives in Java
+        using the <tt style="color: #A03D10">TemplateDirectiveModel</tt> interface. See in
+        the API documentation.</p><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+   <h3>Note</h3>
+
+          <p><tt style="color: #A03D10">TemplateDirectiveModel</tt> was introduced in
+          FreeMarker 2.3.11, replacing the soon to be depreciated
+          <tt style="color: #A03D10">TemplateTransformModel</tt>.</p>
+        </div>
+
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_34"></a>Example 1
+  </h3>
+
+
+          <p>We will implement a directive which converts all output
+          between its start-tag and end-tag to upper case. Like, this
+          template:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+foo
+<b>&lt;@upper&gt;</b>
+  bar
+  &lt;#-- All kind of FTL is allowed here --&gt;
+  &lt;#list [&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;] as color&gt;
+    ${color}
+  &lt;/#list&gt;
+  baaz
+<b>&lt;/@upper&gt;</b>
+wombat&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>will output this:</p>
+
+          <div align="left"><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+foo
+  BAR
+    RED
+    GREEN
+    BLUE
+  BAAZ
+wombat&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>This is the source code of the directive class:</p>
+
+          <div align="left"><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+package com.example;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Map;
+
+import freemarker.core.Environment;
+import freemarker.template.TemplateDirectiveBody;
+import freemarker.template.TemplateDirectiveModel;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateModel;
+import freemarker.template.TemplateModelException;
+
+/**
+ *  FreeMarker user-defined directive that progressively transforms
+ *  the output of its nested content to upper-case.
+ *  
+ *  
+ *  &lt;p&gt;&lt;b&gt;Directive info&lt;/b&gt;&lt;/p&gt;
+ * 
+ *  &lt;p&gt;Directive parameters: None
+ *  &lt;p&gt;Loop variables: None
+ *  &lt;p&gt;Directive nested content: Yes
+ */
+public class UpperDirective implements TemplateDirectiveModel {
+    
+    public void execute(Environment env,
+            Map params, TemplateModel[] loopVars,
+            TemplateDirectiveBody body)
+            throws TemplateException, IOException {
+        // Check if no parameters were given:
+        if (!params.isEmpty()) {
+            throw new TemplateModelException(
+                    &quot;This directive doesn't allow parameters.&quot;);
+        }
+        if (loopVars.length != 0) {
+                throw new TemplateModelException(
+                    &quot;This directive doesn't allow loop variables.&quot;);
+        }
+        
+        // If there is non-empty nested content:
+        if (body != null) {
+            // Executes the nested body. Same as &lt;#nested&gt; in FTL, except
+            // that we use our own writer instead of the current output writer.
+            body.render(new UpperCaseFilterWriter(env.getOut()));
+        } else {
+            throw new RuntimeException(&quot;missing body&quot;);
+        }
+    }
+    
+    /**
+     * A {@link Writer} that transforms the character stream to upper case
+     * and forwards it to another {@link Writer}.
+     */ 
+    private static class UpperCaseFilterWriter extends Writer {
+       
+        private final Writer out;
+           
+        UpperCaseFilterWriter (Writer out) {
+            this.out = out;
+        }
+
+        public void write(char[] cbuf, int off, int len)
+                throws IOException {
+            char[] transformedCbuf = new char[len];
+            for (int i = 0; i &lt; len; i++) {
+                transformedCbuf[i] = Character.toUpperCase(cbuf[i + off]);
+            }
+            out.write(transformedCbuf);
+        }
+
+        public void flush() throws IOException {
+            out.flush();
+        }
+
+        public void close() throws IOException {
+            out.close();
+        }
+    }
+
+}&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>Now we still need to create an instance of this class, and
+          make this directive available to the template with the name &quot;upper&quot;
+          (or with whatever name we want) somehow. A possible solution is to
+          put the directive in the data-model:</p>
+
+          <div align="left"><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">root.put(&quot;upper&quot;, new com.example.UpperDirective());&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>But typically it is better practice to put commonly used
+          directives into the <tt style="color: #A03D10">Configuration</tt> as <a href="pgui_config_sharedvariables.html">shared
+          variables</a>.</p>
+
+          <p>It is also possible to put the directive into an FTL library
+          (collection of macros and like in a template, that you
+          <tt style="color: #A03D10">include</tt> or <tt style="color: #A03D10">import</tt> in other
+          templates) using the <a href="ref_builtins_expert.html#ref_builtin_new"><tt>new</tt>
+          built-in</a>:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;#-- Maybe you have directives that you have implemented in FTL --&gt;
+&lt;#macro something&gt;
+  ...
+&lt;/#macro&gt;
+
+&lt;#-- Now you can't use &lt;#macro upper&gt;, but instead you can: --&gt;
+&lt;#assign upper = &quot;com.example.UpperDirective&quot;?new()&gt;&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_35"></a>Example 2
+  </h3>
+
+
+          <p>We will create a directive that executes its nested content
+          again and again for the specified number of times (similarly to
+          <tt style="color: #A03D10">list</tt> directive), optionally separating the the
+          output of the repetations with a <tt style="color: #A03D10">&lt;hr&gt;</tt>-s.
+          Let's call this directive &quot;repeat&quot;. Example template:</p>
+
+          <div align="left"><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#D8D8D8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+&lt;#assign x = 1&gt;
+
+<b>&lt;@repeat count=4&gt;</b>
+  Test ${x}
+  &lt;#assign x = x + 1&gt;
+<b>&lt;/@repeat&gt;</b>
+
+<b>&lt;@repeat count=3 hr=true&gt;</b>
+  Test
+<b>&lt;/@repeat&gt;</b>
+
+<b>&lt;@repeat count=3; cnt&gt;</b>
+  ${cnt}. Test
+<b>&lt;/@repeat&gt;</b>&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>Output:</p>
+
+          <div align="left"><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#CCFFCC" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+  Test 1
+  Test 2
+  Test 3
+  Test 4
+
+  Test
+&lt;hr&gt;  Test
+&lt;hr&gt;  Test
+
+  1. Test
+  2. Test
+  3. Test
+&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+
+          <p>The class:</p>
+
+          <div align="left"><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">
+package com.example;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.Iterator;
+import java.util.Map;
+
+import freemarker.core.Environment;
+import freemarker.template.SimpleNumber;
+import freemarker.template.TemplateBooleanModel;
+import freemarker.template.TemplateDirectiveBody;
+import freemarker.template.TemplateDirectiveModel;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateModel;
+import freemarker.template.TemplateModelException;
+import freemarker.template.TemplateNumberModel;
+
+/**
+ * FreeMarker user-defined directive for repeating a section of a template,
+ * optionally with separating the output of the repetations with
+ * &lt;tt&gt;&amp;lt;hr&gt;&lt;/tt&gt;-s.
+ *
+ * 
+ * &lt;p&gt;&lt;b&gt;Directive info&lt;/b&gt;&lt;/p&gt;
+ * 
+ * &lt;p&gt;Parameters:
+ * &lt;ul&gt;
+ *   &lt;li&gt;&lt;code&gt;count&lt;/code&gt;: The number of repetations. Required!
+ *       Must be a non-negative number. If it is not a whole number then it will
+ *       be rounded &lt;em&gt;down&lt;/em&gt;.
+ *   &lt;li&gt;&lt;code&gt;hr&lt;/code&gt;: Tells if a HTML &quot;hr&quot; element could be printed between
+ *       repetations. Boolean. Optional, defaults to &lt;code&gt;false&lt;/code&gt;. 
+ * &lt;/ul&gt;
+ *
+ * &lt;p&gt;Loop variables: One, optional. It gives the number of the current
+ *    repetation, starting from 1.
+ * 
+ * &lt;p&gt;Nested content: Yes
+ */
+public class RepeatDirective implements TemplateDirectiveModel {
+    
+    private static final String PARAM_NAME_COUNT = &quot;count&quot;;
+    private static final String PARAM_NAME_HR = &quot;hr&quot;;
+    
+    public void execute(Environment env,
+            Map params, TemplateModel[] loopVars,
+            TemplateDirectiveBody body)
+            throws TemplateException, IOException {
+        
+        // ---------------------------------------------------------------------
+        // Processing the parameters:
+        
+        int countParam = 0;
+        boolean countParamSet = false;
+        boolean hrParam = false;
+        
+        Iterator paramIter = params.entrySet().iterator();
+        while (paramIter.hasNext()) {
+            Map.Entry ent = (Map.Entry) paramIter.next();
+            
+            String paramName = (String) ent.getKey();
+            TemplateModel paramValue = (TemplateModel) ent.getValue();
+            
+            if (paramName.equals(PARAM_NAME_COUNT)) {
+                if (!(paramValue instanceof TemplateNumberModel)) {
+                    throw new TemplateModelException(
+                            &quot;The \&quot;&quot; + PARAM_NAME_HR + &quot;\&quot; parameter &quot;
+                            + &quot;must be a number.&quot;);
+                }
+                countParam = ((TemplateNumberModel) paramValue)
+                        .getAsNumber().intValue();
+                countParamSet = true;
+                if (countParam &lt; 0) {
+                    throw new TemplateModelException(
+                            &quot;The \&quot;&quot; + PARAM_NAME_HR + &quot;\&quot; parameter &quot;
+                            + &quot;can't be negative.&quot;);
+                }
+            } else if (paramName.equals(PARAM_NAME_HR)) {
+                if (!(paramValue instanceof TemplateBooleanModel)) {
+                    throw new TemplateModelException(
+                            &quot;The \&quot;&quot; + PARAM_NAME_HR + &quot;\&quot; parameter &quot;
+                            + &quot;must be a boolean.&quot;);
+                }
+                hrParam = ((TemplateBooleanModel) paramValue)
+                        .getAsBoolean();
+            } else {
+                throw new TemplateModelException(
+                        &quot;Unsupported parameter: &quot; + paramName);
+            }
+        }
+        if (!countParamSet) {
+                throw new TemplateModelException(
+                        &quot;The required \&quot;&quot; + PARAM_NAME_COUNT + &quot;\&quot; paramter&quot;
+                        + &quot;is missing.&quot;);
+        }
+        
+        if (loopVars.length &gt; 1) {
+                throw new TemplateModelException(
+                        &quot;At most one loop variable is allowed.&quot;);
+        }
+        
+        // Yeah, it was long and boring...
+        
+        // ---------------------------------------------------------------------
+        // Do the actual directive execution:
+        
+        Writer out = env.getOut();
+        if (body != null) {
+            for (int i = 0; i &lt; countParam; i++) {
+                // Prints a &lt;hr&gt; between all repetations if the &quot;hr&quot; parameter
+                // was true:
+                if (hrParam &amp;&amp; i != 0) {
+                    out.write(&quot;&lt;hr&gt;&quot;);
+                }
+                
+                // Set the loop variable, if there is one:
+                if (loopVars.length &gt; 0) {
+                    loopVars[0] = new SimpleNumber(i + 1);
+                }
+                
+                // Executes the nested body (same as &lt;#nested&gt; in FTL). In this
+                // case we don't provide a special writer as the parameter:
+                body.render(env.getOut());
+            }
+        }
+    }
+
+}&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_36"></a>Notices
+  </h3>
+
+
+          <p>It's important that a
+          <tt style="color: #A03D10">TemplateDirectiveModel</tt> object usually should not
+          be stateful. The typical mistake is the storing of the state of the
+          directive call execution in the fields of the object. Think of
+          nested calls of the same directive, or directive objects used as
+          shared variables accessed by multiple threads concurrently.</p>
+
+          <p>Unfortunatelly, <tt style="color: #A03D10">TemplateDirectiveModel</tt>-s
+          don't support passing parameters by position (rather than by name).
+          This is fixed starting from FreeMarker 2.4.</p>
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_datamodel_method.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_datamodel.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_datamodel_node.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

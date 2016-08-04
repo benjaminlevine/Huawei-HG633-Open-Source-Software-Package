@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - Logging
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_misc_beanwrapper.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_misc.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_misc_servlet.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="pgui_misc_logging"></a>Logging
+  </h2>
+
+ 
+<p>FreeMarker integrates with the following logging packages: <a href="http://jakarta.apache.org/log4j">Log4J</a>, <a href="http://jakarta.apache.org/avalon/logkit">Avalon
+        LogKit</a>, and <a href="http://java.sun.com/j2se/1.4/docs/api/java/util/logging/package-summary.html">java.util.logging</a>
+        (Java2 platform 1.4 and above). You need not do anything in order for
+        FreeMarker to use these loggers; if any of them is discovered through
+        the class loader that loaded FreeMarker classes, it is used
+        automatically. All log messages produced by FreeMarker are logged into
+        the logger hierarchy whose top-level logger is named
+        <tt style="color: #A03D10">freemarker</tt>. Currently used loggers are:</p>   <div class="informaltable">
+      <table border="1" cellpadding="4">
+
+          <thead>
+            <tr>
+              <th>Logger name</th>
+
+
+              <th>Purpose</th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+            <tr>
+              <td><tt style="color: #A03D10">freemarker.beans</tt></td>
+
+
+              <td>Logs messages of the Beans wrapper module.</td>
+
+            </tr>
+
+
+            <tr>
+              <td><tt style="color: #A03D10">freemarker.cache</tt></td>
+
+
+              <td>Logs messages related to template loading and caching.</td>
+
+            </tr>
+
+
+            <tr>
+              <td><tt style="color: #A03D10">freemarker.runtime</tt></td>
+
+
+              <td>Logs template exceptions thrown during template
+              processing.</td>
+
+            </tr>
+
+
+            <tr>
+              <td><tt style="color: #A03D10">freemarker.runtime.attempt</tt></td>
+
+
+              <td>Logs template exceptions thrown during template processing,
+              but caught by
+              <tt style="color: #A03D10">attempt</tt>/<tt style="color: #A03D10">recover</tt>
+              directives. Enable DEBUG severity to see the exceptions.</td>
+
+            </tr>
+
+
+            <tr>
+              <td><tt style="color: #A03D10">freemarker.servlet</tt></td>
+
+
+              <td>Logs messages of the FreemarkerServlet class.</td>
+
+            </tr>
+
+          </tbody>
+
+              </table>
+      <p></p><!-- ensures proper margin -->
+   </div>
+<p>FreeMarker will look for the logging packages in this order, and
+        will use the first package it finds: Log4J, Avalon, java.util.logging.
+        However, if you call the static <tt style="color: #A03D10">selectLoggerLibrary</tt>
+        method on the <tt style="color: #A03D10">freemarker.log.Logger</tt> class with
+        appropriate parameter, you can explicitly select a logger package, or
+        even disable the logging.</p><p>You can also call the static
+        <tt style="color: #A03D10">selectLoggerLibrary</tt> method on the
+        <tt style="color: #A03D10">freemarker.log.Logger</tt> class and pass it a string
+        that will be used to prefix the above mentioned logger names. This is
+        useful if you want to have separate loggers on a per-application
+        basis.</p>  
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_misc_beanwrapper.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_misc.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="pgui_misc_servlet.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

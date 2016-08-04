@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - global
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="ref_directive_assign.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="ref_directives.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="ref_directive_local.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="ref_directive_global"></a>global
+  </h2>
+
+ 
+<a name="ref.directive.global"></a>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_95"></a>Synopsis
+  </h3>
+
+
+          <pre class="metaTemplate">
+<tt style="color: #A03D10">&lt;#global <i style="color: #DD4400">name</i>=<i style="color: #DD4400">value</i>&gt;</tt>
+or
+<tt style="color: #A03D10">&lt;#global <i style="color: #DD4400">name1</i>=<i style="color: #DD4400">value1</i> <i style="color: #DD4400">name2</i>=<i style="color: #DD4400">value2</i> <i style="color: #DD4400">... nameN</i>=<i style="color: #DD4400">valueN</i>&gt;</tt>
+or
+<tt style="color: #A03D10">&lt;#global <i style="color: #DD4400">name</i>&gt;
+  <i style="color: #DD4400">capture this</i>
+&lt;/#global&gt;</tt>
+</pre>
+
+
+          <p>Where:</p>
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">name</i></tt>: name
+              of the variable. It is not expression. However, it can be
+              written as a string literal, which is useful if the variable
+              name contains reserved characters, for example
+              <tt style="color: #A03D10">&lt;#global &quot;foo-bar&quot; = 1&gt;</tt>. Note that this
+              string literal does not expand interpolations (as
+              <tt style="color: #A03D10">&quot;${foo}&quot;</tt>).
+            </li>
+
+            <li>
+              <tt style="color: #A03D10"><i style="color: #DD4400">value</i></tt>: the
+              value to store. Expression.
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_96"></a>Description
+  </h3>
+
+
+          <p>This directive is similar to <a href="ref_directive_assign.html#ref.directive.assign"><tt>assign</tt></a>, but
+          the variable created will be visible in all <a href="dgui_misc_namespace.html">namespaces</a>, and will not be
+          inside any namespace. Exactly as if you would create (or replace) a
+          variable of the data-model. Hence, the variable is global. If a
+          variable with the same name already exists in the data-model, it
+          will be hidden by the variable created with this directive. If a
+          variable with the same name already exists in the current namespace,
+          that will hide the variable created with <tt style="color: #A03D10">global</tt>
+          directive.</p>
+
+          <p>For example, with <tt style="color: #A03D10">&lt;#global x = 1&gt;</tt> you
+          create a variable that is visible as <tt style="color: #A03D10">x</tt> in all
+          namespaces, unless another variable called <tt style="color: #A03D10">x</tt>
+          hides it (for example a variable what you have created as
+          <tt style="color: #A03D10">&lt;#assign x = 2&gt;</tt>). In this case, you can use
+          <a href="dgui_template_exp.html#dgui_template_exp_var_special">special
+          variable</a> <tt style="color: #A03D10">globals</tt>, like
+          <tt style="color: #A03D10">${.globals.x}</tt>. Note that with
+          <tt style="color: #A03D10">globals</tt> you see all globally accessible
+          variables; not only the variables that were created with
+          <tt style="color: #A03D10">global</tt> directive, but also the variables of the
+          data-model.</p>
+
+          <p>Note for custom JSP tag users: The set of variables created
+          with this directive corresponds to the JSP page-scope. This means,
+          that if a custom JSP tag wants to get a page-scope attribute
+          (page-scope bean), a variable with the same name in the current
+          namespace will not hide it from the viewpoint of the JSP tag.</p>
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="ref_directive_assign.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="ref_directives.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="ref_directive_local.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

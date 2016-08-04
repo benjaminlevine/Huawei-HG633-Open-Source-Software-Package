@@ -1,0 +1,220 @@
+  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta name="Keywords" content="FMPP, preprocessor, FreeMarker, template, templates, HTML, HTML template, HTML templates, text, macro, macros, text preprocessor, HTML preprocessor, static HTML, HTML generator, static HTML generator, Java, free, open source, open-source, homepage">
+      <meta name="Description" content="Command-line/Ant-task/embeddable text file preprocessor. Macros, flow control, expressions. Recursive directory processing. Extendable in Java to display data from any data sources (as database). Can generate complete homepages (tree of HTML-s, images).">
+      <title>FMPP: Text file preprocessor (HTML preprocessor)</title>
+    <style type="text/css">
+      P {font-family: Arial, sans-serif}
+      UL {font-family: Arial, sans-serif}
+      LI {font-family: Arial, sans-serif}
+      TH {font-family: Arial, sans-serif}
+      TD {font-family: Arial, sans-serif}
+      H1 {font-family: Arial, sans-serif}
+      H2 {font-family: Arial, sans-serif}
+      H3 {font-family: Arial, sans-serif}
+      H4 {font-family: Arial, sans-serif}
+      A.toc{color: #0000CC; text-decoration:none}
+      A.toc:hover{text-decoration: underline}
+      A.toc:visited{color: #800080}
+      A.s{color: #30D000}
+      A.s:visited{color: #30D000}
+      TT {font-size: 1em; font-family: "Courier New", monospace}
+      CODE {font-size: 1em; font-family: "Courier New", monospace}
+    </style>
+  </head>
+
+  <body background="img/background.png" bgcolor="#FFFFFF" text="#000000" style="font-family: Arial, sans-serif">
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+      <tr>
+          <td valign="middle" align="center">
+            <img src="img/fmpptitle.png" alt="FMPP">
+            <br>FreeMarker-based text file PreProcessor
+	    <br>Version 0.9.14<br>&nbsp;	
+        <td valign="middle" align="right">&nbsp;&nbsp;
+        <td valign="middle" align="right">
+&nbsp;<br><br>&nbsp;  <tr><td colspan=3 height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td colspan=3 height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+
+    <p><font color="#000000"><b>Page contents</b></font>
+  <ul>
+    <li><a href="#sect1" class=toc>What is FMPP?</a></li>
+    <li><a href="#sect2" class=toc>Features</a></li>
+    <li><a href="#sect3" class=toc>Documentation</a></li>
+    <li><a href="#sect4" class=toc>Download</a></li>
+    <li><a href="#sect5" class=toc>Project State</a></li>
+    <li><a href="#sect6" class=toc>Contact</a></li>
+  </ul>
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+      
+<a name="sect1"></a>
+     <h2><font color="#000000">What is FMPP?</font></h2>
+  <p>FMPP is a general-purpose text file preprocessor tool that uses
+  <a href="http://freemarker.org/">FreeMarker</a> templates. It is particularly designed for HTML preprocessor,
+  to generate complete (static) homepages: directory structure that contains HTML-s, image
+  files, etc. But of course it can be used to generate source code or whatever text files. FMPP is extendable with Java classes to pull data from any data sources (database, etc.) and embed the data into the generated files.
+  
+  <p>FMPP can be used with UN*X-style command-line interface, or as <a href="http://ant.apache.org">Ant</a> task,
+  or you can embed it into your Java application.
+  
+  <p>FMPP is 100% Java, thus it runs on all modern platforms (Windows, "Linux", Mac OS X, Solaris, ...etc.).
+
+  <p>FMPP is <a href="http://www.fsf.org/philosophy/free-sw.html">Free</a> software. See the license <a href="license.html">here...</a>
+  
+  <p>Some products that were created for similar purpose to FMPP:
+    <a href="http://template-toolkit.org/">Template Toolkit</a> (Perl),
+    <a href="http://www.labyrinth.net.au/~dbareis/ppwizard.htm">PPWizard</a> (Rexx),
+    <a href="http://vpp.sourceforge.net/">VPP</a> (Java, Velocity)
+
+<a name="sect2"></a>
+     <h2><font color="#000000">Features</font></h2>
+  <p>This is a quick list of FMPP capabilities:
+  <ul>
+    <li>Preprocessor language (it is the <a href="http://freemarker.org/">FreeMarker</a> Template Language):
+      <ul>
+        <li>All the usual template constructs, such as include, if/else/elseif, loop.
+        <li>Macros with named arguments and nested content (body).
+        <li>Variables (global, or local for a macro call)
+        <li>Complex expressions using string, arithmetical and logical operations.
+            Extensible with custom functions.
+        <li>Automatic and manual escaping (HTML, XML, custom function)
+        <li>Transforming (filtering) blocks of output; extensible with custom transformations in Java.
+        <li>Capturing block of output into a variable.
+        <li>Charset aware, internally uses UNICODE.
+        <li>Number and date/time formatting with masks (patterns). Locale sensitive number and date/time formatting.
+      </ul>
+    <li>Bulk file processing:
+      <ul>
+        <li>Process entire directories recursively.
+        <li>Different file processing mode can be chosen for each file, based on path patterns (as file extension): execute file as template, or parse it as XML and then render it to output with a template, or binary-copy it, or ignore it.
+        <li>Can ignore bad source files and log the error message into a text file.
+        <li>Can guarantee that certain files will be processed later than others.
+      </ul>
+    <li>You can expose data from arbitrary data sources be writing extensions in Java.
+        Currently out-of-the-box supported data sources:
+          <ul>
+            <li>XML file
+            <li>CSV and tab-separated text files
+            <li>Java "properties" file
+            <li>Ant properties, Ant project and target information
+            <li>System clock
+            <li>Plain text file
+          </ul>
+    <li>Other highlighted features:
+      <ul>
+        <li>Output splitting: a single source file can generate multiple output files (including 0 output files).
+        <li>Automatic file inclusion, automatic escaping, and whatnot that can be done with automatically inserted headers and footers, chosen based on path patterns.
+        <li>Generate HTML &lt;img>-s with calculated width and height.
+        <li>Calculate the relative path to the home directory, or to any other file.
+        <li>Rendering (transforming) XML files with FreeMarker templates. (Similar to the typical XSLT usage pattern.)
+        <li>Query the size/existence of source files.
+        <li>Query output encoding (charset).
+        <li>URL-escaping (with the actual output charset).
+      </ul>
+  </ul>
+
+<a name="sect3"></a>
+     <h2><font color="#000000">Documentation</font></h2>
+  <ul>
+    <li><a href="manual.html"><b>FMPP Manual</b></a>
+    <li><a href="api/index.html">FMPP Java API</a>
+    <li><a href="freemarker/index.html">FreeMarker Manual</a>
+    <li><a href="freemarker/api/index.html">FreeMarker Java API</a>
+  </ul>
+
+<a name="sect4"></a>
+     <h2><font color="#000000">Download</font></h2>
+  <p>To download the latest release, please visit the FMPP homepage : <a href="http://fmpp.sourceforge.net/">http://fmpp.sourceforge.net/</a>
+  <p>For <b>text editor and IDE plug-ins</b>, and for other FreeMarker template related tools, please visit the FreeMarker homepage: <a href="http://freemarker.org/">http://freemarker.org/</a> (mirror: <a href="http://freemarker.sourceforge.net/">http://freemarker.sourceforge.net/)</a></p>
+
+<a name="sect5"></a>
+     <h2><font color="#000000">Project State</font></h2>
+
+   <p>Unlike most open source projects, I will be honest about it: I (Dániel Dékány) have stopped the active development of the FMPP project with FMPP 0.9.7. I still fix bugs and do other maintenance work (<a href="versions.html">check it here if I really do</a>), so the project is <b>not abandoned</b>. It's just that I don't plan to develop new features or do serious reworking. However, contributions of proper quality are welcome and will be integrated.</p>
+   
+   <p>I believe that the project will serve the <a href="http://freemarker.org/">FreeMarker</a> community well even if it remains in its current state forever. After all, it's already a feature rich and stable tool (that is, compared to the alternatives I have seen...).</p>
+
+
+<a name="sect6"></a>
+     <h2><font color="#000000">Contact</font></h2>
+  <table border=0 cellspacing=0 cellpadding=4><tr>
+    <td align="left" valign="middle"><img alt="bug" src="img/bug.png" border="0" width="32" height="32"></td>
+    <td align="left" valign="middle">
+      <font color=red size="+1"><b>Please report bugs you find!</b> Any programming, documentation content or grammatical mistakes, even minor typos. Thank you!</font><br>
+      Use the <a href="http://sourceforge.net/tracker/?func=add&amp;group_id=74591&amp;atid=541453">bug reporting Web page</a>,<br> 
+      or e-mail: <a href="mailto:ddekanyREMOVETHIS@freemail.hu">ddekanyREMOVETHIS@freemail.hu</a> (delete the "REMOVETHIS"!)<br>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Please report FreeMarker bugs at the <a href="http://sourceforge.net/tracker/?func=add&amp;group_id=794&amp;atid=100794">FreeMarker bug reporting Web page</a>, not for me.
+      If you are not sure if you have found a FreeMarker or an FMPP bug, just report it as FMPP bug.      
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      Also, note the <a href="knownproblems.html">Known Problems</a> page.
+    </td>
+  </tr>
+  </table>
+  
+  <p>Ask for <b>help</b> or provide suggestions:
+  <ul>
+    <li>on the <b>mailing list</b> (The preferred way. Low traffic.):
+      <ul>
+        <li>Subscribe/unsubscribe: <a href="http://lists.sourceforge.net/mailman/listinfo/fmpp-open">http://lists.sourceforge.net/mailman/listinfo/fmpp-open</a></li>
+        <li>News group interface: <a href="nntp://news.gmane.org/gmane.comp.text.fmpp">nntp://news.gmane.org/gmane.comp.text.fmpp</a><br></li>
+        <li>Web interface (read only): <a href="http://news.gmane.org/thread.php?group=gmane.comp.text.fmpp">http://news.gmane.org/thread.php?group=gmane.comp.text.fmpp</a></li>
+      </ul>
+    </li>
+    <li>on the SourceForge.net Web forum: <a href="http://sourceforge.net/forum/forum.php?forum_id=254571">http://sourceforge.net/forum/forum.php?forum_id=254571</a></li>
+    <li>with private e-mail: <a href="mailto:ddekanyREMOVETHIS@freemail.hu">ddekanyREMOVETHIS@freemail.hu</a> (delete the "REMOVETHIS"!)</li>
+  </ul>
+  
+  <p>Home page: <a href="http://fmpp.sourceforge.net/">http://fmpp.sourceforge.net/</a>
+
+
+    
+    <p>
+    <table border=0 cellspacing=0 cellpadding=0 width="100%">
+  <tr><td  height=1 bgcolor="#000000"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#808080"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#C0C0C0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#E0E0E0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+  <tr><td  height=1 bgcolor="#F0F0F0"><img src="img/none.gif" width=1 height=1 alt=""></td></tr>
+    </table>
+    <table border=0 cellspacing=4 cellpadding=0 width="100%">
+      <tr>
+        <td valign="top" align="right">
+          <table border=0 cellspacing=0 cellpadding=0 width="100%">
+            <tr>
+              <td align="left" valign="top"></td>
+              <td align="right" valign="top">
+                <i>
+                  Generated&nbsp;on&nbsp;Mar 15, 2009 06:17 PM GMT<br>
+                  For&nbsp;FMPP&nbsp;version&nbsp;0.9.14
+                </i>
+              </td>
+            </tr>
+          </table>
+        </td>
+      <tr>
+<td valign="middle" align="right"><a href="http://sourceforge.net"><img alt="SourceForge Logo" src="img/sflogo.png" border="0" width="88" height="31"></a>&nbsp;&nbsp;<a href="http://freemarker.org"><img alt="Powered by FreeMarker" src="img/poweredby_sq_simple.png" border="0" width="88" height="31"></a></td>      </tr>
+    </table>
+  </body>
+  </html>

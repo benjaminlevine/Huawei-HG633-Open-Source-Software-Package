@@ -1,0 +1,1 @@
+cmd_net/llc/llc.o := /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/ccache /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/arm-hsan-linux-uclibcgnueabi-ld -EL    -r -o net/llc/llc.o net/llc/llc_core.o net/llc/llc_input.o net/llc/llc_output.o 

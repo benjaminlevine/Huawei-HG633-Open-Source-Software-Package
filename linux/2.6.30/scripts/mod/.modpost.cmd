@@ -1,0 +1,1 @@
+cmd_scripts/mod/modpost := /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/ccache /usr/bin/gcc  -o scripts/mod/modpost scripts/mod/modpost.o scripts/mod/file2alias.o scripts/mod/sumversion.o  

@@ -1,0 +1,1 @@
+cmd_networking/lib.a := rm -f networking/lib.a; /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/arm-hsan-linux-uclibcgnueabi-ar  rcs networking/lib.a networking/ifconfig.o networking/interface.o networking/netstat.o networking/route.o networking/smuxctl.o networking/traceroute.o networking/vconfig.o networking/zcip.o

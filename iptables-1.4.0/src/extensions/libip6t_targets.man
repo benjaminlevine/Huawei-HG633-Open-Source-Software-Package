@@ -1,0 +1,160 @@
+.SS CLASSIFY
+This module allows you to set the skb->priority value (and thus classify the packet into a specific CBQ class).
+.TP
+.BI "--set-class " "MAJOR:MINOR"
+Set the major and minor class value.
+.SS LOG
+Turn on kernel logging of matching packets.  When this option is set
+for a rule, the Linux kernel will print some information on all
+matching packets (like most IPv6 IPv6-header fields) via the kernel log
+(where it can be read with
+.I dmesg
+or 
+.IR syslogd (8)).
+This is a "non-terminating target", i.e. rule traversal continues at
+the next rule.  So if you want to LOG the packets you refuse, use two
+separate rules with the same matching criteria, first using target LOG
+then DROP (or REJECT).
+.TP
+.BI "--log-level " "level"
+Level of logging (numeric or see \fIsyslog.conf\fP(5)).
+.TP
+.BI "--log-prefix " "prefix"
+Prefix log messages with the specified prefix; up to 29 letters long,
+and useful for distinguishing messages in the logs.
+.TP
+.B --log-tcp-sequence
+Log TCP sequence numbers. This is a security risk if the log is
+readable by users.
+.TP
+.B --log-tcp-options
+Log options from the TCP packet header.
+.TP
+.B --log-ip-options
+Log options from the IPv6 packet header.
+.TP
+.B --log-uid
+Log the userid of the process which generated the packet.
+.SS NFLOG
+This target provides logging of matching packets. When this target is
+set for a rule, the Linux kernel will pass the packet to the loaded
+logging backend to log the packet. This is usually used in combination
+with nfnetlink_log as logging backend, which will multicast the packet
+through a
+.IR netlink
+socket to the specified multicast group. One or more userspace processes
+may subscribe to the group to receive the packets. Like LOG, this is a
+non-terminating target, i.e. rule traversal continues at the next rule.
+.TP
+.BI "--nflog-group " "nlgroup"
+The netlink group (1 - 2^32-1) to which packets are (only applicable for
+nfnetlink_log). The default value is 0.
+.TP
+.BI "--nflog-prefix " "prefix"
+A prefix string to include in the log message, up to 64 characters
+long, useful for distinguishing messages in the logs.
+.TP
+.BI "--nflog-range " "size"
+The number of bytes to be copied to userspace (only applicable for
+nfnetlink_log). nfnetlink_log instances may specify their own
+range, this option overrides it.
+.TP
+.BI "--nflog-threshold " "size"
+Number of packets to queue inside the kernel before sending them
+to userspace (only applicable for nfnetlink_log). Higher values
+result in less overhead per packet, but increase delay until the
+packets reach userspace. The default value is 1.
+.BR
+.SS NFQUEUE
+This target is an extension of the QUEUE target. As opposed to QUEUE, it allows
+you to put a packet into any specific queue, identified by its 16-bit queue
+number.  
+.TP
+.BR "--queue-num " "\fIvalue"
+This specifies the QUEUE number to use. Valud queue numbers are 0 to 65535. The default value is 0.
+.TP
+It can only be used with Kernel versions 2.6.14 or later, since it requires
+the
+.B
+nfnetlink_queue
+kernel support.
+.SS NOTRACK
+This target disables connection tracking for all packets matching that rule.
+.TP
+It can only be used in the
+.B raw
+table.
+.SS REJECT
+This is used to send back an error packet in response to the matched
+packet: otherwise it is equivalent to 
+.B DROP
+so it is a terminating TARGET, ending rule traversal.
+This target is only valid in the
+.BR INPUT ,
+.B FORWARD
+and
+.B OUTPUT
+chains, and user-defined chains which are only called from those
+chains.  The following option controls the nature of the error packet
+returned:
+.TP
+.BI "--reject-with " "type"
+The type given can be
+.nf
+.B " icmp6-no-route"
+.B " no-route"
+.B " icmp6-adm-prohibited"
+.B " adm-prohibited"
+.B " icmp6-addr-unreachable"
+.B " addr-unreach"
+.B " icmp6-port-unreachable"
+.B " port-unreach"
+.fi
+which return the appropriate ICMPv6 error message (\fBport-unreach\fP is
+the default). Finally, the option
+.B tcp-reset
+can be used on rules which only match the TCP protocol: this causes a
+TCP RST packet to be sent back.  This is mainly useful for blocking 
+.I ident
+(113/tcp) probes which frequently occur when sending mail to broken mail
+hosts (which won't accept your mail otherwise).
+.B tcp-reset
+can only be used with kernel versions 2.6.14 or latter.
+
+.SS TRACE
+This target marks packes so that the kernel will log every rule which match 
+the packets as those traverse the tables, chains, rules. (The ip6t_LOG module 
+is required for the logging.) The packets are logged with the string prefix: 
+"TRACE: tablename:chainname:type:rulenum " where type can be "rule" for 
+plain rule, "return" for implicit rule at the end of a user defined chain 
+and "policy" for the policy of the built in chains. 
+.br
+It can only be used in the
+.BR raw
+table.
+.SS connmark_j
+This module sets the netfilter mark value associated with a connection
+.TP
+.B --set-mark mark[/mask]
+Set connection mark. If a mask is specified then only those bits set in the
+mask is modified.
+.TP
+.B --save-mark [--mask mask]
+Copy the netfilter packet mark value to the connection mark. If a mask
+is specified then only those bits are copied.
+.TP
+.B --restore-mark [--mask mask]
+Copy the connection mark value to the packet. If a mask is specified
+then only those bits are copied. This is only valid in the
+.B mangle
+table.
+.SS dscp_j
+This target allows to alter the value of the DSCP bits within the TOS
+header of the IPv4 packet.  As this manipulates a packet, it can only
+be used in the mangle table.
+.TP
+.BI "--set-dscp " "value"
+Set the DSCP field to a numerical value (can be decimal or hex)
+.TP
+.BI "--set-dscp-class " "class"
+Set the DSCP field to a DiffServ class.

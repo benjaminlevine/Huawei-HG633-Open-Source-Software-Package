@@ -1,0 +1,1 @@
+cmd_applets/built-in.o :=  /home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/bin/arm-hsan-linux-uclibcgnueabi-ld  -L/home/luokunling/open-HG633/BR-R5-HG633HG658v2-20140408/output/host/usr/arm-unknown-linux-uclibcgnueabi/sysroot/lib/  -r -o applets/built-in.o applets/applets.o

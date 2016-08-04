@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - Jython wrapper
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_misc_ant.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_misc.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="xgui.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="pgui_misc_jythonwrapper"></a>Jython wrapper
+  </h2>
+
+ 
+<p>The <tt style="color: #A03D10">freemarker.ext.jython</tt> package consists of
+        models that enable any Jython object to be used as a
+        <tt style="color: #A03D10">TemplateModel</tt>. In the very basic case, you only
+        need to call the</p><div align="left"><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="0" border="0"><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td><table bgcolor="#F8F8F8" cellspacing="0" cellpadding="4" border="0" width="100%" style="margin: 0px"><tr><td><pre style="margin: 0px">public TemplateModel wrap(Object obj);&nbsp;<span style="font-size: 1pt"> </span></pre></td></tr></table></td><td width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td></tr><tr valign="top"><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td><td height="1" width="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"/></td>      </tr>
+</table>  </div>
+  <p></p><!-- ensures bottom margin -->
+<p>method of the
+        <tt style="color: #A03D10">freemarker.ext.jython.JythonWrapper</tt> class. This
+        method will wrap the passed object into an appropriate
+        <tt style="color: #A03D10">TemplateModel</tt>. Below is a summary of the properties
+        of returned model wrappers. Let's assume that the model that resulted
+        from the <tt style="color: #A03D10">JythonWrapper</tt> call on object
+        <tt style="color: #A03D10">obj</tt> is named <tt style="color: #A03D10">model</tt> in the
+        template model root for the sake of the following discussion.</p>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_62"></a>TemplateHashModel functionality
+  </h3>
+
+
+          <p><tt style="color: #A03D10">PyDictionary</tt> and
+          <tt style="color: #A03D10">PyStringMap</tt> will be wrapped into a hash model.
+          Key lookups are mapped to the <tt style="color: #A03D10">__finditem__</tt>
+          method; if an item is not found, a model for <tt style="color: #A03D10">None</tt>
+          is returned.</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_63"></a>TemplateScalarModel functionality
+  </h3>
+
+
+          <p>Every python object will implement
+          <tt style="color: #A03D10">TemplateScalarModel</tt> whose
+          <tt style="color: #A03D10">getAsString()</tt> method simply delegates to
+          <tt style="color: #A03D10">toString()</tt>.</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_64"></a>TemplateBooleanModel functionality
+  </h3>
+
+
+          <p>Every python object will implement
+          <tt style="color: #A03D10">TemplateBooleanModel</tt> whose
+          <tt style="color: #A03D10">getAsBoolean()</tt> method simply delegates to
+          <tt style="color: #A03D10">__nonzero__()</tt> in accordance with Python semantics
+          of true/false.</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_65"></a>TemplateNumberModel functionality
+  </h3>
+
+
+          <p>Model wrappers for <tt style="color: #A03D10">PyInteger</tt>,
+          <tt style="color: #A03D10">PyLong</tt>, and <tt style="color: #A03D10">PyFloat</tt> objects
+          implement <tt style="color: #A03D10">TemplateNumberModel</tt> whose
+          <tt style="color: #A03D10">getAsNumber()</tt> method returns
+          <tt style="color: #A03D10">__tojava__(java.lang.Number.class)</tt>.</p>
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_66"></a>TemplateSequenceModel functionality
+  </h3>
+
+
+          <p>Model wrappers for all classes that extend
+          <tt style="color: #A03D10">PySequence</tt> will implement
+          <tt style="color: #A03D10">TemplateSequenceModel</tt> and thus their elements
+          will be accessible by index using the <tt style="color: #A03D10">model[i]</tt>
+          syntax, which will delegate to <tt style="color: #A03D10">__finditem__(i)</tt>.
+          You can also query the length of the array or the size of the list
+          using the <tt style="color: #A03D10">model?size</tt> built-in, which will
+          delegate to <tt style="color: #A03D10">__len__()</tt>.</p>
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="pgui_misc_ant.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="pgui_misc.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="xgui.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="docgen.css" type="text/css">
+  <meta name="generator" content="FreeMarker Docgen (DocBook 5)">
+  <title>
+    FreeMarker Manual - 2.3.5
+  </title>
+</head>
+<body>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="versions_2_3_6.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="app_versions.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="versions_2_3_4.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<div id="mainContent">
+  
+  
+  
+  <h2 class="section_level_1"><a name="versions_2_3_5"></a>2.3.5
+  </h2>
+
+ 
+<p>Date of release: 2006-03-11</p><p></p><p>A few new features and several bugfixes.</p>
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_152"></a>Changes on the FTL side
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>Bug fixed: <a href="http://sourceforge.net/tracker/?func=detail&amp;atid=100794&amp;aid=1435847&amp;group_id=794">[1435847]</a>
+              Alternative syntax doesn't work for comments</p>
+            </li>
+
+            <li>
+              <p>Bug fixed: With the new square bracket syntax, the tag
+              could be closed with <tt style="color: #A03D10">&gt;</tt>. Now it can be
+              closed with <tt style="color: #A03D10">]</tt> only.</p>
+            </li>
+
+            <li>
+              <p>Bug fixed: <a href="http://sourceforge.net/tracker/?func=detail&amp;atid=100794&amp;aid=1324020&amp;group_id=794">[1324020]</a>
+              <tt style="color: #A03D10">ParseException</tt> with the
+              <tt style="color: #A03D10">ftl</tt> directive if it wasn't in its own
+              line</p>
+            </li>
+
+            <li>
+              <p>Bug fixed: <a href="http://sourceforge.net/tracker/?func=detail&amp;atid=100794&amp;aid=1404033&amp;group_id=794">[1404033]</a>
+              <tt style="color: #A03D10">eval</tt> built-in fails with hash
+              concatenation</p>
+            </li>
+          </ul>    </div>
+
+        
+            
+  
+  
+  <h3 class="section_level_2"><a name="autoid_153"></a>Changes on the Java side
+  </h3>
+
+
+              <div class="itemizedlist">
+<ul>
+            <li>
+              <p>A new <tt style="color: #A03D10">Configuration</tt> level setting,
+              <tt style="color: #A03D10">tagSyntax</tt> was added. This determines the
+              syntax of the templates (angle bracket syntax VS <a href="dgui_misc_alternativesyntax.html">square bracket
+              syntax</a>) that has no <tt style="color: #A03D10">ftl</tt> directive in
+              it. So now you can choose to use the new square bracket syntax
+              by default. However, the recommended is to use auto-detection
+              (<tt style="color: #A03D10">yourConfig.setTagSyntax(Configuration.AUTO_DETECT_TAG_SYNTAX)</tt>),
+              because that will be the default starting from 2.4.
+              Auto-detection chooses syntax based on the syntax of the first
+              FreeMarker tag of the template (could be any FreeMarker tag, not
+              just <tt style="color: #A03D10">ftl</tt>). Note that as with the previous
+              version, if a the template uses <tt style="color: #A03D10">ftl</tt>
+              directive, then the syntax of the <tt style="color: #A03D10">ftl</tt>
+              directive determines the syntax of the template, and the
+              <tt style="color: #A03D10">tagSyntax</tt> setting is ignored.</p>
+            </li>
+
+            <li>
+              <p>Now <tt style="color: #A03D10">BeansWrapper</tt>,
+              <tt style="color: #A03D10">DefaultObjectWrapper</tt> and
+              <tt style="color: #A03D10">SimpleObjectWrapper</tt> support lookup with 1
+              character long strings in <tt style="color: #A03D10">Map</tt>-s (like
+              <tt style="color: #A03D10">myHash[&quot;a&quot;]</tt>) that use
+              <tt style="color: #A03D10">Character</tt> keys. Simply, as a special case,
+              when a hash lookup fails on a string that is 1 character long,
+              it checks for the <tt style="color: #A03D10">Character</tt> key in the
+              underlying map. (Bug tracker entry <a href="http://sourceforge.net/tracker/?func=detail&amp;atid=100794&amp;aid=1299045&amp;group_id=794">[1299045]</a>
+              FreeMarker doesn't support map lookup with Character
+              keys.)</p>
+            </li>
+
+            <li>
+              <p>A new property, <tt style="color: #A03D10">strict</tt> was added to
+              <tt style="color: #A03D10">BeansWrapper</tt>,
+              <tt style="color: #A03D10">DefaultObjectWrapper</tt> and
+              <tt style="color: #A03D10">SimpleObjectWrapper</tt>. If this property is
+              <tt style="color: #A03D10">true</tt> then an attempt to read a bean propertly
+              in the template (like <tt style="color: #A03D10">myBean.aProperty</tt>) that
+              doesn't exist in the bean class (as opposed to just holding
+              <tt style="color: #A03D10">null</tt> value) will cause
+              <tt style="color: #A03D10">InvalidPropertyException</tt>, which can't be
+              suppressed in the template (not even with
+              <tt style="color: #A03D10">myBean.noSuchProperty?default('something')</tt>).
+              This way <tt style="color: #A03D10">?default('something')</tt> and
+              <tt style="color: #A03D10">?exists</tt> and similar built-ins can be used to
+              handle existing properties whose value is
+              <tt style="color: #A03D10">null</tt>, without the risk of hiding typos in the
+              property names. Typos will always cause error. But mind you, it
+              goes against the basic approach of FreeMarker, so use this
+              feature only if you really know what are you doing.</p>
+            </li>
+
+            <li>
+              <p>Bug fixed: <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1426227&amp;group_id=794&amp;atid=100794">[1426227]</a>
+              <tt style="color: #A03D10">NullPointerException</tt> in
+              <tt style="color: #A03D10">printStackTrace(...)</tt></p>
+            </li>
+
+            <li>
+              <p>Bug fixed: <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1386193&amp;group_id=794&amp;atid=100794">[1386193]</a>
+              Division by zero in <tt style="color: #A03D10">ArithmeticEngine</tt></p>
+            </li>
+          </ul>    </div>
+
+          
+</div>
+<br>
+
+  <table class="navigation" cellspacing="0" cellpadding="0" width="100%" border="0" bgcolor="#E0E0E0">
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+    <tr>
+      <td align="left" valign="middle">
+        <table cellspacing="0" cellpadding="4" width="100%" border="0" bgcolor="#E0E0E0">
+          <tr>
+            <td align="left"><a accesskey="p" href="versions_2_3_6.html"><img border="0" hspace="0" vspace="0" alt="Prev" src="docgen-images/nav/prev.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="u" href="app_versions.html"><img border="0" hspace="0" vspace="0" alt="Up" src="docgen-images/nav/up.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="n" href="versions_2_3_4.html"><img border="0" hspace="0" vspace="0" alt="Next" src="docgen-images/nav/next.gif"></a><img src="docgen-images/none.gif" width="16" height="1" alt="" hspace="0" vspace="0" border="0"><a accesskey="c" href="index.html"><img border="0" hspace="0" vspace="0" alt="Contents" src="docgen-images/nav/toc.gif"></a><img src="docgen-images/none.gif" width="4" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+            <td align="right" valign="middle">
+              <span style="font-size: 16px; font-family: Arial, sans-serif">
+                Bookmarks:
+                  <a href="alphaidx.html">Index</a>,
+                  <a href="gloss.html">Glossary</a>,
+                  <a href="ref.html">Reference</a>,
+                  <a href="app_faq.html">FAQ</a>,
+                  <a href="api/index.html">API</a>,
+                  <a href="../index.html">Home</a>
+              </span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td height="1" bgcolor="black"><img src="docgen-images/none.gif" width="1" height="1" alt="" hspace="0" vspace="0" border="0"></td>
+    </tr>
+  </table>
+
+<table border=0 cellspacing=0 cellpadding=0 width="100%">
+    <tr>
+      <td colspan=2><img src="docgen-images/none.gif" width=1 height=8 alt=""></td>
+    <tr>
+      <td align="left" valign="top"><span class="smallFooter">
+            FreeMarker Manual -- For FreeMarker 2.3.15
+            <br>
+          HTML generated: 2009-03-15 12:32:05 GMT
+      </span></td>
+      <td align="right" valign="top"><span class="smallFooter">
+          <a href="http://www.xmlmind.com/xmleditor/">
+            <img src="docgen-images/xxe.gif" alt="Edited with XMLMind XML Editor">
+          </a>
+      </span></td>
+    </tr>
+</table>
+</body>
+</html>
+

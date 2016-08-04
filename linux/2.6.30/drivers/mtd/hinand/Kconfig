@@ -1,0 +1,45 @@
+#
+# drivers/mtd/hinand/Kconfig
+#
+
+menu "HSAN NAND device Support"
+	 
+config MTD_HSAN_NFC
+    bool "Support HSAN NAND Controller device"
+    depends on HSAN
+    select YAFFS_FS
+    select MISC_FILESYSTEMS
+    select MTD_BLOCK
+    select YAFFS_YAFFS2
+    help
+	 HSAN NAND Controller device Support
+	 
+config MTD_HSAN_NFC_REG_BASE_ADDRESS
+	hex "nand controller's register base address"
+	depends on MTD_HSAN_NFC
+	default 0x10A30000
+	help
+	  register base address of nand controller
+
+config MTD_HSAN_NFC_REG_BASE_ADDRESS_LEN
+	hex "nand controller's register base address len"
+	depends on MTD_HSAN_NFC
+	default 0x100
+	help
+	  register base address len of nand controller
+
+config MTD_HSAN_NFC_BUFFER_BASE_ADDRESS
+	hex "nand controller's buffer base address"
+	depends on MTD_HSAN_NFC
+	default 0x20000000
+	help
+	  buffer base address of nand controller
+	
+config MTD_HSAN_NFC_BUFFER_BASE_ADDRESS_LEN
+	hex "nand controller's buffer base address len"
+	depends on MTD_HSAN_NFC
+	default 0x2400
+	help
+	  buffer base address len of nand controller
+
+endmenu
